@@ -20,7 +20,7 @@ char KeypadClass::keyIsPressed()
     enteredKeyChar = customKeypad.getKey();
     return enteredKeyChar;
 }
-int KeypadClass::buttonActions(int *x, int *y, int *fi, int *temperatureTarget, int *levelOfLift, bool *openDors)
+int KeypadClass::buttonActions(int *x, int *y, int *fi, int *levelOfLift, bool *openDors, int *temperatureTarget)
 {
     nameOfKey = NameOfKey(getEnteredKeypadInt());
     if ((nameOfKey >= 0) && (nameOfKey <= 15))

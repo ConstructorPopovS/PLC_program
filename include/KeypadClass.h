@@ -41,11 +41,11 @@ in your main.h you have to:
 class KeypadClass
 {
 public:
+  KeypadClass();
   char enteredKeyChar;
   int enteredKeyInt;
-  KeypadClass();
   char keyIsPressed();
-  int buttonActions(int *x, int *y, int *fi, int *temperatureTarget, int *levelOfLift, bool *openDors);
+  int buttonActions(int *x, int *y, int *fi,int *levelOfLift, bool *openDors, int *temperatureTarget);
   //buttonActions return: 0-9 is numbers; 10-15 is menu commands; 15-39 is commands for manipulator, furnace, lift and doors
 private:
   Keypad customKeypad;

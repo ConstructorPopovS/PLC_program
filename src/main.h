@@ -5,6 +5,7 @@
 #include <Dynamixel_Servo.h>
 #include "Keypad.h"
 #include "KeypadClass.h"
+#include "LCDClass.h"
 
 // -----DEFINE PINS-----
 // Toggle with key autopilot/manual
@@ -16,16 +17,7 @@
 // LCD connected to pins SDA, SCL, VCC, GND
 
 
-enum modes
-{
-  BLOCKED,
-  MANUAL,
-  AUTOPILOT
-};
-struct Flag
-{
-  modes currentMode;
-};
+
 
 void lcdSetCursorAndPrint(int column, int row, String text);
 void manualControlMode();
