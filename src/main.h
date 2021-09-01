@@ -2,9 +2,6 @@
 #define MAIN_H
 
 #include <Arduino.h>
-#include <Dynamixel_Servo.h>
-#include "Keypad.h"
-#include "KeypadClass.h"
 #include "LCDClass.h"
 
 // -----DEFINE PINS-----
@@ -16,9 +13,14 @@
 #define PIN_TOGGLE_FURNACE_MODES_LOW 25
 // LCD connected to pins SDA, SCL, VCC, GND
 
-
-
-
-void lcdSetCursorAndPrint(int column, int row, String text);
-void manualControlMode();
+struct MainCoordinate
+{
+    int x = 150;
+    int y = -10;
+    int fi = 0;
+    int levelOfLift = 1;
+    bool openDors = 0;
+    int temperatureTarget = 1000;
+    int temperatureCurrent = 950;
+};
 #endif
