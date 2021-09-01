@@ -28,8 +28,9 @@ ParametersOfKey GetKeyKeypad::getParametersOfKey()
             }
         }
     }
-    else {
+    else
+    {
         _parametersOfKey.keyIsPressed = false;
-        return (_parametersOfKey);
     }
+    return (_parametersOfKey);
 }
