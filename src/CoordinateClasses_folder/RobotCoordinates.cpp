@@ -24,7 +24,7 @@ hasCoordinateChanged(&_robotCoord.vY, &_targetRobotCoord.vY, &_boolRobCoordNeedU
 hasCoordinateChanged(&_robotCoord.omegaFi, &_targetRobotCoord.omegaFi, &_boolRobCoordNeedUpdate.omegaFi, &flag);
     return (flag);
 }
-BoolUpdateRobCoord RobotCoordinates::getBoolRobotCoordNeedUpdate()
+BoolUpdateRobCoord RobotCoordinates::getBoolCoordNeedUpdate()
 {
     return(_boolRobCoordNeedUpdate);
 }
@@ -35,6 +35,10 @@ void RobotCoordinates::updateCoordinates()
 void RobotCoordinates::setRobotCoord(RobotCoord robotCoord)
 {
     _targetRobotCoord = robotCoord;
+}
+RobotCoord RobotCoordinates::getRobotCoord()
+{
+    return(_robotCoord);
 }
 void RobotCoordinates::setTargetX(int targetX)
 {
