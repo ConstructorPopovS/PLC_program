@@ -1,48 +1,44 @@
 #ifndef ROBOTCOORDINATES_H
 #define ROBOTCOORDINATES_H
-
 #include "../src/main.h"
+
 struct RobotCoord
 {
-    int x;
-    int y;
-    int fi;
-    int vX;
-    int vY;
-    int omegaFi;
+    int x = 100;
+    int y = 0;
+    int fi = 0;
+    int v = 10;
 };
 struct BoolUpdateRobCoord
 {
     bool x = false;
     bool y = false;
     bool fi = false;
-    bool vX = false;
-    bool vY = false;
-    bool omegaFi = false;
+    bool v = false;
 };
 
-class RobotCoordinates
+class RobotCoordinates //TODO make the parrents class for FurnaseCoordinates and RobotCoordinates
 {
 private:
-    RobotCoord _robotCoord;
-    RobotCoord _targetRobotCoord;
-    BoolUpdateRobCoord _boolRobCoordNeedUpdate;
-    void hasCoordinateChanged(int *coordinate, int *targetCoordinate, bool *boolRobflag, bool *flag);
+    RobotCoord _current;
+    BoolUpdateRobCoord _boolNeedUpdate;
+    void hasCoordinateChanged(int *currentCoordinate, int *targetCoordinate, bool *boolStructFlag, bool *flag);
 
 protected:
 public:
-    RobotCoordinates(RobotCoord targetRobotCoord);
-    bool hasAnythingChanged(RobotCoord targetRobotCoord);
-    BoolUpdateRobCoord getBoolCoordNeedUpdate();
+    RobotCoordinates(int targetX, int targetY, int targetFi, int targetV);
+    RobotCoord target;
+    bool hasAnythingChanged();
+    BoolUpdateRobCoord getBoolNeedUpdate();
     void updateCoordinates();
-    void setRobotCoord(RobotCoord robotCoord);
-    RobotCoord getRobotCoord();
+    void setTargetCoord(int targetX, int targetY, int targetFi, int targetV);
     void setTargetX(int targetX);
     void setTargetY(int targetY);
     void setTargetFi(int targetFi);
-    void setTargetVX(int targetVX);
-    void setTargetVY(int trrgetVY);
-    void setTargetOmegaFi(int targetOmegaFi);
+    void setTargetV(int targetV);
+    int getTargetX();
+    int getTargetY();
+    int getTargetFi();
+    int getTargetV();
 };
-
 #endif
