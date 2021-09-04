@@ -1,5 +1,5 @@
-#ifndef GETKEYKEYPAD_H
-#define GETKEYKEYPAD_H
+#ifndef GETDATAFROMKEYPAD_H
+#define GETDATAFROMKEYPAD_H
 
 #include "../../../src/main.h"
 #include "Keypad.h"
@@ -30,10 +30,10 @@ struct ParametersOfKey
     bool keyIsPressed;
 };
 
-class GetKeyKeypad
+class GetDataFromKeypad
 {
 public:
-    GetKeyKeypad();
+    GetDataFromKeypad();
     ParametersOfKey getParametersOfKey();
 
 private:

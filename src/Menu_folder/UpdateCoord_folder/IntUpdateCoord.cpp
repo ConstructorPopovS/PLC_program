@@ -1,4 +1,4 @@
-#include "../../include/Menu_folder/IntUpdateCoord.h"
+#include "../../../include/Menu_folder/UpdateCoord_folder/IntUpdateCoord.h"
 IntUpdateCoord::IntUpdateCoord(int *coord, int minusMinus, int minus, int plus, int plusPlus)
 {
     _coord = coord;

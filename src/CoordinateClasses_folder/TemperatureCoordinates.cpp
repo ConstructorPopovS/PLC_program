@@ -1,9 +1,9 @@
 #include "../../include/CoordinateClasses_folder/TemperatureCoordinates.h"
 
-TemperatureCoordinates::TemperatureCoordinates(TemperatureCoord targetTemterCoord)
+TemperatureCoordinates::TemperatureCoordinates(int targetHTemperature, int targetLTemperature)
 {
-    _targetTemperCoord = targetTemterCoord;
-    _temperCoordinates = _targetTemperCoord;
+    target.hTemperature = targetHTemperature;
+    target.lTemperature = targetLTemperature;
 }
 void TemperatureCoordinates::hasCoordinateChanged(int *coordinate, int *targetCoordinate, bool *boolRobflag, bool *flag)
 {
@@ -16,10 +16,10 @@ void TemperatureCoordinates::hasCoordinateChanged(int *coordinate, int *targetCo
 bool TemperatureCoordinates::hasAnythingChanged(TemperatureCoord targetRobotCoord)
 {
     bool flag = false;
-    hasCoordinateChanged(&_temperCoordinates.lowModeTemperature, &_targetTemperCoord.lowModeTemperature,
-                         &_boolUpdateTemperCoord.lowModeTemperature, &flag);
-    hasCoordinateChanged(&_temperCoordinates.highModeTemperature, &_targetTemperCoord.highModeTemperature,
-                         &_boolUpdateTemperCoord.highModeTemperature, &flag);
+    hasCoordinateChanged(&_current.lTemperature, &target.lTemperature,
+                         &_boolUpdateTemperCoord.lTemperature, &flag);
+    hasCoordinateChanged(&_current.hTemperature, &target.hTemperature,
+                         &_boolUpdateTemperCoord.hTemperature, &flag);
     return (flag);
 }
 BoolUpdateTemperCoord TemperatureCoordinates::getBoolCoordNeedUpdate()
@@ -28,21 +28,21 @@ BoolUpdateTemperCoord TemperatureCoordinates::getBoolCoordNeedUpdate()
 }
 void TemperatureCoordinates::updateCoordinates()
 {
-    _temperCoordinates = _targetTemperCoord;
+    _current = target;
 }
 void TemperatureCoordinates::setCoordinates(TemperatureCoord targetTemperCoord)
 {
-    _targetTemperCoord = targetTemperCoord;
+    target = targetTemperCoord;
 }
 TemperatureCoord TemperatureCoordinates::getCoordinates()
 {
-    return(_temperCoordinates);
+    return(_current);
 }
 void TemperatureCoordinates::setHighMode(int targetTemperature)
 {
-    _targetTemperCoord.highModeTemperature = targetTemperature;
+    target.hTemperature = targetTemperature;
 }
 void TemperatureCoordinates::setLowMode(int targetTemperature)
 {
-    _targetTemperCoord.lowModeTemperature = targetTemperature;
+    target.lTemperature = targetTemperature;
 }

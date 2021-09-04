@@ -1,6 +1,7 @@
 #ifndef UPDATECOORD_H
 #define UPDATECOORD_H
-#include "../../src/main.h"
+#include "../../../src/main.h"
+
 class UpdateCoord
 {
 private:
@@ -10,7 +11,6 @@ protected:
     virtual void minus();
     virtual void plus();
     virtual void plusPlus();
-
 public:
 };
 

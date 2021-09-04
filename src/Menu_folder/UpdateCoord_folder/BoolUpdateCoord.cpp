@@ -1,8 +1,8 @@
-#include "../../include/Menu_folder/BoolUpdateCoord.h"
+#include "../../../include/Menu_folder/UpdateCoord_folder/BoolUpdateCoord.h"
 
-BoolUpdateCoord::BoolUpdateCoord(bool *coordinate)
+BoolUpdateCoord::BoolUpdateCoord(bool *coord)
 {
-*_coordinate = coordinate;
+*_coordinate = coord;
 }
 void BoolUpdateCoord::minusMinus()
 {

@@ -1,14 +1,14 @@
-#include "../../../include/Console_folder/Keypad_folder/GetKeyKeypad.h"
+#include "../../../include/Console_folder/Keypad_folder/GetDataFromKeypad.h"
 
-GetKeyKeypad::GetKeyKeypad() : _customKeypad(makeKeymap(_charKeys), _rowPins, _colPins, ROWS, COLS)
+GetDataFromKeypad::GetDataFromKeypad() : _customKeypad(makeKeymap(_charKeys), _rowPins, _colPins, ROWS, COLS)
 {
 }
-char GetKeyKeypad::_keyIsPressed()
+char GetDataFromKeypad::_keyIsPressed()
 {
     _enteredKeyChar = _customKeypad.getKey();
     return _enteredKeyChar;
 }
-ParametersOfKey GetKeyKeypad::getParametersOfKey()
+ParametersOfKey GetDataFromKeypad::getParametersOfKey()
 {
     if (_keyIsPressed())
     {

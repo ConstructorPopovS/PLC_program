@@ -4,25 +4,25 @@
 #include "../../src/main.h"
 struct TemperatureCoord
 {
-    int highModeTemperature;
-    int lowModeTemperature;
+    int hTemperature;
+    int lTemperature;
 };
 struct BoolUpdateTemperCoord
 {
-    bool highModeTemperature;
-    bool lowModeTemperature;
+    bool hTemperature;
+    bool lTemperature;
 };
 
 class TemperatureCoordinates
 {
 private:
-    TemperatureCoord _temperCoordinates;
-    TemperatureCoord _targetTemperCoord;
+    TemperatureCoord _current;
     BoolUpdateTemperCoord _boolUpdateTemperCoord;
     void hasCoordinateChanged(int *coordinate, int *targetCoordinate, bool *boolRobflag, bool *flag);
 
 public:
-    TemperatureCoordinates(TemperatureCoord targetTemterCoord);
+    TemperatureCoordinates(int targetHTemperature, int targetLTemperature);
+    TemperatureCoord target;
     bool hasAnythingChanged(TemperatureCoord targetTemterCoord);
     BoolUpdateTemperCoord getBoolCoordNeedUpdate();
     void updateCoordinates();
