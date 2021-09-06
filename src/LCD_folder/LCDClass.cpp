@@ -7,7 +7,6 @@ LCDClass::LCDClass() : _lcd(0x27, 20, 4)
 void LCDClass::init()
 {
     _lcd.init();
-    _lcd.backlight();
 }
 void LCDClass::backlight()
 {

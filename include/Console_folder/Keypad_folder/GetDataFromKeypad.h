@@ -22,7 +22,7 @@
 #define ROWS 10
 #define COLS 4
 
-struct ParametersOfKey
+struct KeysData
 {
     int row;
     int column;
@@ -34,11 +34,11 @@ class GetDataFromKeypad
 {
 public:
     GetDataFromKeypad();
-    ParametersOfKey getParametersOfKey();
+    KeysData getKeysData();
 
 private:
     char _keyIsPressed();
-    ParametersOfKey _parametersOfKey;
+    KeysData _keysData;
     char _enteredKeyChar;
     Keypad _customKeypad;
     //define the cymbols on the buttons of the keypads

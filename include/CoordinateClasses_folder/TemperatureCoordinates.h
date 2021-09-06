@@ -7,29 +7,21 @@ struct TemperatureCoord
     int hTemperature;
     int lTemperature;
 };
-struct BoolUpdateTemperCoord
-{
-    bool hTemperature;
-    bool lTemperature;
-};
-
 class TemperatureCoordinates
 {
 private:
     TemperatureCoord _current;
-    BoolUpdateTemperCoord _boolUpdateTemperCoord;
-    void hasCoordinateChanged(int *coordinate, int *targetCoordinate, bool *boolRobflag, bool *flag);
+    TemperatureCoord _target;
 
 public:
-    TemperatureCoordinates(int targetHTemperature, int targetLTemperature);
-    TemperatureCoord target;
-    bool hasAnythingChanged(TemperatureCoord targetTemterCoord);
-    BoolUpdateTemperCoord getBoolCoordNeedUpdate();
+    TemperatureCoordinates(int targetHighTemperature, int targetLowTemperature);
+    bool hasAnythingChanged();
     void updateCoordinates();
-    void setCoordinates(TemperatureCoord targetTemperCoord);
-    TemperatureCoord getCoordinates();
-    void setHighMode(int targetTemperature);
-    void setLowMode(int targetTemperature);
+    void setCoordinates(int highTemperature, int lowTemperature);
+    int getTargetHighTemperature();
+    int getTergetLowTemperature();
+    void setTargetHighTemperature(int targetTemperature);
+    void setTargetLowTemperature(int targetTemperature);
 };
 
 #endif

@@ -4,35 +4,28 @@
 struct FurnaceCoord
 {
     int lift;
-    bool doors;
-    bool support;
-};
-struct BoolUpdateFurCoord
-{
-    bool lift;
+    int liftFloor;
     bool doors;
     bool support;
 };
 
-class FurnaceCoordinates //TODO make the parrents class for FurnaseCoordinates and RobotCoordinates
+class FurnaceCoordinates
 {
 private:
     FurnaceCoord _current;
-    BoolUpdateFurCoord _boolNeedUpdate;
-    void hasCoordinateChanged(int *currentCoordinate, int *targetCoordinate, bool *boolStructFlag, bool *flag);
-    void hasCoordinateChanged(bool *currentCoordinate, bool *targetCoordinate, bool *boolStructFlag, bool *flag);
+    FurnaceCoord _target;
 
 public:
-    FurnaceCoordinates(int lift, bool doors, bool support);
-    FurnaceCoord target;
+    FurnaceCoordinates(int lift, int liftFloor, bool doors, bool support);
     bool hasAnythingChanged();
-    BoolUpdateFurCoord getBoolNeedUpdate();
     void updateCoordinates();
-    void setTargetCoord(int lift, bool doors, bool support);
+    void setTargetCoord(int lift, int liftFloor, bool doors, bool support);
     void setTargetLift(int lift);
+    void setTargetLiftFloor(int inftFloor);
     void setTargetDoors(bool doors);
     void setTargetSupport(bool support);
     int getTargetLift();
+    int getTargetLiftFloor();
     bool getTargetDoors();
     bool getTargetSupport();
 };

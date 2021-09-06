@@ -8,29 +8,29 @@ char GetDataFromKeypad::_keyIsPressed()
     _enteredKeyChar = _customKeypad.getKey();
     return _enteredKeyChar;
 }
-ParametersOfKey GetDataFromKeypad::getParametersOfKey()
+KeysData GetDataFromKeypad::getKeysData()
 {
     if (_keyIsPressed())
     {
-        _parametersOfKey.keyIsPressed = true;
+        _keysData.keyIsPressed = true;
         for (int row = 0; row < ROWS; row++)
         {
             for (int col = 0; col < COLS; col++)
             {
                 if (_enteredKeyChar == _charKeys[row][col])
                 {
-                    _parametersOfKey.keyInt = _intKeys[row][col];
-                    _parametersOfKey.row = row;
-                    _parametersOfKey.column = col;
-                    _parametersOfKey.keyIsPressed = true;
-                    return (_parametersOfKey);
+                    _keysData.keyInt = _intKeys[row][col];
+                    _keysData.row = row;
+                    _keysData.column = col;
+                    _keysData.keyIsPressed = true;
+                    return (_keysData);
                 }
             }
         }
     }
     else
     {
-        _parametersOfKey.keyIsPressed = false;
+        _keysData.keyIsPressed = false;
     }
-    return (_parametersOfKey);
+    return (_keysData);
 }

@@ -21,15 +21,17 @@ class RobotCoordinates //TODO make the parrents class for FurnaseCoordinates and
 {
 private:
     RobotCoord _current;
-    BoolUpdateRobCoord _boolNeedUpdate;
-    void hasCoordinateChanged(int *currentCoordinate, int *targetCoordinate, bool *boolStructFlag, bool *flag);
+    RobotCoord _target;
+
 
 protected:
 public:
     RobotCoordinates(int targetX, int targetY, int targetFi, int targetV);
-    RobotCoord target;
     bool hasAnythingChanged();
-    BoolUpdateRobCoord getBoolNeedUpdate();
+    bool hasXChanged();
+    bool hasYChanged();
+    bool hasFiChanged();
+    bool hasVChanged();
     void updateCoordinates();
     void setTargetCoord(int targetX, int targetY, int targetFi, int targetV);
     void setTargetX(int targetX);
