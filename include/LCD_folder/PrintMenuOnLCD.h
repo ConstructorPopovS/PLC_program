@@ -4,7 +4,7 @@
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/IntCoordinateShownOnLCD.h"
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/BoolCoordinateShownOnLCD.h"
 #include "../include/LCD_folder/LCDClass.h"
-#define NUMBER_OF_INT_COORDINATES_ON_LCD 6
+#define NUMBER_OF_INT_COORDINATES_ON_LCD 7
 class PrintMenuOnLCD
 {
 
@@ -23,16 +23,17 @@ public:
     void renewSupport(bool support);
     void renewHighTemperature(int highTemperature);
     void renewLowTemperature(int lowTemperature);
+    void renewNowTemperature(int nowTemperature);
     void renewAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
                               bool doors, bool support,
-                              int highTemperature, int lowTemperature);
+                              int highTemperature, int lowTemperature, int nowTemperature);
 
 private:
     LCDClass _lcd;
-    const String _firstOnLCD[4] = {"       MANUAL       ",
-                                   "M(    ;    ;    )v  ",
-                                   "L( ):    ;D:  ;S:  ;",
-                                   "Ht:    ;Lt:    ;    "};
+    const String _firstOnLCD[4] = {"M(    ;    ;    )V  ",
+                                   "L(    ) floor( )    ",
+                                   "D(     ) supp(     )",
+                                   "t(    /    )tnow    "};
     void _printConstPartOfManualMode();
     void _printConstPartOfAutopilotMode();
     void _printConstPartOfNoneMode();
@@ -46,8 +47,9 @@ private:
     IntCoordinateShownOnLCD _liftFloorOnLCD;
     IntCoordinateShownOnLCD _highTemperatureOnLCD;
     IntCoordinateShownOnLCD _lowTemperatureOnLCD;
+    IntCoordinateShownOnLCD _nowTemperatureOnLCD;
     IntCoordinateShownOnLCD _coordinatesOnLCD[NUMBER_OF_INT_COORDINATES_ON_LCD] =
-        {_xOnLCD, _yOnLCD, _fiOnLCD, _vOnLSD, _liftOnLCD, _liftFloorOnLCD};
+        {_xOnLCD, _yOnLCD, _fiOnLCD, _vOnLSD, _liftOnLCD, _liftFloorOnLCD, _nowTemperatureOnLCD};
 
     BoolCoordinateShownOnLCD *_rBoolCoordinateOnLCD;
     BoolCoordinateShownOnLCD _doorsOnLCD;

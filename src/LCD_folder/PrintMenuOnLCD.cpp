@@ -1,15 +1,16 @@
 #include "../../include/LCD_folder/PrintMenuOnLCD.h"
 
-PrintMenuOnLCD::PrintMenuOnLCD() : _xOnLCD("x", 5, 4, 1, 2),
-                                   _yOnLCD("y", 2, 4, 1, 7),
-                                   _fiOnLCD("fi", 0, 4, 1, 12),
-                                   _vOnLSD("v", 10, 4, 1, 18),
-                                   _liftOnLCD("lift", 100, 4, 2, 5),
-                                   _liftFloorOnLCD("liftFloor", 1, 1, 2, 2),
-                                   _highTemperatureOnLCD("hTemperature", 1000, 4, 3, 3),
-                                   _lowTemperatureOnLCD("lTemperature", 600, 4, 3, 11),
-                                   _doorsOnLCD("doors", false, 2, 2, 12),
-                                   _supportOnLCD("support", false, 2, 2, 17)
+PrintMenuOnLCD::PrintMenuOnLCD() : _xOnLCD("x", 100, 4, 0, 2),
+                                   _yOnLCD("y", 0, 4, 0, 7),
+                                   _fiOnLCD("fi", 0, 4, 0, 12),
+                                   _vOnLSD("v", 10, 4, 0, 18),
+                                   _liftOnLCD("lift", 112, 4, 1, 2),
+                                   _liftFloorOnLCD("liftFloor", 1, 1, 1, 14),
+                                   _doorsOnLCD("doors", false, 5, 2, 2),
+                                   _supportOnLCD("support", false, 5, 2, 14),
+                                   _highTemperatureOnLCD("hTemperature", 1000, 4, 3, 2),
+                                   _lowTemperatureOnLCD("lTemperature", 600, 4, 3, 7),
+                                   _nowTemperatureOnLCD("tNow", 980, 4, 3, 16)
 {
     _rIntCoordinateOnLCD = &_xOnLCD;
     _rBoolCoordinateOnLCD = &_doorsOnLCD;
@@ -102,6 +103,10 @@ void PrintMenuOnLCD::renewLowTemperature(int lowTemperature)
 {
     _renewIntValue(_lowTemperatureOnLCD, lowTemperature);
 }
+void PrintMenuOnLCD::renewNowTemperature(int nowTemperature)
+{
+    _renewIntValue(_nowTemperatureOnLCD, nowTemperature);
+}
 void PrintMenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value)
 {
     valueOnLCD.setValue(value);
@@ -113,11 +118,11 @@ void PrintMenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool 
     String openedOrClosed;
     if (value == false)
     {
-        openedOrClosed = "cl";
+        openedOrClosed = "close";
     }
     else if (value == true)
     {
-        openedOrClosed = "op";
+        openedOrClosed = "open";
     }
     _lcd.setCursorAndPrint(valueOnLCD.getCoordinateColumn(),
                            valueOnLCD.getCoordinateRow(),
@@ -133,7 +138,7 @@ void PrintMenuOnLCD::renewSupport(bool support)
 }
 void PrintMenuOnLCD::renewAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
                                           bool doors, bool support,
-                                          int highTemperature, int lowTemperature)
+                                          int highTemperature, int lowTemperature, int nowTemperature)
 {
     renewX(x);
     renewY(y);
@@ -145,4 +150,5 @@ void PrintMenuOnLCD::renewAllCoordiinates(int x, int y, int fi, int v, int lift,
     renewSupport(support);
     renewHighTemperature(highTemperature);
     renewLowTemperature(lowTemperature);
+    renewNowTemperature(nowTemperature);
 }

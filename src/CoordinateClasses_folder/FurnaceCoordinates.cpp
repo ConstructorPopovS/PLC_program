@@ -54,7 +54,7 @@ int FurnaceCoordinates::getTargetLiftFloor()
 }
 bool FurnaceCoordinates::getTargetDoors()
 {
-    return (_target.lift);
+    return (_target.doors);
 }
 bool FurnaceCoordinates::getTargetSupport()
 {

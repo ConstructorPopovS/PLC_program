@@ -20,7 +20,7 @@ MenuCoordinates targetMenuState;
 
 RobotCoordinates robotCoordinates(100, 0, 0, 10);
 FurnaceCoordinates furnanceCoordinates(120, 1, false, false);
-TemperatureCoordinates temperatureCoordinates(1000, 600);
+TemperatureCoordinates temperatureCoordinates(1000, 600, 985);
 
 // Robot robot(1, 2, 3, &Serial1, 4, 1000000L); //TODO 1000000L change to long(1000000) and tested
 void setup(void)
@@ -50,7 +50,8 @@ void loop(void)
                                            furnanceCoordinates.getTargetDoors(),
                                            furnanceCoordinates.getTargetSupport(),
                                            temperatureCoordinates.getTargetHighTemperature(),
-                                           temperatureCoordinates.getTergetLowTemperature());
+                                           temperatureCoordinates.getTergetLowTemperature(),
+                                           temperatureCoordinates.getTergetNowTemperature());
     }
   }
 }
