@@ -13,6 +13,7 @@ public:
     void printConstPartOfMode(String mode);
     void initAndBacklight();
     void claer();
+    void setCursorAndBlinc();
     void printAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
                               bool doors, bool support,
                               int highTemperature, int lowTemperature, int nowTemperature);

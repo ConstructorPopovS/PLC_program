@@ -22,23 +22,32 @@
 #define ROWS 10
 #define COLS 4
 
-struct KeysData
+enum NamesOfKeys
 {
-    int row;
-    int column;
-    int keyInt;
-    bool keyIsPressed;
+    X,
+    Y,
+    FI,
+    V,
+    LIFT,
+    DOORS,
+    STAND,
+    TEMPERATURE,
+    MINUS_MINUS,
+    MINUS,
+    PLUS,
+    PLUS_PLUS,
+    IN_DEVELOPING
 };
 
 class GetDataFromKeypad
 {
 public:
     GetDataFromKeypad();
-    KeysData getKeysData();
+    bool keyIsPressed();
+    NamesOfKeys getNameOfKey();
 
 private:
-    char _keyIsPressed();
-    KeysData _keysData;
+    NamesOfKeys nameOfKey;
     char _enteredKeyChar;
     Keypad _customKeypad;
     //define the cymbols on the buttons of the keypads
@@ -53,18 +62,18 @@ private:
         {'4', '5', '6', '@'},
         {'7', '8', '9', '#'},
         {'^', '0', '%', '$'}};
-    // define the names of the buttons of the keypad
-    int _intKeys[ROWS][COLS] = {
-        {16, 17, 18, 19},
-        {20, 21, 22, 23},
-        {24, 25, 26, 27},
-        {28, 29, 30, 31},
-        {32, 33, 34, 35},
-        {36, 37, 38, 39},
-        {1, 2, 3, 10},
-        {4, 5, 6, 11},
-        {7, 8, 9, 12},
-        {15, 0, 14, 13}};
+        NamesOfKeys _namesOfKeys[ROWS][COLS] = {
+            {X, Y, FI, V,},
+            {LIFT, DOORS, STAND, TEMPERATURE},
+            {MINUS_MINUS, MINUS, PLUS, PLUS_PLUS},
+            {IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING},
+            {IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING},
+            {IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING},
+            {IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING},
+            {IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING},
+            {IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING},
+            {IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING, IN_DEVELOPING}
+        };
     //connect to the column pinouts of the keypad
     byte _rowPins[ROWS] = {PIN_R1, PIN_R2, PIN_R3, PIN_R4, PIN_R5, PIN_R6, PIN_R7, PIN_R8, PIN_R9, PIN_R10}; //connect to the row pinouts of the keypad
     byte _colPins[COLS] = {PIN_C1, PIN_C2, PIN_C3, PIN_C4};

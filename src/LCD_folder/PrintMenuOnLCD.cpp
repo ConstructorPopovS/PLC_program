@@ -12,8 +12,6 @@ PrintMenuOnLCD::PrintMenuOnLCD() : _xOnLCD("x", 100, 4, 2, 0),
                                    _lowTemperatureOnLCD("lTemperature", 600, 4, 7, 3),
                                    _nowTemperatureOnLCD("tNow", 980, 4, 16, 3)
 {
-    _rIntCoordinateOnLCD = &_xOnLCD;
-    _rBoolCoordinateOnLCD = &_doorsOnLCD;
 }
 void PrintMenuOnLCD::initAndBacklight()
 {

@@ -5,6 +5,7 @@ class MenuCoordinates
 {
 private:
     String _mode;
+
 public:
     MenuCoordinates();
     void setMode(String mode);

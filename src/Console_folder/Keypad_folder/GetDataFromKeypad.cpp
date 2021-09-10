@@ -3,34 +3,28 @@
 GetDataFromKeypad::GetDataFromKeypad() : _customKeypad(makeKeymap(_charKeys), _rowPins, _colPins, ROWS, COLS)
 {
 }
-char GetDataFromKeypad::_keyIsPressed()
+bool GetDataFromKeypad::keyIsPressed()
 {
     _enteredKeyChar = _customKeypad.getKey();
-    return _enteredKeyChar;
-}
-KeysData GetDataFromKeypad::getKeysData()
-{
-    if (_keyIsPressed())
+    if (_enteredKeyChar)
     {
-        _keysData.keyIsPressed = true;
-        for (int row = 0; row < ROWS; row++)
+        return true;
+    }
+    return false;
+}
+NamesOfKeys GetDataFromKeypad::getNameOfKey()
+{
+
+    for (int row = 0; row < ROWS; row++)
+    {
+        for (int col = 0; col < COLS; col++)
         {
-            for (int col = 0; col < COLS; col++)
+            if (_enteredKeyChar == _charKeys[row][col])
             {
-                if (_enteredKeyChar == _charKeys[row][col])
-                {
-                    _keysData.keyInt = _intKeys[row][col];
-                    _keysData.row = row;
-                    _keysData.column = col;
-                    _keysData.keyIsPressed = true;
-                    return (_keysData);
-                }
+                nameOfKey = _namesOfKeys[row][col];
             }
         }
     }
-    else
-    {
-        _keysData.keyIsPressed = false;
-    }
-    return (_keysData);
+
+    return nameOfKey;
 }

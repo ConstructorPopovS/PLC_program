@@ -40,7 +40,7 @@ void FurnaceCoordinates::setTargetDoors(bool doors)
 {
     _target.doors = doors;
 }
-void FurnaceCoordinates::setTargetSupport(bool support)
+void FurnaceCoordinates::setTargetStand(bool support)
 {
     _target.support = support;
 }
@@ -56,7 +56,7 @@ bool FurnaceCoordinates::getTargetDoors()
 {
     return (_target.doors);
 }
-bool FurnaceCoordinates::getTargetSupport()
+bool FurnaceCoordinates::getTargetStand()
 {
     return (_target.support);
 }
@@ -72,7 +72,7 @@ bool* FurnaceCoordinates::getRTargetDoors()
 {
     return (&_target.doors);
 }
-bool* FurnaceCoordinates::getRTargetSupport()
+bool* FurnaceCoordinates::getRTargetStand()
 {
     return (&_target.support);
 }

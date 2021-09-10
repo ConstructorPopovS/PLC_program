@@ -23,15 +23,15 @@ public:
     void setTargetLift(int lift);
     void setTargetLiftFloor(int inftFloor);
     void setTargetDoors(bool doors);
-    void setTargetSupport(bool support);
+    void setTargetStand(bool support);
     int getTargetLift();
     int getTargetLiftFloor();
     bool getTargetDoors();
-    bool getTargetSupport();
+    bool getTargetStand();
     int* getRTargetLift();
     int* getRTargetLiftFloor();
     bool* getRTargetDoors();
-    bool* getRTargetSupport();
+    bool* getRTargetStand();
 };
 
 #endif
