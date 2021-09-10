@@ -42,5 +42,9 @@ public:
     int getTargetY();
     int getTargetFi();
     int getTargetV();
+    int* getRTargetX();
+    int* getRTargetY();
+    int* getRTargetFi();
+    int* getRTargetV();
 };
 #endif

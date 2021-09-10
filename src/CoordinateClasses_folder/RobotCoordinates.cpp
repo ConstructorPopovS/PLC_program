@@ -95,3 +95,19 @@ int RobotCoordinates::getTargetV()
 {
     return (_target.v);
 }
+int* RobotCoordinates::getRTargetX()
+{
+    return (&_target.x);
+}
+int* RobotCoordinates::getRTargetY()
+{
+    return (&_target.y);
+}
+int* RobotCoordinates::getRTargetFi()
+{
+    return (&_target.fi);
+}
+int* RobotCoordinates::getRTargetV()
+{
+    return (&_target.v);
+}

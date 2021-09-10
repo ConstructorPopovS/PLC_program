@@ -1,7 +1,7 @@
 #include "../../../include/LCD_folder/CoordinateShownOnLCD_folder/IntCoordinateShownOnLCD.h"
 
 IntCoordinateShownOnLCD::IntCoordinateShownOnLCD(String newName, int newValue, int newSizeOfCoordinateToClearOnLCD,
-                                                 int newCoordinateRow, int newCoordinateColumn)
+                                                 int newCoordinateColumn, int newCoordinateRow)
 {
     name = newName;
     value = newValue;

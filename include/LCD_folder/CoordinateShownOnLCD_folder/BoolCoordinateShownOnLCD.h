@@ -11,7 +11,7 @@ protected:
 
 public:
     BoolCoordinateShownOnLCD(String newName, bool newValue, int newSizeOfCoordinateToClearOnLCD,
-                            int newCoordinateRow, int newCoordinateColumn);
+                             int newCoordinateColumn, int newCoordinateRow);
 
     bool getValue();
     void setValue(bool newValue);

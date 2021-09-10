@@ -60,3 +60,19 @@ bool FurnaceCoordinates::getTargetSupport()
 {
     return (_target.support);
 }
+int* FurnaceCoordinates::getRTargetLift()
+{
+    return (&_target.lift);
+}
+int* FurnaceCoordinates::getRTargetLiftFloor()
+{
+    return (&_target.liftFloor);
+}
+bool* FurnaceCoordinates::getRTargetDoors()
+{
+    return (&_target.doors);
+}
+bool* FurnaceCoordinates::getRTargetSupport()
+{
+    return (&_target.support);
+}

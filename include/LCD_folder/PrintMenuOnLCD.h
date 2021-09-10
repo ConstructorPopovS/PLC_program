@@ -13,17 +13,9 @@ public:
     void printConstPartOfMode(String mode);
     void initAndBacklight();
     void claer();
-    void renewX(int x);
-    void renewY(int y);
-    void renewFi(int fi);
-    void renewV(int v);
-    void renewLift(int lift);
-    void renewLiftFloor(int liftFloor);
-    void renewDoors(bool doors);
-    void renewSupport(bool support);
-    void renewHighTemperature(int highTemperature);
-    void renewLowTemperature(int lowTemperature);
-    void renewNowTemperature(int nowTemperature);
+    void printAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
+                              bool doors, bool support,
+                              int highTemperature, int lowTemperature, int nowTemperature);
     void renewAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
                               bool doors, bool support,
                               int highTemperature, int lowTemperature, int nowTemperature);
@@ -54,8 +46,11 @@ private:
     BoolCoordinateShownOnLCD *_rBoolCoordinateOnLCD;
     BoolCoordinateShownOnLCD _doorsOnLCD;
     BoolCoordinateShownOnLCD _supportOnLCD;
+    void _printIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
+    void _printBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value);
     void _renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
     void _renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value);
+    void _clearValueField(CoordinateShownOnLCD &valueOnLCD);
 };
 
 #endif

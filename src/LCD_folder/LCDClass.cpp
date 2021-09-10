@@ -16,6 +16,14 @@ void LCDClass::clear()
 {
     _lcd.clear();
 }
+void LCDClass::setCursor(int column, int row)
+{
+    _lcd.setCursor(column, row);
+}
+void LCDClass::print(String text)
+{
+    _lcd.print(text);
+}
 void LCDClass::clearSetCursorAndPrint(int column, int row, String text)
 {
     _lcd.clear();

@@ -19,12 +19,15 @@ public:
     bool hasAnythingChanged();
     void updateCoordinates();
     void setCoordinates(int highTemperature, int lowTemperature, int nowTemperature);
-    int getTargetHighTemperature();
-    int getTergetLowTemperature();
-    int getTergetNowTemperature();
     void setTargetHighTemperature(int targetTemperature);
     void setTargetLowTemperature(int targetTemperature);
     void setTargetNowTemperature(int targetTemperature);
+    int getTargetHighTemperature();
+    int getTergetLowTemperature();
+    int getTergetNowTemperature();
+    int* getRTargetHighTemperature();
+    int* getRTergetLowTemperature();
+    int* getRTergetNowTemperature();
 };
 
 #endif

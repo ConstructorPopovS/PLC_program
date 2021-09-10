@@ -28,6 +28,10 @@ public:
     int getTargetLiftFloor();
     bool getTargetDoors();
     bool getTargetSupport();
+    int* getRTargetLift();
+    int* getRTargetLiftFloor();
+    bool* getRTargetDoors();
+    bool* getRTargetSupport();
 };
 
 #endif

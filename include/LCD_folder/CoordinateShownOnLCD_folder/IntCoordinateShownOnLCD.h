@@ -11,8 +11,9 @@ protected:
 
 public:
     IntCoordinateShownOnLCD(String newName = "х", int newValue = 100, int newSizeOfCoordinateToClearOnLCD = 4,
-                            int newCoordinateRow = 0, int newCoordinateColumn = 0);
+                            int newCoordinateColumn = 1, int newCoordinateRow = 0);
     int getValue();
+    
     void setValue(int newValue);
 };
 
