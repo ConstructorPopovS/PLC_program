@@ -15,10 +15,10 @@ public:
     void claer();
     void setCursorAndBlinc();
     void printAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
-                              bool doors, bool support,
+                              bool doors, bool stand,
                               int highTemperature, int lowTemperature, int nowTemperature);
     void renewAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
-                              bool doors, bool support,
+                              bool doors, bool stand,
                               int highTemperature, int lowTemperature, int nowTemperature);
 
 private:
@@ -46,7 +46,7 @@ private:
 
     BoolCoordinateShownOnLCD *_rBoolCoordinateOnLCD;
     BoolCoordinateShownOnLCD _doorsOnLCD;
-    BoolCoordinateShownOnLCD _supportOnLCD;
+    BoolCoordinateShownOnLCD _standOnLCD;
     void _printIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
     void _printBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value);
     void _renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);

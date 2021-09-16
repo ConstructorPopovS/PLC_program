@@ -2,32 +2,29 @@
 #define TEMPERATURECOORDINATES_H
 
 #include "../../src/main.h"
-struct TemperatureCoord
-{
-    int highTemperature;
-    int lowTemperature;
-    int nowTemperature;
-};
 class TemperatureCoordinates
 {
 private:
-    TemperatureCoord _current;
-    TemperatureCoord _target;
+    struct TemperatureCoord
+    {
+        int highTemperature;
+        int lowTemperature;
+        int nowTemperature;
+    };
+    TemperatureCoord _coordinate;
 
 public:
-    TemperatureCoordinates(int targetHighTemperature, int targetLowTemperature, int targetNowTemperature);
-    bool hasAnythingChanged();
-    void updateCoordinates();
+    TemperatureCoordinates(int highTemperature, int lowTemperature, int nowTemperature);
     void setCoordinates(int highTemperature, int lowTemperature, int nowTemperature);
-    void setTargetHighTemperature(int targetTemperature);
-    void setTargetLowTemperature(int targetTemperature);
-    void setTargetNowTemperature(int targetTemperature);
-    int getTargetHighTemperature();
-    int getTergetLowTemperature();
-    int getTergetNowTemperature();
-    int* getRTargetHighTemperature();
-    int* getRTergetLowTemperature();
-    int* getRTergetNowTemperature();
+    void setHighTemperature(int Temperature);
+    void setLowTemperature(int Temperature);
+    void setNowTemperature(int Temperature);
+    int getHighTemperature();
+    int getLowTemperature();
+    int getNowTemperature();
+    int *getRHighTemperature();
+    int *getRLowTemperature();
+    int *getRNowTemperature();
 };
 
 #endif

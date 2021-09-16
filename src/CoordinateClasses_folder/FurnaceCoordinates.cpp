@@ -1,78 +1,64 @@
 #include "../../include/CoordinateClasses_folder/FurnaceCoordinates.h"
-FurnaceCoordinates::FurnaceCoordinates(int lift, int liftFloor, bool doors, bool support)
+FurnaceCoordinates::FurnaceCoordinates(int lift, int liftFloor, bool doors, bool stand)
 {
-    _target.lift = lift;
-    _target.liftFloor = liftFloor;
-    _target.doors = doors;
-    _target.support = support;
+    _coordinate.lift = lift;
+    _coordinate.liftFloor = liftFloor;
+    _coordinate.doors = doors;
+    _coordinate.stand = stand;
 }
-bool FurnaceCoordinates::hasAnythingChanged()
+
+void FurnaceCoordinates::setCoordinates(int lift, int liftFloor, bool doors, bool stand)
 {
-    if ((_target.lift != _current.lift) ||
-        (_target.liftFloor != _current.liftFloor) ||
-        (_target.doors != _current.doors) ||
-        (_target.support != _current.support))
-    {
-        return (true);
-    }
-    return (false);
+    _coordinate.lift = lift;
+    _coordinate.liftFloor = liftFloor;
+    _coordinate.doors = doors;
+    _coordinate.stand = stand;
 }
-void FurnaceCoordinates::updateCoordinates()
+void FurnaceCoordinates::setLift(int lift)
 {
-    _current = _target;
+    _coordinate.lift = lift;
 }
-void FurnaceCoordinates::setTargetCoord(int lift, int liftFloor, bool doors, bool support)
+void FurnaceCoordinates::setLiftFloor(int liftFloor)
 {
-    _target.lift = lift;
-    _target.liftFloor = liftFloor;
-    _target.doors = doors;
-    _target.support = support;
+    _coordinate.liftFloor = liftFloor;
 }
-void FurnaceCoordinates::setTargetLift(int lift)
+void FurnaceCoordinates::setDoors(bool doors)
 {
-    _target.lift = lift;
+    _coordinate.doors = doors;
 }
-void FurnaceCoordinates::setTargetLiftFloor(int liftFloor)
+void FurnaceCoordinates::setStand(bool stand)
 {
-    _target.liftFloor = liftFloor;
+    _coordinate.stand = stand;
 }
-void FurnaceCoordinates::setTargetDoors(bool doors)
+int FurnaceCoordinates::getLift()
 {
-    _target.doors = doors;
+    return (_coordinate.lift);
 }
-void FurnaceCoordinates::setTargetStand(bool support)
+int FurnaceCoordinates::getLiftFloor()
 {
-    _target.support = support;
+    return (_coordinate.liftFloor);
 }
-int FurnaceCoordinates::getTargetLift()
+bool FurnaceCoordinates::getDoors()
 {
-    return (_target.lift);
+    return (_coordinate.doors);
 }
-int FurnaceCoordinates::getTargetLiftFloor()
+bool FurnaceCoordinates::getStand()
 {
-    return (_target.liftFloor);
+    return (_coordinate.stand);
 }
-bool FurnaceCoordinates::getTargetDoors()
+int* FurnaceCoordinates::getRLift()
 {
-    return (_target.doors);
+    return (&_coordinate.lift);
 }
-bool FurnaceCoordinates::getTargetStand()
+int* FurnaceCoordinates::getRLiftFloor()
 {
-    return (_target.support);
+    return (&_coordinate.liftFloor);
 }
-int* FurnaceCoordinates::getRTargetLift()
+bool* FurnaceCoordinates::getRDoors()
 {
-    return (&_target.lift);
+    return (&_coordinate.doors);
 }
-int* FurnaceCoordinates::getRTargetLiftFloor()
+bool* FurnaceCoordinates::getRStand()
 {
-    return (&_target.liftFloor);
-}
-bool* FurnaceCoordinates::getRTargetDoors()
-{
-    return (&_target.doors);
-}
-bool* FurnaceCoordinates::getRTargetStand()
-{
-    return (&_target.support);
+    return (&_coordinate.stand);
 }

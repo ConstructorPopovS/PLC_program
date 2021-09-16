@@ -4,7 +4,7 @@
 
 #include "../include/Console_folder/Toggle_folder/ToggleWithKey.h"
 
-#include "../include/CoordinateClasses_folder/MenuCoordinates.h"
+#include "../include/CoordinateClasses_folder/MenuModes.h"
 #include "../include/LCD_folder/PrintMenuOnLCD.h"
 #include "../include/Console_folder/Toggle_folder/ToggleFurnaceModes.h"
 #include "../include/CoordinateClasses_folder/RobotCoordinates.h"
@@ -21,24 +21,24 @@ ToggleFurnaceModes toggleFurnaceMode;
 GetDataFromKeypad dataFromKeypad;
 PrintMenuOnLCD lcdMenuPrinting;
 
-RobotCoordinates robotCoordinates(100, 0, 0, 10);
+RobotCoordinates robotCoordinatesInMenu(100, 0, 0, 10);
 FurnaceCoordinates furnanceCoordinates(120, 1, false, false);
 TemperatureCoordinates temperatureCoordinates(1000, 600, 985);
 
-MenuCoordinates currentMenuState;
-MenuCoordinates targetMenuState;
+MenuModes currentMenuMode;
+MenuModes targetMenuMode;
 
-UpdateCoord *pUpdateCoordinate = NULL;
-IntUpdateCoord xUpdateCoordinate(robotCoordinates.getRTargetX(), 10, 1, 1, 10);
-IntUpdateCoord yUpdateCoordinate(robotCoordinates.getRTargetY(), 10, 1, 1, 10);
-IntUpdateCoord fiUpdateCoordinate(robotCoordinates.getRTargetFi(), 10, 1, 1, 10);
-IntUpdateCoord vUpdateCoordinate(robotCoordinates.getRTargetV(), 2, 1, 1, 2);
-IntUpdateCoord liftUpdateCoordinate(furnanceCoordinates.getRTargetLift(), 10, 1, 1, 10);
-IntUpdateCoord liftFloorUpdateCoordinate(furnanceCoordinates.getRTargetLiftFloor(), 1, 1, 1, 1);
-IntUpdateCoord highTemperatureUpdateCoordinate(temperatureCoordinates.getRTargetHighTemperature(), 50, 5, 5, 50);
-IntUpdateCoord lowTemperatureUpdateCoordinate(temperatureCoordinates.getRTergetLowTemperature(), 50, 5, 5, 50);
-BoolUpdateCoord doorsUpdateCoordinate(furnanceCoordinates.getRTargetDoors());
-BoolUpdateCoord standUpdateCoordinate(furnanceCoordinates.getRTargetStand());
+UpdateCoord* pUpdateCoordinate = NULL;//указатель
+IntUpdateCoord xUpdateCoordinate(robotCoordinatesInMenu.getRX(), 10, 1, 1, 10);
+IntUpdateCoord yUpdateCoordinate(robotCoordinatesInMenu.getRY(), 10, 1, 1, 10);
+IntUpdateCoord fiUpdateCoordinate(robotCoordinatesInMenu.getRFi(), 10, 1, 1, 10);
+IntUpdateCoord vUpdateCoordinate(robotCoordinatesInMenu.getRV(), 2, 1, 1, 2);
+IntUpdateCoord liftUpdateCoordinate(furnanceCoordinates.getRLift(), 10, 1, 1, 10);
+IntUpdateCoord liftFloorUpdateCoordinate(furnanceCoordinates.getRLiftFloor(), 1, 1, 1, 1);
+BoolUpdateCoord doorsUpdateCoordinate(furnanceCoordinates.getRDoors());
+BoolUpdateCoord standUpdateCoordinate(furnanceCoordinates.getRStand());
+IntUpdateCoord highTemperatureUpdateCoordinate(temperatureCoordinates.getRHighTemperature(), 50, 5, 5, 50);
+IntUpdateCoord lowTemperatureUpdateCoordinate(temperatureCoordinates.getRLowTemperature(), 50, 5, 5, 50);
 // Robot robot(1, 2, 3, &Serial1, 4, 1000000L); //TODO 1000000L change to long(1000000) and tested
 void setup(void)
 {
@@ -52,27 +52,27 @@ void setup(void)
 void loop(void)
 {
 
-  targetMenuState.setMode(toggleKey.getMode());
-  if (currentMenuState.getMode() != targetMenuState.getMode())
+  targetMenuMode.setMode(toggleKey.getMode());
+  if (currentMenuMode.getMode() != targetMenuMode.getMode())
   {
-    currentMenuState.setMode(targetMenuState.getMode());
-    lcdMenuPrinting.printConstPartOfMode(targetMenuState.getMode());
-    if (currentMenuState.getMode() == "MANUAL")
+    currentMenuMode.setMode(targetMenuMode.getMode());
+    lcdMenuPrinting.printConstPartOfMode(targetMenuMode.getMode());
+    if (currentMenuMode.getMode() == "MANUAL")
     {
-      lcdMenuPrinting.printAllCoordiinates(robotCoordinates.getTargetX(),
-                                           robotCoordinates.getTargetY(),
-                                           robotCoordinates.getTargetFi(),
-                                           robotCoordinates.getTargetV(),
-                                           furnanceCoordinates.getTargetLift(),
-                                           furnanceCoordinates.getTargetLiftFloor(),
-                                           furnanceCoordinates.getTargetDoors(),
-                                           furnanceCoordinates.getTargetStand(),
-                                           temperatureCoordinates.getTargetHighTemperature(),
-                                           temperatureCoordinates.getTergetLowTemperature(),
-                                           temperatureCoordinates.getTergetNowTemperature());
+      lcdMenuPrinting.printAllCoordiinates(robotCoordinatesInMenu.getX(),
+                                           robotCoordinatesInMenu.getY(),
+                                           robotCoordinatesInMenu.getFi(),
+                                           robotCoordinatesInMenu.getV(),
+                                           furnanceCoordinates.getLift(),
+                                           furnanceCoordinates.getLiftFloor(),
+                                           furnanceCoordinates.getDoors(),
+                                           furnanceCoordinates.getStand(),
+                                           temperatureCoordinates.getHighTemperature(),
+                                           temperatureCoordinates.getLowTemperature(),
+                                           temperatureCoordinates.getNowTemperature());
     }
   }
-  if (currentMenuState.getMode() == "MANUAL")
+  if (currentMenuMode.getMode() == "MANUAL")
   {
     if (dataFromKeypad.keyIsPressed())
     {
@@ -100,7 +100,7 @@ void loop(void)
       case STAND:
         pUpdateCoordinate = &standUpdateCoordinate;
         break;
-      case TEMPERATURE:
+      case TEMPERATURE: //TODO realise changing H or L temperature
         if (toggleFurnaceMode.getMode() == "HIGH")
         {
           pUpdateCoordinate = &highTemperatureUpdateCoordinate;
@@ -117,28 +117,47 @@ void loop(void)
         }
         break;
       case MINUS:
-        pUpdateCoordinate->minus();
+        if (pUpdateCoordinate != NULL)
+        {
+          pUpdateCoordinate->minus();
+        }
         break;
       case PLUS:
-        pUpdateCoordinate->plus();
+        if (pUpdateCoordinate != NULL)
+        {
+          pUpdateCoordinate->plus();
+        }
         break;
       case PLUS_PLUS:
-        pUpdateCoordinate->plusPlus();
+        if (pUpdateCoordinate != NULL)
+        {
+          pUpdateCoordinate->plusPlus();
+        }
         break;
       default:
         break;
       }
-      lcdMenuPrinting.renewAllCoordiinates(robotCoordinates.getTargetX(),
-                                           robotCoordinates.getTargetY(),
-                                           robotCoordinates.getTargetFi(),
-                                           robotCoordinates.getTargetV(),
-                                           furnanceCoordinates.getTargetLift(),
-                                           furnanceCoordinates.getTargetLiftFloor(),
-                                           furnanceCoordinates.getTargetDoors(),
-                                           furnanceCoordinates.getTargetStand(),
-                                           temperatureCoordinates.getTargetHighTemperature(),
-                                           temperatureCoordinates.getTergetLowTemperature(),
-                                           temperatureCoordinates.getTergetNowTemperature());
+      lcdMenuPrinting.renewAllCoordiinates(robotCoordinatesInMenu.getX(),
+                                           robotCoordinatesInMenu.getY(),
+                                           robotCoordinatesInMenu.getFi(),
+                                           robotCoordinatesInMenu.getV(),
+                                           furnanceCoordinates.getLift(),
+                                           furnanceCoordinates.getLiftFloor(),
+                                           furnanceCoordinates.getDoors(),
+                                           furnanceCoordinates.getStand(),
+                                           temperatureCoordinates.getHighTemperature(),
+                                           temperatureCoordinates.getLowTemperature(),
+                                           temperatureCoordinates.getNowTemperature());
+
+      Serial.print("x=" + String(robotCoordinatesInMenu.getX()));
+      Serial.print("\ty=" + String(robotCoordinatesInMenu.getY()));
+      Serial.print("\tfi=" + String(robotCoordinatesInMenu.getFi()));
+      Serial.print("\tv=" + String(robotCoordinatesInMenu.getV()));
+      Serial.print("\tlift=" + String(furnanceCoordinates.getLift()));
+      Serial.print("\tdoors=" + String(furnanceCoordinates.getDoors()));
+      Serial.print("\tstand=" + String(furnanceCoordinates.getStand()));
+      Serial.print("\thT=" + String(temperatureCoordinates.getHighTemperature()));
+      Serial.println("\tlT=" + String(temperatureCoordinates.getLowTemperature()));
     }
   }
 }

@@ -1,113 +1,67 @@
 #include "../../include/CoordinateClasses_folder/RobotCoordinates.h"
 
-RobotCoordinates::RobotCoordinates(int targetX, int targetY, int targetFi, int targetV)
+RobotCoordinates::RobotCoordinates(int x, int y, int fi, int v)
 {
-    _target.x = targetX;
-    _target.y = targetY;
-    _target.fi = targetFi;
-    _target.v = targetV;
-}
-bool RobotCoordinates::hasAnythingChanged()
-{
-
-    if ((_current.x != _target.x) ||
-        (_current.y != _target.y) ||
-        (_current.fi != _target.fi) ||
-        (_current.v != _target.v))
-    {
-        return (true);
-    }
-    return (false);
-}
-bool RobotCoordinates::hasXChanged()
-{
-    if (_current.x != _target.x)
-    {
-        return (true);
-    }
-    return (false);
-}
-bool RobotCoordinates::hasYChanged()
-{
-    if (_current.y != _target.y)
-    {
-        return (true);
-    }
-    return (false);
-}
-bool RobotCoordinates::hasFiChanged()
-{
-    if (_current.fi != _target.fi)
-    {
-        return (true);
-    }
-    return (false);
-}
-bool RobotCoordinates::hasVChanged()
-{
-    if (_current.v != _target.v)
-    {
-        return (true);
-    }
-    return (false);
-}
-void RobotCoordinates::updateCoordinates()
-{
-    _current = _target;
-}
-void RobotCoordinates::setTargetCoord(int targetX, int targetY, int targetFi, int targetV)
-{
-    _target.x = targetX;
-    _target.y = targetY;
-    _target.fi = targetFi;
-    _target.v = targetV;
+    _coordinate.x = x;
+    _coordinate.y = y;
+    _coordinate.fi = fi;
+    _coordinate.v = v;
 }
 
-void RobotCoordinates::setTargetX(int targetX)
+
+void RobotCoordinates::setCoordinates(int x, int y, int fi, int v)
 {
-    _target.x = targetX;
+    _coordinate.x = x;
+    _coordinate.y = y;
+    _coordinate.fi = fi;
+    _coordinate.v = v;
 }
-void RobotCoordinates::setTargetY(int targetY)
+
+void RobotCoordinates::setX(int x)
 {
-    _target.y = targetY;
+    _coordinate.x = x;
 }
-void RobotCoordinates::setTargetFi(int targetFi)
+void RobotCoordinates::setY(int y)
 {
-    _target.fi = targetFi;
+    _coordinate.y = y;
 }
-void RobotCoordinates::setTargetV(int targetV)
+void RobotCoordinates::setFi(int fi)
 {
-    _target.v = targetV;
+    _coordinate.fi = fi;
 }
-int RobotCoordinates::getTargetX()
+void RobotCoordinates::setV(int v)
 {
-    return (_target.x);
+    _coordinate.v = v;
 }
-int RobotCoordinates::getTargetY()
+int RobotCoordinates::getX()
 {
-    return (_target.y);
+    return (_coordinate.x);
 }
-int RobotCoordinates::getTargetFi()
+int RobotCoordinates::getY()
 {
-    return (_target.fi);
+    return (_coordinate.y);
 }
-int RobotCoordinates::getTargetV()
+int RobotCoordinates::getFi()
 {
-    return (_target.v);
+    return (_coordinate.fi);
 }
-int* RobotCoordinates::getRTargetX()
+int RobotCoordinates::getV()
 {
-    return (&_target.x);
+    return (_coordinate.v);
 }
-int* RobotCoordinates::getRTargetY()
+int* RobotCoordinates::getRX()
 {
-    return (&_target.y);
+    return (&_coordinate.x);
 }
-int* RobotCoordinates::getRTargetFi()
+int* RobotCoordinates::getRY()
 {
-    return (&_target.fi);
+    return (&_coordinate.y);
 }
-int* RobotCoordinates::getRTargetV()
+int* RobotCoordinates::getRFi()
 {
-    return (&_target.v);
+    return (&_coordinate.fi);
+}
+int* RobotCoordinates::getRV()
+{
+    return (&_coordinate.v);
 }

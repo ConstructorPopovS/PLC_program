@@ -7,7 +7,7 @@ PrintMenuOnLCD::PrintMenuOnLCD() : _xOnLCD("x", 100, 4, 2, 0),
                                    _liftOnLCD("lift", 112, 4, 2, 1),
                                    _liftFloorOnLCD("liftFloor", 1, 1, 14, 1),
                                    _doorsOnLCD("doors", false, 5, 2, 2),
-                                   _supportOnLCD("support", false, 5, 14, 2),
+                                   _standOnLCD("stand", false, 5, 14, 2),
                                    _highTemperatureOnLCD("hTemperature", 1000, 4, 2, 3),
                                    _lowTemperatureOnLCD("lTemperature", 600, 4, 7, 3),
                                    _nowTemperatureOnLCD("tNow", 980, 4, 16, 3)
@@ -105,7 +105,7 @@ void PrintMenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool 
     }
 }
 void PrintMenuOnLCD::printAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
-                                          bool doors, bool support,
+                                          bool doors, bool stand,
                                           int highTemperature, int lowTemperature, int nowTemperature)
 {
     _printIntValue(_xOnLCD, x);
@@ -115,13 +115,13 @@ void PrintMenuOnLCD::printAllCoordiinates(int x, int y, int fi, int v, int lift,
     _printIntValue(_liftOnLCD, lift);
     _printIntValue(_liftFloorOnLCD, liftFloor);
     _printBoolValue(_doorsOnLCD, doors);
-    _printBoolValue(_supportOnLCD, support);
+    _printBoolValue(_standOnLCD, stand);
     _printIntValue(_highTemperatureOnLCD, highTemperature);
     _printIntValue(_lowTemperatureOnLCD, lowTemperature);
     _printIntValue(_nowTemperatureOnLCD, nowTemperature);
 }
 void PrintMenuOnLCD::renewAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
-                                          bool doors, bool support,
+                                          bool doors, bool stand,
                                           int highTemperature, int lowTemperature, int nowTemperature)
 {
     _renewIntValue(_xOnLCD, x);
@@ -131,7 +131,7 @@ void PrintMenuOnLCD::renewAllCoordiinates(int x, int y, int fi, int v, int lift,
     _renewIntValue(_liftOnLCD, lift);
     _renewIntValue(_liftFloorOnLCD, liftFloor);
     _renewBoolValue(_doorsOnLCD, doors);
-    _renewBoolValue(_supportOnLCD, support);
+    _renewBoolValue(_standOnLCD, stand);
     _renewIntValue(_highTemperatureOnLCD, highTemperature);
     _renewIntValue(_lowTemperatureOnLCD, lowTemperature);
     _renewIntValue(_nowTemperatureOnLCD, nowTemperature);

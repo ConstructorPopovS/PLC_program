@@ -2,7 +2,7 @@
 
 BoolUpdateCoord::BoolUpdateCoord(bool *coord)
 {
-*_coordinate = coord;
+_coordinate = coord;
 }
 void BoolUpdateCoord::minusMinus()
 {
