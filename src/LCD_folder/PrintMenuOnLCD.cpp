@@ -8,9 +8,9 @@ PrintMenuOnLCD::PrintMenuOnLCD() : _xOnLCD("x", 100, 4, 2, 0),
                                    _liftFloorOnLCD("liftFloor", 1, 1, 14, 1),
                                    _doorsOnLCD("doors", false, 5, 2, 2),
                                    _standOnLCD("stand", false, 5, 14, 2),
-                                   _highTemperatureOnLCD("hTemperature", 1000, 4, 2, 3),
-                                   _lowTemperatureOnLCD("lTemperature", 600, 4, 7, 3),
-                                   _nowTemperatureOnLCD("tNow", 980, 4, 16, 3)
+                                   _highTemperatureOnLCD("highTemperature", 1000, 4, 2, 3),
+                                   _lowTemperatureOnLCD("lowTemperature", 600, 4, 7, 3),
+                                   _nowTemperatureOnLCD("nowTemperature", 980, 4, 16, 3)
 {
 }
 void PrintMenuOnLCD::initAndBacklight()
@@ -135,4 +135,19 @@ void PrintMenuOnLCD::renewAllCoordiinates(int x, int y, int fi, int v, int lift,
     _renewIntValue(_highTemperatureOnLCD, highTemperature);
     _renewIntValue(_lowTemperatureOnLCD, lowTemperature);
     _renewIntValue(_nowTemperatureOnLCD, nowTemperature);
+}
+void PrintMenuOnLCD::setCursorAndBlinc(String name)
+{
+    for (int i = 0; i <= _maxNumberOfCoordinatesShownOnLCD; i++)
+    {
+        if (_nameOfCoordinateOnLCD[i] == name)
+        {
+            _nowNumberOfCoordinatesShownOnLCD = i;
+            _pCoordinateOnLCD = &_coordinatesOnLCD[i];
+            break;
+        }
+    }
+    _lcd.setCursor(_pCoordinateOnLCD->getCoordinateColumn(), _pCoordinateOnLCD->getCoordinateRow());
+    // _lcd.blin
+
 }

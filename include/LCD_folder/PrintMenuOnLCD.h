@@ -1,10 +1,11 @@
 #ifndef PRINTMENUONLCD_H
 #define PRINTMENUONLCD_H
 #include "../../src/main.h"
+#include "../include/LCD_folder/CoordinateShownOnLCD_folder/CoordinateShownOnLCD.h"
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/IntCoordinateShownOnLCD.h"
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/BoolCoordinateShownOnLCD.h"
 #include "../include/LCD_folder/LCDClass.h"
-#define NUMBER_OF_INT_COORDINATES_ON_LCD 7
+
 class PrintMenuOnLCD
 {
 
@@ -13,7 +14,7 @@ public:
     void printConstPartOfMode(String mode);
     void initAndBacklight();
     void claer();
-    void setCursorAndBlinc();
+    void setCursorAndBlinc(String name);
     void printAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
                               bool doors, bool stand,
                               int highTemperature, int lowTemperature, int nowTemperature);
@@ -31,7 +32,7 @@ private:
     void _printConstPartOfAutopilotMode();
     void _printConstPartOfNoneMode();
 
-    IntCoordinateShownOnLCD *_rIntCoordinateOnLCD;
+    IntCoordinateShownOnLCD *_pIntCoordinateOnLCD;
     IntCoordinateShownOnLCD _xOnLCD;
     IntCoordinateShownOnLCD _yOnLCD;
     IntCoordinateShownOnLCD _fiOnLCD;
@@ -41,12 +42,24 @@ private:
     IntCoordinateShownOnLCD _highTemperatureOnLCD;
     IntCoordinateShownOnLCD _lowTemperatureOnLCD;
     IntCoordinateShownOnLCD _nowTemperatureOnLCD;
-    IntCoordinateShownOnLCD _coordinatesOnLCD[NUMBER_OF_INT_COORDINATES_ON_LCD] =
-        {_xOnLCD, _yOnLCD, _fiOnLCD, _vOnLSD, _liftOnLCD, _liftFloorOnLCD, _nowTemperatureOnLCD};
 
-    BoolCoordinateShownOnLCD *_rBoolCoordinateOnLCD;
+    BoolCoordinateShownOnLCD *_pBoolCoordinateOnLCD;
     BoolCoordinateShownOnLCD _doorsOnLCD;
     BoolCoordinateShownOnLCD _standOnLCD;
+
+    CoordinateShownOnLCD *_pCoordinateOnLCD;
+    static const int _maxNumberOfCoordinatesShownOnLCD = 11;
+    int _nowNumberOfCoordinatesShownOnLCD = 0;
+    CoordinateShownOnLCD _coordinatesOnLCD[_maxNumberOfCoordinatesShownOnLCD] =
+        {_xOnLCD, _yOnLCD, _fiOnLCD, _vOnLSD,
+         _liftOnLCD, _liftFloorOnLCD,
+         _doorsOnLCD, _standOnLCD,
+         _highTemperatureOnLCD, _lowTemperatureOnLCD, _nowTemperatureOnLCD};
+    String _nameOfCoordinateOnLCD[_maxNumberOfCoordinatesShownOnLCD] =
+        {"x", "y", "fi", "v",
+         "lift", "liftFloor",
+         "doors", "stand",
+         "highTemperature", "lowTemperature", "nowTemperature"};
     void _printIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
     void _printBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value);
     void _renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
