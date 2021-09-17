@@ -81,33 +81,42 @@ void loop(void)
       {
       case X:
         pUpdateCoordinate = &xUpdateCoordinate;
+        lcdMenuPrinting.setCursorAndBlinc("x");
         break;
       case Y:
         pUpdateCoordinate = &yUpdateCoordinate;
+        lcdMenuPrinting.setCursorAndBlinc("y");
         break;
       case FI:
         pUpdateCoordinate = &fiUpdateCoordinate;
+        lcdMenuPrinting.setCursorAndBlinc("fi");
         break;
       case V:
         pUpdateCoordinate = &vUpdateCoordinate;
+        lcdMenuPrinting.setCursorAndBlinc("v");
         break;
       case LIFT:
         pUpdateCoordinate = &liftUpdateCoordinate;
+        lcdMenuPrinting.setCursorAndBlinc("lift");
         break;
       case DOORS:
         pUpdateCoordinate = &doorsUpdateCoordinate;
+        lcdMenuPrinting.setCursorAndBlinc("doors");
         break;
       case STAND:
         pUpdateCoordinate = &standUpdateCoordinate;
+        lcdMenuPrinting.setCursorAndBlinc("stand");
         break;
       case TEMPERATURE: //TODO realise changing H or L temperature
         if (toggleFurnaceMode.getMode() == "HIGH")
         {
           pUpdateCoordinate = &highTemperatureUpdateCoordinate;
+          lcdMenuPrinting.setCursorAndBlinc("highTemperature");
         }
         else if (toggleFurnaceMode.getMode() == "LOW")
         {
           pUpdateCoordinate = &lowTemperatureUpdateCoordinate;
+          lcdMenuPrinting.setCursorAndBlinc("lowTemperature");
         }
         break;
       case MINUS_MINUS:

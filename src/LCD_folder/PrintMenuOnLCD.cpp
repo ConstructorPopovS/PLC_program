@@ -78,6 +78,7 @@ void PrintMenuOnLCD::_renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int val
     {
         _clearValueField(valueOnLCD);
         _printIntValue(valueOnLCD, value);
+        _lcd.setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
     }
 }
 void PrintMenuOnLCD::_printBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value)
@@ -102,6 +103,7 @@ void PrintMenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool 
     {
         _clearValueField(valueOnLCD);
         _printBoolValue(valueOnLCD, value);
+        _lcd.setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
     }
 }
 void PrintMenuOnLCD::printAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
@@ -148,6 +150,6 @@ void PrintMenuOnLCD::setCursorAndBlinc(String name)
         }
     }
     _lcd.setCursor(_pCoordinateOnLCD->getCoordinateColumn(), _pCoordinateOnLCD->getCoordinateRow());
-    // _lcd.blin
-
+    _lcd.cursor();
+    _lcd.blink();
 }
