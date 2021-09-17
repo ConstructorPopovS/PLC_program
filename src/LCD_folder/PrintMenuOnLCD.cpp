@@ -39,10 +39,13 @@ void PrintMenuOnLCD::_printConstPartOfAutopilotMode()
 void PrintMenuOnLCD::_printConstPartOfNoneMode()
 {
     _lcd.clear();
-    _lcd.setCursorAndPrint(0, 0, "TURN ON THE KEY");
+    _lcd.noBacklight(); // or  _lcd.noDisplay();
 }
 void PrintMenuOnLCD::printConstPartOfMode(String mode)
 {
+    _lcd.backlight(); // or _lcd.display();
+    _lcd.noBlink();
+    _lcd.noCursor();
     if (mode == "MANUAL")
     {
         _printConstPartOfManualMode();
