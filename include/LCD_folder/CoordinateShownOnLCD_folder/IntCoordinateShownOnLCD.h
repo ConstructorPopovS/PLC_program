@@ -2,19 +2,21 @@
 #define INTCOORDINATESHOWNONLCD_H
 #include "../../../src/main.h"
 #include "CoordinateShownOnLCD.h"
+#include "../../CoordinateClasses_folder/IntVariable.h"
+#include "CoordinateClasses_folder/IntVariable.h"
 
 class IntCoordinateShownOnLCD : public CoordinateShownOnLCD
 {
 private:
+    IntVariable* _variable;
 protected:
-    int value;
 
 public:
-    IntCoordinateShownOnLCD(String newName = "х", int newValue = 100, int newSizeOfCoordinateToClearOnLCD = 4,
-                            int newCoordinateColumn = 1, int newCoordinateRow = 0);
+    IntCoordinateShownOnLCD(String newName, IntVariable* variable, int newSizeOfCoordinateToClearOnLCD,
+                            int newCoordinateColumn, int newCoordinateRow);
     int getValue();
-    
-    void setValue(int newValue);
+
+    void setValue(int Value);
 };
 
 #endif

@@ -1,64 +1,63 @@
 #include "../../include/CoordinateClasses_folder/FurnaceCoordinates.h"
-FurnaceCoordinates::FurnaceCoordinates(int lift, int liftFloor, bool doors, bool stand)
+FurnaceCoordinates::FurnaceCoordinates() : _lift(IntVariable::createLift()),
+                                           _liftFloor(IntVariable::createLiftFloor()),
+                                           _doors(false),
+                                           _stand(false)
 {
-    _coordinate.lift = lift;
-    _coordinate.liftFloor = liftFloor;
-    _coordinate.doors = doors;
-    _coordinate.stand = stand;
 }
 
 void FurnaceCoordinates::setCoordinates(int lift, int liftFloor, bool doors, bool stand)
 {
-    _coordinate.lift = lift;
-    _coordinate.liftFloor = liftFloor;
-    _coordinate.doors = doors;
-    _coordinate.stand = stand;
+    _lift.setValue(lift);
+    _liftFloor.setValue(liftFloor);
+    _doors = doors;
+    _stand = stand;
 }
 void FurnaceCoordinates::setLift(int lift)
 {
-    _coordinate.lift = lift;
+    _lift.setValue(lift);
 }
 void FurnaceCoordinates::setLiftFloor(int liftFloor)
 {
-    _coordinate.liftFloor = liftFloor;
+    _liftFloor.setValue(liftFloor);
 }
 void FurnaceCoordinates::setDoors(bool doors)
 {
-    _coordinate.doors = doors;
+    _doors = doors;
 }
 void FurnaceCoordinates::setStand(bool stand)
 {
-    _coordinate.stand = stand;
+    _stand = stand;
 }
 int FurnaceCoordinates::getLift()
 {
-    return (_coordinate.lift);
+    return _lift.getValue();
 }
 int FurnaceCoordinates::getLiftFloor()
 {
-    return (_coordinate.liftFloor);
+    return _liftFloor.getValue();
 }
 bool FurnaceCoordinates::getDoors()
 {
-    return (_coordinate.doors);
+    return _doors;
 }
 bool FurnaceCoordinates::getStand()
 {
-    return (_coordinate.stand);
+    return _stand;
 }
-int* FurnaceCoordinates::getRLift()
+IntVariable* FurnaceCoordinates::getPLift()
 {
-    return (&_coordinate.lift);
+    return (&_lift);
 }
-int* FurnaceCoordinates::getRLiftFloor()
+IntVariable *FurnaceCoordinates::getPLiftFloor()
 {
-    return (&_coordinate.liftFloor);
+    return &_liftFloor;
 }
-bool* FurnaceCoordinates::getRDoors()
+bool *FurnaceCoordinates::getPDoors()
 {
-    return (&_coordinate.doors);
+    return &_doors;
 }
-bool* FurnaceCoordinates::getRStand()
+bool *FurnaceCoordinates::getPStand()
 {
-    return (&_coordinate.stand);
+    return &_stand;
 }

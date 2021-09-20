@@ -1,12 +1,13 @@
 #ifndef ROBOTCOORDINATES_H
 #define ROBOTCOORDINATES_H
 #include "../src/main.h"
+#include "../../include/CoordinateClasses_folder/IntVariable.h"
 
-class RobotCoordinates //TODO make the parrents class for FurnaseCoordinates and RobotCoordinates
+class RobotCoordinates
 {
 
 public:
-    RobotCoordinates(int x, int y, int fi, int v);
+    RobotCoordinates();
     void setCoordinates(int x, int y, int fi, int v);
     void setX(int x);
     void setY(int y);
@@ -16,19 +17,15 @@ public:
     int getY();
     int getFi();
     int getV();
-    int *getRX();
-    int *getRY();
-    int *getRFi();
-    int *getRV();
+    IntVariable *getPX();
+    IntVariable *getPY();
+    IntVariable *getPFi();
+    IntVariable *getPV();
 
 private:
-    struct RobotCoord
-    {
-        int x = 100;
-        int y = 0;
-        int fi = 0;
-        int v = 10;
-    };
-    RobotCoord _coordinate;
+IntVariable _x;
+IntVariable _y;
+IntVariable _fi;
+IntVariable _v;
 };
 #endif

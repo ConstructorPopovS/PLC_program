@@ -1,16 +1,28 @@
 #include "../../include/LCD_folder/PrintMenuOnLCD.h"
 
-PrintMenuOnLCD::PrintMenuOnLCD() : _xOnLCD("x", 100, 4, 2, 0),
-                                   _yOnLCD("y", 0, 4, 7, 0),
-                                   _fiOnLCD("fi", 0, 4, 12, 0),
-                                   _vOnLSD("v", 10, 2, 18, 0),
-                                   _liftOnLCD("lift", 112, 4, 2, 1),
-                                   _liftFloorOnLCD("liftFloor", 1, 1, 14, 1),
-                                   _doorsOnLCD("doors", false, 5, 2, 2),
-                                   _standOnLCD("stand", false, 5, 14, 2),
-                                   _highTemperatureOnLCD("highTemperature", 1000, 4, 2, 3),
-                                   _lowTemperatureOnLCD("lowTemperature", 600, 4, 7, 3),
-                                   _nowTemperatureOnLCD("nowTemperature", 980, 4, 16, 3)
+PrintMenuOnLCD::PrintMenuOnLCD() : _x(IntVariable::createX()),
+                                   _y(IntVariable::createY()),
+                                   _fi(IntVariable::createFi()),
+                                   _v(IntVariable::createV()),
+                                   _lift(IntVariable::createLift()),
+                                   _liftFloor(IntVariable::createLiftFloor()),
+                                   _doors(false),
+                                   _stand(false),
+                                   _highTemperature(IntVariable::createHighTemperature()),
+                                   _lowTemperature(IntVariable::createLowTemperature()),
+                                   _nowTemperature(IntVariable::createNowTemperature()),
+                                   _xOnLCD("x", &_x, 4, 2, 0),
+                                   _yOnLCD("y", &_y, 4, 7, 0),
+                                   _fiOnLCD("fi", &_fi, 4, 12, 0),
+                                   _vOnLSD("v", &_v, 2, 18, 0),
+                                   _liftOnLCD("lift", &_lift, 4, 2, 1),
+                                   _liftFloorOnLCD("liftFloor", &_liftFloor, 2, 14, 1),
+                                   _doorsOnLCD("doors", _doors, 5, 2, 2),
+                                   _standOnLCD("stand", _stand, 5, 14, 2),
+                                   _highTemperatureOnLCD("highTemperature", &_highTemperature, 5, 2, 3),
+                                   _lowTemperatureOnLCD("lowTemperature", &_lowTemperature, 5, 8, 3),
+                                   _nowTemperatureOnLCD("nowTemperature", &_nowTemperature, 5, 15, 3)
+//    nameOfObject("name", value, sizeOfValueToClearOnLCD, column, row)
 {
 }
 void PrintMenuOnLCD::initAndBacklight()
@@ -69,11 +81,16 @@ void PrintMenuOnLCD::_clearValueField(CoordinateShownOnLCD &valueOnLCD)
     }
 }
 void PrintMenuOnLCD::_printIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value)
+//TODO solve the problem with printing if value<0: "--5" instead "-5"
 {
     valueOnLCD.setValue(value);
-    _lcd.setCursorAndPrint(valueOnLCD.getCoordinateColumn(),
-                           valueOnLCD.getCoordinateRow(),
-                           String(valueOnLCD.getValue()));
+    if (value >= 0)
+    {
+        _lcd.setCursorAndPrint(valueOnLCD.getCoordinateColumn(),
+                               valueOnLCD.getCoordinateRow(),
+                               "+");
+    }
+    _lcd.print(valueOnLCD.getValue());
 }
 void PrintMenuOnLCD::_renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value)
 {
@@ -113,6 +130,12 @@ void PrintMenuOnLCD::printAllCoordiinates(int x, int y, int fi, int v, int lift,
                                           bool doors, bool stand,
                                           int highTemperature, int lowTemperature, int nowTemperature)
 {
+    // IntVariable testX = IntVariable::createX();
+    // testX.setValue(100);
+    // testX.addToVariable(800);
+    // _lcd.setCursorAndPrint(_xOnLCD.getCoordinateColumn(),
+    //                        _xOnLCD.getCoordinateRow(),
+    //                        String(testX.getValue()));
     _printIntValue(_xOnLCD, x);
     _printIntValue(_yOnLCD, y);
     _printIntValue(_fiOnLCD, fi);

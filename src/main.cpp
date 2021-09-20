@@ -2,7 +2,9 @@
 // #include "Robot_folder/RobotClass.h"
 #include "main.h"
 #include "../include/Menu_folder/ManualMenuMode.h"
+#include "../include/CoordinateClasses_folder/IntVariable.h"
 
+IntVariable xNew = IntVariable::createX();
 ManualMenuMode manualMenu;
 void setup(void)
 {

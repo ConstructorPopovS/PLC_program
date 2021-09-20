@@ -25,12 +25,24 @@ public:
 private:
     LCDClass _lcd;
     const String _firstOnLCD[4] = {"M(    ;    ;    )V  ",
-                                   "L(    ) floor( )    ",
-                                   "D(     ) supp(     )",
-                                   "t(    /    )tnow    "};
+                                   "L(    ) floor(  )   ",
+                                   "D(     ) stan(     )",
+                                   "t(     /     )      "};
     void _printConstPartOfManualMode();
     void _printConstPartOfAutopilotMode();
     void _printConstPartOfNoneMode();
+
+    IntVariable _x;
+    IntVariable _y;
+    IntVariable _fi;
+    IntVariable _v;
+    IntVariable _lift;
+    IntVariable _liftFloor;
+    bool _doors;
+    bool _stand;
+    IntVariable _highTemperature;
+    IntVariable _lowTemperature;
+    IntVariable _nowTemperature;
 
     IntCoordinateShownOnLCD *_pIntCoordinateOnLCD;
     IntCoordinateShownOnLCD _xOnLCD;

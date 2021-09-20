@@ -1,18 +1,19 @@
 #ifndef INTUPDATECOORD_H
 #define INTUPDATECOORD_H
 #include "UpdateCoord.h"
+#include "CoordinateClasses_folder/IntVariable.h"
 
 class IntUpdateCoord : public UpdateCoord
 {
 private:
-    int *_coord;
+    IntVariable *_coord;
     int _minusMinus;
     int _minus;
     int _plus;
     int _plusPlus;
 
 public:
-    IntUpdateCoord(int *coord, int minusMinus, int minus, int plus, int plusPlus);
+    IntUpdateCoord(IntVariable *coord, int minusMinus, int minus, int plus, int plusPlus);
     virtual void minusMinus();
     virtual void minus();
     virtual void plus();

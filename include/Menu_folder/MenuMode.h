@@ -52,6 +52,7 @@ private:
     String _targetMode;
     static const int _numberOfModes = 3;
     String _namesOfModes[_numberOfModes] = {"AUTOPILOT", "NULL", "MANUAL"};
+    bool modeExists(String mode);
 };
 
 #endif

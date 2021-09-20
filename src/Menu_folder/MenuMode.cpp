@@ -1,20 +1,28 @@
 #include "../../include/Menu_folder/MenuMode.h"
 
-MenuMode::MenuMode() : robotCoordinatesInMenu(100, 0, 0, 10),
-                       furnanceCoordinates(120, 1, false, false),
-                       temperatureCoordinates(1000, 600, 985),
-                       pUpdateCoordinate(NULL),
-                       xUpdateCoordinate(robotCoordinatesInMenu.getRX(), 10, 1, 1, 10),
-                       yUpdateCoordinate(robotCoordinatesInMenu.getRY(), 10, 1, 1, 10),
-                       fiUpdateCoordinate(robotCoordinatesInMenu.getRFi(), 10, 1, 1, 10),
-                       vUpdateCoordinate(robotCoordinatesInMenu.getRV(), 2, 1, 1, 2),
-                       liftUpdateCoordinate(furnanceCoordinates.getRLift(), 10, 1, 1, 10),
-                       liftFloorUpdateCoordinate(furnanceCoordinates.getRLiftFloor(), 1, 1, 1, 1),
-                       doorsUpdateCoordinate(furnanceCoordinates.getRDoors()),
-                       standUpdateCoordinate(furnanceCoordinates.getRStand()),
-                       highTemperatureUpdateCoordinate(temperatureCoordinates.getRHighTemperature(), 50, 5, 5, 50),
-                       lowTemperatureUpdateCoordinate(temperatureCoordinates.getRLowTemperature(), 50, 5, 5, 50)
+MenuMode::MenuMode() : pUpdateCoordinate(NULL),
+                       xUpdateCoordinate(robotCoordinatesInMenu.getPX(), -10, -1, 1, 10),
+                       yUpdateCoordinate(robotCoordinatesInMenu.getPY(), -10, -1, 1, 10),
+                       fiUpdateCoordinate(robotCoordinatesInMenu.getPFi(), -10, -1, 1, 10),
+                       vUpdateCoordinate(robotCoordinatesInMenu.getPV(), -2, -1, 1, 2),
+                       liftUpdateCoordinate(furnanceCoordinates.getPLift(), -10, -1, 1, 10),
+                       liftFloorUpdateCoordinate(furnanceCoordinates.getPLiftFloor(), -1, -1, 1, 1),
+                       doorsUpdateCoordinate(furnanceCoordinates.getPDoors()),
+                       standUpdateCoordinate(furnanceCoordinates.getPStand()),
+                       highTemperatureUpdateCoordinate(temperatureCoordinates.getPHighTemperature(), -50, -5, 5, 50),
+                       lowTemperatureUpdateCoordinate(temperatureCoordinates.getPLowTemperature(), -50, -5, 5, 50)
 {
+}
+bool MenuMode::modeExists(String mode)
+{
+    for (int i = 0; i < _numberOfModes; i++)
+    {
+        if (mode == _namesOfModes[i])
+        {
+            return true;
+        }
+    }
+    return false;
 }
 void MenuMode::init()
 {
@@ -23,26 +31,19 @@ void MenuMode::init()
 }
 void MenuMode::setCurrentMode(String mode)
 {
-    for (int i = 0; i < _numberOfModes; i++)
+    if (modeExists(mode))
     {
-        if (mode == _namesOfModes[i])
-        {
-            _currentMode = mode;
-            break;
-        }
+        _currentMode = mode;
     }
 }
 void MenuMode::setTargetMode(String mode)
 {
-    for (int i = 0; i < _numberOfModes; i++)
+    if (modeExists(mode))
     {
-        if (mode == _namesOfModes[i])
-        {
-            _targetMode = mode;
-            break;
-        }
+        _targetMode = mode;
     }
 }
+
 String MenuMode::getCurrentMode()
 {
     return (_currentMode);

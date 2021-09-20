@@ -1,5 +1,5 @@
 #include "../../../include/Menu_folder/UpdateCoord_folder/IntUpdateCoord.h"
-IntUpdateCoord::IntUpdateCoord(int *coord, int minusMinus, int minus, int plus, int plusPlus)
+IntUpdateCoord::IntUpdateCoord(IntVariable* coord, int minusMinus, int minus, int plus, int plusPlus)
 {
     _coord = coord;
     _minusMinus = minusMinus;
@@ -9,17 +9,17 @@ IntUpdateCoord::IntUpdateCoord(int *coord, int minusMinus, int minus, int plus, 
 }
 void IntUpdateCoord::minusMinus()
 {
-    *_coord -= _minusMinus;
+    _coord->addToVariable(_minusMinus);
 }
 void IntUpdateCoord::minus()
 {
-    *_coord -= _minus;
+    _coord->addToVariable(_minus);
 }
 void IntUpdateCoord::plus()
 {
-    *_coord += _plus;
+    _coord->addToVariable(_plus);
 }
 void IntUpdateCoord::plusPlus()
 {
-    *_coord += _plusPlus;
+    _coord->addToVariable(_plusPlus);
 }

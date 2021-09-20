@@ -1,67 +1,65 @@
 #include "../../include/CoordinateClasses_folder/RobotCoordinates.h"
 
-RobotCoordinates::RobotCoordinates(int x, int y, int fi, int v)
+RobotCoordinates::RobotCoordinates() : _x(IntVariable::createX()),
+                                       _y(IntVariable::createY()),
+                                       _fi(IntVariable::createFi()),
+                                       _v(IntVariable::createV())
 {
-    _coordinate.x = x;
-    _coordinate.y = y;
-    _coordinate.fi = fi;
-    _coordinate.v = v;
 }
-
 
 void RobotCoordinates::setCoordinates(int x, int y, int fi, int v)
 {
-    _coordinate.x = x;
-    _coordinate.y = y;
-    _coordinate.fi = fi;
-    _coordinate.v = v;
+    _x.setValue(x);
+    _y.setValue(y);
+    _fi.setValue(fi);
+    _v.setValue(v);
 }
 
 void RobotCoordinates::setX(int x)
 {
-    _coordinate.x = x;
+    _x.setValue(x);
 }
 void RobotCoordinates::setY(int y)
 {
-    _coordinate.y = y;
+    _y.setValue(y);
 }
 void RobotCoordinates::setFi(int fi)
 {
-    _coordinate.fi = fi;
+    _fi.setValue(fi);
 }
 void RobotCoordinates::setV(int v)
 {
-    _coordinate.v = v;
+    _v.setValue(v);
 }
 int RobotCoordinates::getX()
 {
-    return (_coordinate.x);
+    return _x.getValue();
 }
 int RobotCoordinates::getY()
 {
-    return (_coordinate.y);
+    return _y.getValue();
 }
 int RobotCoordinates::getFi()
 {
-    return (_coordinate.fi);
+    return _fi.getValue();
 }
 int RobotCoordinates::getV()
 {
-    return (_coordinate.v);
+    return _v.getValue();
 }
-int* RobotCoordinates::getRX()
+IntVariable *RobotCoordinates::getPX()
 {
-    return (&_coordinate.x);
+    return &_x;
 }
-int* RobotCoordinates::getRY()
+IntVariable *RobotCoordinates::getPY()
 {
-    return (&_coordinate.y);
+    return &_y;
 }
-int* RobotCoordinates::getRFi()
+IntVariable *RobotCoordinates::getPFi()
 {
-    return (&_coordinate.fi);
+    return &_fi;
 }
-int* RobotCoordinates::getRV()
+IntVariable *RobotCoordinates::getPV()
 {
-    return (&_coordinate.v);
+    return &_v;
 }

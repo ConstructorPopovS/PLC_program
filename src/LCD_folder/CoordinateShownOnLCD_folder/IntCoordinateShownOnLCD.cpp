@@ -1,19 +1,19 @@
 #include "../../../include/LCD_folder/CoordinateShownOnLCD_folder/IntCoordinateShownOnLCD.h"
 
-IntCoordinateShownOnLCD::IntCoordinateShownOnLCD(String newName, int newValue, int newSizeOfCoordinateToClearOnLCD,
+IntCoordinateShownOnLCD::IntCoordinateShownOnLCD(String newName, IntVariable* variable, int newSizeOfCoordinateToClearOnLCD,
                                                  int newCoordinateColumn, int newCoordinateRow)
 {
     name = newName;
-    value = newValue;
+    _variable = variable;
     sizeOfCoordinateToClearOnLCD = newSizeOfCoordinateToClearOnLCD;
     coordinateOnLCDRow = newCoordinateRow;
     coordinateOnLCDColumn = newCoordinateColumn;
 }
 int IntCoordinateShownOnLCD::getValue()
 {
-    return (value);
+    return _variable->getValue();
 }
-void IntCoordinateShownOnLCD::setValue(int newValue)
+void IntCoordinateShownOnLCD::setValue(int Value)
 {
-    value = newValue;
+    _variable->setValue(Value);
 }
