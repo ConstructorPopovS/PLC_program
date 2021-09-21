@@ -84,11 +84,16 @@ void PrintMenuOnLCD::_printIntValue(IntCoordinateShownOnLCD &valueOnLCD, int val
 //TODO solve the problem with printing if value<0: "--5" instead "-5"
 {
     valueOnLCD.setValue(value);
-    if (value >= 0)
+    if (value > 0)
     {
         _lcd.setCursorAndPrint(valueOnLCD.getCoordinateColumn(),
                                valueOnLCD.getCoordinateRow(),
                                "+");
+    }
+    else
+    {
+        _lcd.setCursor(valueOnLCD.getCoordinateColumn(),
+                       valueOnLCD.getCoordinateRow());
     }
     _lcd.print(valueOnLCD.getValue());
 }
@@ -166,16 +171,21 @@ void PrintMenuOnLCD::renewAllCoordiinates(int x, int y, int fi, int v, int lift,
 }
 void PrintMenuOnLCD::setCursorAndBlinc(String name)
 {
-    for (int i = 0; i <= _maxNumberOfCoordinatesShownOnLCD; i++)
+    for (int i = 0; i < _maxNumberOfCoordinatesShownOnLCD; i++)
     {
         if (_nameOfCoordinateOnLCD[i] == name)
         {
+            Serial.print(_nameOfCoordinateOnLCD[i] + "  ");
             _nowNumberOfCoordinatesShownOnLCD = i;
             _pCoordinateOnLCD = &_coordinatesOnLCD[i];
             break;
         }
     }
-    _lcd.setCursor(_pCoordinateOnLCD->getCoordinateColumn(), _pCoordinateOnLCD->getCoordinateRow());
+    Serial.println(String(_pCoordinateOnLCD->getCoordinateColumn()) + "  " +
+                   String(_pCoordinateOnLCD->getCoordinateRow()));
+    // _lcd.setCursor(_pCoordinateOnLCD->getCoordinateColumn(), _pCoordinateOnLCD->getCoordinateRow());
+    _lcd.setCursorAndPrint(2, 1, "!");//test
     _lcd.cursor();
-    _lcd.blink();
+    delay(1000);
+    // _lcd.blink();
 }

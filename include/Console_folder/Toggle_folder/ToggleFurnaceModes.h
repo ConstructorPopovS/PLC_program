@@ -5,8 +5,8 @@
 class ToggleFurnaceModes
 {
 private:
-const int _PIN_HIGH = 27;
-const int _PIN_LOW = 29;
+const int _PIN_HIGH = 23;
+const int _PIN_LOW = 25;
 protected:
 public:
     ToggleFurnaceModes();

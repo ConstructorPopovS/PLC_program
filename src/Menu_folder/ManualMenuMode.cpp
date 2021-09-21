@@ -61,7 +61,7 @@ void ManualMenuMode::doMenu()
                 pUpdateCoordinate = &standUpdateCoordinate;
                 lcdMenuPrinting.setCursorAndBlinc("stand");
                 break;
-            case TEMPERATURE: //TODO realise changing H or L temperature
+            case TEMPERATURE:
                 if (toggleFurnaceMode.getMode() == "HIGH")
                 {
                     pUpdateCoordinate = &highTemperatureUpdateCoordinate;
@@ -70,7 +70,12 @@ void ManualMenuMode::doMenu()
                 else if (toggleFurnaceMode.getMode() == "LOW")
                 {
                     pUpdateCoordinate = &lowTemperatureUpdateCoordinate;
-                    lcdMenuPrinting.setCursorAndBlinc("x");
+                    lcdMenuPrinting.setCursorAndBlinc("lowTemperature");
+                }
+                else
+                {
+                    pUpdateCoordinate = &highTemperatureUpdateCoordinate;
+                    lcdMenuPrinting.setCursorAndBlinc("highTemperature");
                 }
                 break;
             case MINUS_MINUS:
