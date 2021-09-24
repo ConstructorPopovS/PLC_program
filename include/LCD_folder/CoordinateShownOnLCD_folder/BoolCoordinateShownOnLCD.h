@@ -10,8 +10,11 @@ protected:
     bool value;
 
 public:
-    BoolCoordinateShownOnLCD(String newName, bool newValue, int newSizeOfCoordinateToClearOnLCD,
-                             int newCoordinateColumn, int newCoordinateRow);
+    BoolCoordinateShownOnLCD(String newName,
+                             bool newValue,
+                             int newSizeOfCoordinateToClearOnLCD,
+                             int newCoordinateColumn,
+                             int newCoordinateRow);
 
     bool getValue();
     void setValue(bool newValue);

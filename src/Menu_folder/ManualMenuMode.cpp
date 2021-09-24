@@ -34,72 +34,72 @@ void ManualMenuMode::doMenu()
             switch (nameOfKey)
             {
             case X:
-                pUpdateCoordinate = &xUpdateCoordinate;
+                pCoordinateChange = &xCoordinateChange;
                 lcdMenuPrinting.setCursorAndBlinc("x");
                 break;
             case Y:
-                pUpdateCoordinate = &yUpdateCoordinate;
+                pCoordinateChange = &yCoordinateChange;
                 lcdMenuPrinting.setCursorAndBlinc("y");
                 break;
             case FI:
-                pUpdateCoordinate = &fiUpdateCoordinate;
+                pCoordinateChange = &fiCoordinateChange;
                 lcdMenuPrinting.setCursorAndBlinc("fi");
                 break;
             case V:
-                pUpdateCoordinate = &vUpdateCoordinate;
+                pCoordinateChange = &vCoordinateChange;
                 lcdMenuPrinting.setCursorAndBlinc("v");
                 break;
             case LIFT:
-                pUpdateCoordinate = &liftUpdateCoordinate;
+                pCoordinateChange = &liftCoordinateChange;
                 lcdMenuPrinting.setCursorAndBlinc("lift");
                 break;
             case DOORS:
-                pUpdateCoordinate = &doorsUpdateCoordinate;
+                pCoordinateChange = &doorsCoordinateChange;
                 lcdMenuPrinting.setCursorAndBlinc("doors");
                 break;
             case STAND:
-                pUpdateCoordinate = &standUpdateCoordinate;
+                pCoordinateChange = &standCoordinateChange;
                 lcdMenuPrinting.setCursorAndBlinc("stand");
                 break;
             case TEMPERATURE:
                 if (toggleFurnaceMode.getMode() == "HIGH")
                 {
-                    pUpdateCoordinate = &highTemperatureUpdateCoordinate;
+                    pCoordinateChange = &highTemperatureCoordinateChange;
                     lcdMenuPrinting.setCursorAndBlinc("highTemperature");
                 }
                 else if (toggleFurnaceMode.getMode() == "LOW")
                 {
-                    pUpdateCoordinate = &lowTemperatureUpdateCoordinate;
+                    pCoordinateChange = &lowTemperatureCoordinateChange;
                     lcdMenuPrinting.setCursorAndBlinc("lowTemperature");
                 }
                 else
                 {
-                    pUpdateCoordinate = &highTemperatureUpdateCoordinate;
+                    pCoordinateChange = &highTemperatureCoordinateChange;
                     lcdMenuPrinting.setCursorAndBlinc("highTemperature");
                 }
                 break;
             case MINUS_MINUS:
-                if (pUpdateCoordinate != NULL)
+                if (pCoordinateChange != NULL)
                 {
-                    pUpdateCoordinate->minusMinus();
+                    pCoordinateChange->minusMinus();
                 }
                 break;
             case MINUS:
-                if (pUpdateCoordinate != NULL)
+                if (pCoordinateChange != NULL)
                 {
-                    pUpdateCoordinate->minus();
+                    pCoordinateChange->minus();
                 }
                 break;
             case PLUS:
-                if (pUpdateCoordinate != NULL)
+                if (pCoordinateChange != NULL)
                 {
-                    pUpdateCoordinate->plus();
+                    pCoordinateChange->plus();
                 }
                 break;
             case PLUS_PLUS:
-                if (pUpdateCoordinate != NULL)
+                if (pCoordinateChange != NULL)
                 {
-                    pUpdateCoordinate->plusPlus();
+                    pCoordinateChange->plusPlus();
                 }
                 break;
             default:
@@ -126,6 +126,7 @@ void ManualMenuMode::doMenu()
             Serial.print("\tstand=" + String(furnanceCoordinates.getStand()));
             Serial.print("\thT=" + String(temperatureCoordinates.getHighTemperature()));
             Serial.println("\tlT=" + String(temperatureCoordinates.getLowTemperature()));
+            Serial.println("End");
         }
     }
 }

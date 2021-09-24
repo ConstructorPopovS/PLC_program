@@ -71,8 +71,8 @@ IntVariable IntVariable::createNowTemperature()
 }
 void IntVariable::addToVariable(int addingValue)
 {
-    // _variable += addingValue;
-    _variable = constrain((_variable + addingValue), _minVariable, _maxVariable);
+    _variable += addingValue;// dont integrite this line into "constrain"
+    _variable = constrain(_variable, _minVariable, _maxVariable);
 }
 void IntVariable::setValue(int value)
 {

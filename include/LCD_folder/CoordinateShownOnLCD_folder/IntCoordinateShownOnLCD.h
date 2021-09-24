@@ -8,12 +8,15 @@
 class IntCoordinateShownOnLCD : public CoordinateShownOnLCD
 {
 private:
-    IntVariable* _variable;
-protected:
+    IntVariable *_variable;
 
+protected:
 public:
-    IntCoordinateShownOnLCD(String newName, IntVariable* variable, int newSizeOfCoordinateToClearOnLCD,
-                            int newCoordinateColumn, int newCoordinateRow);
+    IntCoordinateShownOnLCD(String newName,
+                            IntVariable *variable,
+                            int newSizeOfCoordinateToClearOnLCD,
+                            int newCoordinateColumn,
+                            int newCoordinateRow);
     int getValue();
 
     void setValue(int Value);

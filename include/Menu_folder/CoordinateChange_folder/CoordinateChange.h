@@ -1,13 +1,13 @@
-#ifndef UPDATECOORD_H
-#define UPDATECOORD_H
+#ifndef COORDINATECHANGE_H
+#define COORDINATECHANGE_H
 #include "../../../src/main.h"
 
-class UpdateCoord
+class CoordinateChange
 {
 private:
 protected:
 public:
-    UpdateCoord();
+    CoordinateChange();
     virtual void minusMinus();
     virtual void minus();
     virtual void plus();

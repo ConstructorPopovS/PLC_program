@@ -29,7 +29,7 @@ void PrintMenuOnLCD::initAndBacklight()
 {
     _lcd.init();
     _lcd.backlight();
-    _lcd.clearSetCursorAndPrint(0, 0, "Start");
+    _lcd.clear();
 }
 void PrintMenuOnLCD::claer()
 {
@@ -81,7 +81,6 @@ void PrintMenuOnLCD::_clearValueField(CoordinateShownOnLCD &valueOnLCD)
     }
 }
 void PrintMenuOnLCD::_printIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value)
-//TODO solve the problem with printing if value<0: "--5" instead "-5"
 {
     valueOnLCD.setValue(value);
     if (value > 0)
@@ -101,6 +100,7 @@ void PrintMenuOnLCD::_renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int val
 {
     if (valueOnLCD.getValue() != value)
     {
+        Serial.println("Renew: " + valueOnLCD.getName() + "=" + String(valueOnLCD.getValue()));
         _clearValueField(valueOnLCD);
         _printIntValue(valueOnLCD, value);
         _lcd.setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
@@ -135,12 +135,6 @@ void PrintMenuOnLCD::printAllCoordiinates(int x, int y, int fi, int v, int lift,
                                           bool doors, bool stand,
                                           int highTemperature, int lowTemperature, int nowTemperature)
 {
-    // IntVariable testX = IntVariable::createX();
-    // testX.setValue(100);
-    // testX.addToVariable(800);
-    // _lcd.setCursorAndPrint(_xOnLCD.getCoordinateColumn(),
-    //                        _xOnLCD.getCoordinateRow(),
-    //                        String(testX.getValue()));
     _printIntValue(_xOnLCD, x);
     _printIntValue(_yOnLCD, y);
     _printIntValue(_fiOnLCD, fi);
@@ -183,9 +177,8 @@ void PrintMenuOnLCD::setCursorAndBlinc(String name)
     }
     Serial.println(String(_pCoordinateOnLCD->getCoordinateColumn()) + "  " +
                    String(_pCoordinateOnLCD->getCoordinateRow()));
-    // _lcd.setCursor(_pCoordinateOnLCD->getCoordinateColumn(), _pCoordinateOnLCD->getCoordinateRow());
-    _lcd.setCursorAndPrint(2, 1, "!");//test
+    _lcd.setCursor(_pCoordinateOnLCD->getCoordinateColumn(), _pCoordinateOnLCD->getCoordinateRow());
+    // _lcd.setCursorAndPrint(2, 1, "!");//test
     _lcd.cursor();
-    delay(1000);
-    // _lcd.blink();
+    _lcd.blink();
 }
