@@ -8,7 +8,7 @@ IntConstrainedVariable::IntConstrainedVariable(int variable, int minVariable, in
 }
 IntConstrainedVariable IntConstrainedVariable::createX()
 {
-    int variable = 50;
+    int variable = 100;
     int minVariable = 80;
     int maxVariable = 300;
     return IntConstrainedVariable(variable, minVariable, maxVariable);

@@ -101,12 +101,12 @@ void MenuOnLCD::_renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value)
 {
     if (valueOnLCD.getValue() != value)
     {
-        // Serial.println(valueOnLCD.getName() + "=" + String(valueOnLCD.getValue()));
+        Serial.println(valueOnLCD.getName() + "(on LCD)" + "=" + String(valueOnLCD.getValue()));
         _clearValueField(valueOnLCD);
         _printAndSetIntValue(valueOnLCD, value);
         _lcd.setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
-        // Serial.println("Renew: " + valueOnLCD.getName() + " to " + String(value));
-        // Serial.println("Now: " + valueOnLCD.getName() + "=" + String(valueOnLCD.getValue()));
+        Serial.println("Renew: " + valueOnLCD.getName() + " to " + String(value));
+        Serial.println("Now: " + valueOnLCD.getName() + "=" + String(valueOnLCD.getValue()));
     }
 }
 void MenuOnLCD::_printAndSetBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value)
@@ -129,12 +129,12 @@ void MenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value
 {
     if (valueOnLCD.getValue() != value)
     {
-        // Serial.println(valueOnLCD.getName() + "=" + String(valueOnLCD.getValue()));
+        Serial.println(valueOnLCD.getName() + "(on LCD)"  + "=" + String(valueOnLCD.getValue()));
         _clearValueField(valueOnLCD);
         _printAndSetBoolValue(valueOnLCD, value);
         _lcd.setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
-        // Serial.println("Renew: " + valueOnLCD.getName() + " to " + String(value));
-        // Serial.println("Now: " + valueOnLCD.getName() + "=" + String(valueOnLCD.getValue()));
+        Serial.println("Renew: " + valueOnLCD.getName() + " to " + String(value));
+        Serial.println("Now: " + valueOnLCD.getName() + "=" + String(valueOnLCD.getValue()));
     }
 }
 void MenuOnLCD::printAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,

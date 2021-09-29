@@ -31,6 +31,7 @@ void ManualMenuMode::doMenu()
         if (dataFromKeypad.keyIsPressed())
         {
             NamesOfKeys nameOfKey = dataFromKeypad.getNameOfKey();
+            Serial.println(String(nameOfKey) + " is pressed");
             switch (nameOfKey)
             {
             case X:
@@ -126,7 +127,7 @@ void ManualMenuMode::doMenu()
             Serial.print("\tstand=" + String(furnanceCoordinates.getStand()));
             Serial.print("\thT=" + String(temperatureCoordinates.getHighTemperature()));
             Serial.println("\tlT=" + String(temperatureCoordinates.getLowTemperature()));
-            Serial.println("End");
+            Serial.println();
         }
     }
 }
