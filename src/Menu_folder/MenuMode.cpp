@@ -24,7 +24,7 @@ bool MenuMode::modeExists(String mode)
     }
     return false;
 }
-void MenuMode::init()
+void MenuMode::initLCD()
 {
     lcdMenuPrinting.initAndBacklight();
     Serial.println("Start");

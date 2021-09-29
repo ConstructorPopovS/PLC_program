@@ -1,13 +1,13 @@
 #ifndef FURNACECOORDINATES_H
 #define FURNACECOORDINATES_H
 #include "../../src/main.h"
-#include "../../include/CoordinateClasses_folder/IntVariable.h"
+#include "../../include/CoordinateClasses_folder/IntConstrainedVariable.h"
 
 class FurnaceCoordinates
 {
 private:
-    IntVariable _lift;
-    IntVariable _liftFloor;
+    IntConstrainedVariable _lift;
+    IntConstrainedVariable _liftFloor;
     bool _doors;
     bool _stand;
 
@@ -22,8 +22,8 @@ public:
     int getLiftFloor();
     bool getDoors();
     bool getStand();
-    IntVariable* getPLift();
-    IntVariable* getPLiftFloor();
+    IntConstrainedVariable* getPLift();
+    IntConstrainedVariable* getPLiftFloor();
     bool* getPDoors();
     bool* getPStand();
 };

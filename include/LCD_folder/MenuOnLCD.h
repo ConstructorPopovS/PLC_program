@@ -1,18 +1,19 @@
-#ifndef PRINTMENUONLCD_H
-#define PRINTMENUONLCD_H
+#ifndef MENUONLCD_H
+#define MENUONLCD_H
 #include "../../src/main.h"
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/CoordinateShownOnLCD.h"
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/IntCoordinateShownOnLCD.h"
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/BoolCoordinateShownOnLCD.h"
 #include "../include/LCD_folder/LCDClass.h"
+#include "CoordinateClasses_folder/IntConstrainedVariable.h"
 
-class PrintMenuOnLCD
+class MenuOnLCD
 {
 
 public:
-    PrintMenuOnLCD();
-    void printConstPartOfMode(String mode);
+    MenuOnLCD();
     void initAndBacklight();
+    void printConstPartOfMode(String mode);
     void claer();
     void setCursorAndBlinc(String name);
     void printAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
@@ -32,17 +33,17 @@ private:
     void _printConstPartOfAutopilotMode();
     void _printConstPartOfNoneMode();
 
-    IntVariable _x;
-    IntVariable _y;
-    IntVariable _fi;
-    IntVariable _v;
-    IntVariable _lift;
-    IntVariable _liftFloor;
+    IntConstrainedVariable _x;
+    IntConstrainedVariable _y;
+    IntConstrainedVariable _fi;
+    IntConstrainedVariable _v;
+    IntConstrainedVariable _lift;
+    IntConstrainedVariable _liftFloor;
     bool _doors;
     bool _stand;
-    IntVariable _highTemperature;
-    IntVariable _lowTemperature;
-    IntVariable _nowTemperature;
+    IntConstrainedVariable _highTemperature;
+    IntConstrainedVariable _lowTemperature;
+    IntConstrainedVariable _nowTemperature;
 
     IntCoordinateShownOnLCD *_pIntCoordinateOnLCD;
     IntCoordinateShownOnLCD _xOnLCD;
@@ -72,8 +73,8 @@ private:
          "lift", "liftFloor",
          "doors", "stand",
          "highTemperature", "lowTemperature", "nowTemperature"};
-    void _printIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
-    void _printBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value);
+    void _printAndSetIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
+    void _printAndSetBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value);
     void _renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
     void _renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value);
     void _clearValueField(CoordinateShownOnLCD &valueOnLCD);

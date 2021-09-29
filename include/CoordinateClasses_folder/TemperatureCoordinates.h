@@ -2,14 +2,14 @@
 #define TEMPERATURECOORDINATES_H
 
 #include "../../src/main.h"
-#include "../../include/CoordinateClasses_folder/IntVariable.h"
+#include "../../include/CoordinateClasses_folder/IntConstrainedVariable.h"
 
 class TemperatureCoordinates
 {
 private:
-    IntVariable _highTemperature;
-    IntVariable _lowTemperature;
-    IntVariable _nowTemperature;
+    IntConstrainedVariable _highTemperature;
+    IntConstrainedVariable _lowTemperature;
+    IntConstrainedVariable _nowTemperature;
 
 public:
     TemperatureCoordinates();
@@ -20,9 +20,9 @@ public:
     int getHighTemperature();
     int getLowTemperature();
     int getNowTemperature();
-    IntVariable* getPHighTemperature();
-    IntVariable* getPLowTemperature();
-    IntVariable* getPNowTemperature();
+    IntConstrainedVariable* getPHighTemperature();
+    IntConstrainedVariable* getPLowTemperature();
+    IntConstrainedVariable* getPNowTemperature();
 };
 
 #endif

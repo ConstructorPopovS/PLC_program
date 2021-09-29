@@ -1,8 +1,8 @@
 #include "../../include/CoordinateClasses_folder/TemperatureCoordinates.h"
 
-TemperatureCoordinates::TemperatureCoordinates() : _highTemperature(IntVariable::createHighTemperature()),
-                                                   _lowTemperature(IntVariable::createLowTemperature()),
-                                                   _nowTemperature(IntVariable::createNowTemperature())
+TemperatureCoordinates::TemperatureCoordinates() : _highTemperature(IntConstrainedVariable::createHighTemperature()),
+                                                   _lowTemperature(IntConstrainedVariable::createLowTemperature()),
+                                                   _nowTemperature(IntConstrainedVariable::createNowTemperature())
 {
 }
 void TemperatureCoordinates::setCoordinates(int highTemperature, int lowTemperature, int nowTemperature)
@@ -35,15 +35,15 @@ int TemperatureCoordinates::getNowTemperature()
 {
     return _nowTemperature.getValue();
 }
-IntVariable* TemperatureCoordinates::getPHighTemperature()
+IntConstrainedVariable* TemperatureCoordinates::getPHighTemperature()
 {
     return &_highTemperature;
 }
-IntVariable* TemperatureCoordinates::getPLowTemperature()
+IntConstrainedVariable* TemperatureCoordinates::getPLowTemperature()
 {
     return &_lowTemperature;
 }
-IntVariable* TemperatureCoordinates::getPNowTemperature()
+IntConstrainedVariable* TemperatureCoordinates::getPNowTemperature()
 {
     return &_nowTemperature;
 }

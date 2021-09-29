@@ -1,6 +1,6 @@
 #include "../../include/CoordinateClasses_folder/FurnaceCoordinates.h"
-FurnaceCoordinates::FurnaceCoordinates() : _lift(IntVariable::createLift()),
-                                           _liftFloor(IntVariable::createLiftFloor()),
+FurnaceCoordinates::FurnaceCoordinates() : _lift(IntConstrainedVariable::createLift()),
+                                           _liftFloor(IntConstrainedVariable::createLiftFloor()),
                                            _doors(false),
                                            _stand(false)
 {
@@ -45,11 +45,11 @@ bool FurnaceCoordinates::getStand()
 {
     return _stand;
 }
-IntVariable* FurnaceCoordinates::getPLift()
+IntConstrainedVariable* FurnaceCoordinates::getPLift()
 {
     return (&_lift);
 }
-IntVariable *FurnaceCoordinates::getPLiftFloor()
+IntConstrainedVariable *FurnaceCoordinates::getPLiftFloor()
 {
     return &_liftFloor;
 }

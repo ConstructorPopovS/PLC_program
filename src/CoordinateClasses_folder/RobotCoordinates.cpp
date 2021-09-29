@@ -1,9 +1,9 @@
 #include "../../include/CoordinateClasses_folder/RobotCoordinates.h"
 
-RobotCoordinates::RobotCoordinates() : _x(IntVariable::createX()),
-                                       _y(IntVariable::createY()),
-                                       _fi(IntVariable::createFi()),
-                                       _v(IntVariable::createV())
+RobotCoordinates::RobotCoordinates() : _x(IntConstrainedVariable::createX()),
+                                       _y(IntConstrainedVariable::createY()),
+                                       _fi(IntConstrainedVariable::createFi()),
+                                       _v(IntConstrainedVariable::createV())
 {
 }
 
@@ -47,19 +47,19 @@ int RobotCoordinates::getV()
 {
     return _v.getValue();
 }
-IntVariable *RobotCoordinates::getPX()
+IntConstrainedVariable *RobotCoordinates::getPX()
 {
     return &_x;
 }
-IntVariable *RobotCoordinates::getPY()
+IntConstrainedVariable *RobotCoordinates::getPY()
 {
     return &_y;
 }
-IntVariable *RobotCoordinates::getPFi()
+IntConstrainedVariable *RobotCoordinates::getPFi()
 {
     return &_fi;
 }
-IntVariable *RobotCoordinates::getPV()
+IntConstrainedVariable *RobotCoordinates::getPV()
 {
     return &_v;
 }
