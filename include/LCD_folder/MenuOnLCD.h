@@ -4,6 +4,9 @@
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/CoordinateShownOnLCD.h"
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/IntCoordinateShownOnLCD.h"
 #include "../include/LCD_folder/CoordinateShownOnLCD_folder/BoolCoordinateShownOnLCD.h"
+#include "../CoordinateClasses_folder/RobotCoordinates.h"
+#include "../CoordinateClasses_folder/FurnaceCoordinates.h"
+#include "../CoordinateClasses_folder/TemperatureCoordinates.h"
 #include "../include/LCD_folder/LCDClass.h"
 #include "CoordinateClasses_folder/IntConstrainedVariable.h"
 
@@ -33,17 +36,9 @@ private:
     void _printConstPartOfAutopilotMode();
     void _printConstPartOfNoneMode();
 
-    IntConstrainedVariable _x;
-    IntConstrainedVariable _y;
-    IntConstrainedVariable _fi;
-    IntConstrainedVariable _v;
-    IntConstrainedVariable _lift;
-    IntConstrainedVariable _liftFloor;
-    bool _doors;
-    bool _stand;
-    IntConstrainedVariable _highTemperature;
-    IntConstrainedVariable _lowTemperature;
-    IntConstrainedVariable _nowTemperature;
+    RobotCoordinates _robotCoordinates;
+    FurnaceCoordinates _furnaceCoordinates;
+    TemperatureCoordinates _temperatureCOordinates;
 
     IntCoordinateShownOnLCD *_pIntCoordinateOnLCD;
     IntCoordinateShownOnLCD _xOnLCD;

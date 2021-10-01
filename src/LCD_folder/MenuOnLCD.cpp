@@ -1,28 +1,16 @@
 #include "../../include/LCD_folder/MenuOnLCD.h"
 
-MenuOnLCD::MenuOnLCD() : _x(IntConstrainedVariable::createX()),
-                         _y(IntConstrainedVariable::createY()),
-                         _fi(IntConstrainedVariable::createFi()),
-                         _v(IntConstrainedVariable::createV()),
-                         _lift(IntConstrainedVariable::createLift()),
-                         _liftFloor(IntConstrainedVariable::createLiftFloor()),
-                         _doors(false),
-                         _stand(false),
-                         _highTemperature(IntConstrainedVariable::createHighTemperature()),
-                         _lowTemperature(IntConstrainedVariable::createLowTemperature()),
-                         _nowTemperature(IntConstrainedVariable::createNowTemperature()),
-
-                         _xOnLCD("x", &_x, 4, 2, 0),
-                         _yOnLCD("y", &_y, 4, 7, 0),
-                         _fiOnLCD("fi", &_fi, 4, 12, 0),
-                         _vOnLSD("v", &_v, 2, 18, 0),
-                         _liftOnLCD("lift", &_lift, 4, 2, 1),
-                         _liftFloorOnLCD("liftFloor", &_liftFloor, 2, 14, 1),
-                         _doorsOnLCD("doors", _doors, 5, 2, 2),
-                         _standOnLCD("stand", _stand, 5, 14, 2),
-                         _highTemperatureOnLCD("highTemperature", &_highTemperature, 5, 2, 3),
-                         _lowTemperatureOnLCD("lowTemperature", &_lowTemperature, 5, 8, 3),
-                         _nowTemperatureOnLCD("nowTemperature", &_nowTemperature, 5, 15, 3)
+MenuOnLCD::MenuOnLCD() : _xOnLCD("x", _robotCoordinates.getPX(), 4, 2, 0),
+                         _yOnLCD("y", _robotCoordinates.getPY(), 4, 7, 0),
+                         _fiOnLCD("fi", _robotCoordinates.getPFi(), 4, 12, 0),
+                         _vOnLSD("v", _robotCoordinates.getPV(), 2, 18, 0),
+                         _liftOnLCD("lift", _furnaceCoordinates.getPLift(), 4, 2, 1),
+                         _liftFloorOnLCD("liftFloor", _furnaceCoordinates.getPLiftFloor(), 2, 14, 1),
+                         _doorsOnLCD("doors", _furnaceCoordinates.getPDoors(), 5, 2, 2),
+                         _standOnLCD("stand", _furnaceCoordinates.getPStand(), 5, 14, 2),
+                         _highTemperatureOnLCD("highTemperature", _temperatureCOordinates.getPHighTemperature(), 5, 2, 3),
+                         _lowTemperatureOnLCD("lowTemperature", _temperatureCOordinates.getPLowTemperature(), 5, 8, 3),
+                         _nowTemperatureOnLCD("nowTemperature", _temperatureCOordinates.getPNowTemperature(), 5, 15, 3)
 //                       nameOfObject("name", value, sizeOfValueToClearOnLCD, column, row)
 {
 }
@@ -129,7 +117,7 @@ void MenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value
 {
     if (valueOnLCD.getValue() != value)
     {
-        Serial.println(valueOnLCD.getName() + "(on LCD)"  + "=" + String(valueOnLCD.getValue()));
+        Serial.println(valueOnLCD.getName() + "(on LCD)" + "=" + String(valueOnLCD.getValue()));
         _clearValueField(valueOnLCD);
         _printAndSetBoolValue(valueOnLCD, value);
         _lcd.setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());

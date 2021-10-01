@@ -1,65 +1,69 @@
 #include "../../include/CoordinateClasses_folder/RobotCoordinates.h"
 
-RobotCoordinates::RobotCoordinates() : _x(IntConstrainedVariable::createX()),
-                                       _y(IntConstrainedVariable::createY()),
-                                       _fi(IntConstrainedVariable::createFi()),
-                                       _v(IntConstrainedVariable::createV())
+RobotCoordinates::RobotCoordinates()
 {
 }
 
 void RobotCoordinates::setCoordinates(int x, int y, int fi, int v)
 {
-    _x.setValue(x);
-    _y.setValue(y);
-    _fi.setValue(fi);
-    _v.setValue(v);
+    _robotCoordinates.x.setValue(x);
+    _robotCoordinates.y.setValue(y);
+    _robotCoordinates.fi.setValue(fi);
+    _robotCoordinates.v.setValue(v);
 }
-
+void RobotCoordinates::setCoordinates(StructRobotCoordinates structRobotCoordinates)
+{
+    _robotCoordinates = structRobotCoordinates;
+}
 void RobotCoordinates::setX(int x)
 {
-    _x.setValue(x);
+    _robotCoordinates.x.setValue(x);
 }
 void RobotCoordinates::setY(int y)
 {
-    _y.setValue(y);
+    _robotCoordinates.y.setValue(y);
 }
 void RobotCoordinates::setFi(int fi)
 {
-    _fi.setValue(fi);
+    _robotCoordinates.fi.setValue(fi);
 }
 void RobotCoordinates::setV(int v)
 {
-    _v.setValue(v);
+    _robotCoordinates.v.setValue(v);
+}
+StructRobotCoordinates RobotCoordinates::getStructOfCoordinates()
+{
+    return _robotCoordinates;
 }
 int RobotCoordinates::getX()
 {
-    return _x.getValue();
+    return _robotCoordinates.x.getValue();
 }
 int RobotCoordinates::getY()
 {
-    return _y.getValue();
+    return _robotCoordinates.y.getValue();
 }
 int RobotCoordinates::getFi()
 {
-    return _fi.getValue();
+    return _robotCoordinates.fi.getValue();
 }
 int RobotCoordinates::getV()
 {
-    return _v.getValue();
+    return _robotCoordinates.v.getValue();
 }
 IntConstrainedVariable *RobotCoordinates::getPX()
 {
-    return &_x;
+    return &_robotCoordinates.x;
 }
 IntConstrainedVariable *RobotCoordinates::getPY()
 {
-    return &_y;
+    return &_robotCoordinates.y;
 }
 IntConstrainedVariable *RobotCoordinates::getPFi()
 {
-    return &_fi;
+    return &_robotCoordinates.fi;
 }
 IntConstrainedVariable *RobotCoordinates::getPV()
 {
-    return &_v;
+    return &_robotCoordinates.v;
 }

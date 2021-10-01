@@ -1,49 +1,55 @@
 #include "../../include/CoordinateClasses_folder/TemperatureCoordinates.h"
 
-TemperatureCoordinates::TemperatureCoordinates() : _highTemperature(IntConstrainedVariable::createHighTemperature()),
-                                                   _lowTemperature(IntConstrainedVariable::createLowTemperature()),
-                                                   _nowTemperature(IntConstrainedVariable::createNowTemperature())
+TemperatureCoordinates::TemperatureCoordinates()
 {
 }
 void TemperatureCoordinates::setCoordinates(int highTemperature, int lowTemperature, int nowTemperature)
 {
-    _highTemperature.setValue(highTemperature);
-    _lowTemperature.setValue(lowTemperature);
-    _nowTemperature.setValue(nowTemperature);
+    _temperatureCoordinates.highTemperature.setValue(highTemperature);
+    _temperatureCoordinates.lowTemperature.setValue(lowTemperature);
+    _temperatureCoordinates.nowTemperature.setValue(nowTemperature);
+}
+void TemperatureCoordinates::setCoordinates(StructTemperatureCoordinates structTemperatureCoordinates)
+{
+    _temperatureCoordinates = structTemperatureCoordinates;
 }
 void TemperatureCoordinates::setHighTemperature(int temperature)
 {
-    _highTemperature.setValue(temperature);
+    _temperatureCoordinates.highTemperature.setValue(temperature);
 }
 void TemperatureCoordinates::setLowTemperature(int temperature)
 {
-_lowTemperature.setValue(temperature);
+_temperatureCoordinates.lowTemperature.setValue(temperature);
 }
 void TemperatureCoordinates::setNowTemperature(int temperature)
 {
-    _nowTemperature.setValue(temperature);
+    _temperatureCoordinates.nowTemperature.setValue(temperature);
+}
+StructTemperatureCoordinates TemperatureCoordinates::getStructOfCoordinates()
+{
+    return _temperatureCoordinates;
 }
 int TemperatureCoordinates::getHighTemperature()
 {
-    return _highTemperature.getValue();
+    return _temperatureCoordinates.highTemperature.getValue();
 }
 int TemperatureCoordinates::getLowTemperature()
 {
-    return _lowTemperature.getValue();
+    return _temperatureCoordinates.lowTemperature.getValue();
 }
 int TemperatureCoordinates::getNowTemperature()
 {
-    return _nowTemperature.getValue();
+    return _temperatureCoordinates.nowTemperature.getValue();
 }
 IntConstrainedVariable* TemperatureCoordinates::getPHighTemperature()
 {
-    return &_highTemperature;
+    return &_temperatureCoordinates.highTemperature;
 }
 IntConstrainedVariable* TemperatureCoordinates::getPLowTemperature()
 {
-    return &_lowTemperature;
+    return &_temperatureCoordinates.lowTemperature;
 }
 IntConstrainedVariable* TemperatureCoordinates::getPNowTemperature()
 {
-    return &_nowTemperature;
+    return &_temperatureCoordinates.nowTemperature;
 }

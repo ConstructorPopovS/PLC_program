@@ -1,63 +1,68 @@
 #include "../../include/CoordinateClasses_folder/FurnaceCoordinates.h"
-FurnaceCoordinates::FurnaceCoordinates() : _lift(IntConstrainedVariable::createLift()),
-                                           _liftFloor(IntConstrainedVariable::createLiftFloor()),
-                                           _doors(false),
-                                           _stand(false)
+FurnaceCoordinates::FurnaceCoordinates()
 {
 }
 
 void FurnaceCoordinates::setCoordinates(int lift, int liftFloor, bool doors, bool stand)
 {
-    _lift.setValue(lift);
-    _liftFloor.setValue(liftFloor);
-    _doors = doors;
-    _stand = stand;
+    _furnaceCoordinates.lift.setValue(lift);
+    _furnaceCoordinates.liftFloor.setValue(liftFloor);
+    _furnaceCoordinates.doors = doors;
+    _furnaceCoordinates.stand = stand;
+}
+void FurnaceCoordinates::setCoordinates(StructFurnaceCoordinates structFurnaceCoordinates)
+{
+    _furnaceCoordinates = structFurnaceCoordinates;
 }
 void FurnaceCoordinates::setLift(int lift)
 {
-    _lift.setValue(lift);
+    _furnaceCoordinates.lift.setValue(lift);
 }
 void FurnaceCoordinates::setLiftFloor(int liftFloor)
 {
-    _liftFloor.setValue(liftFloor);
+    _furnaceCoordinates.liftFloor.setValue(liftFloor);
 }
 void FurnaceCoordinates::setDoors(bool doors)
 {
-    _doors = doors;
+    _furnaceCoordinates.doors = doors;
 }
 void FurnaceCoordinates::setStand(bool stand)
 {
-    _stand = stand;
+    _furnaceCoordinates.stand = stand;
+}
+StructFurnaceCoordinates FurnaceCoordinates::getStructOfCoordinates()
+{
+    return _furnaceCoordinates;
 }
 int FurnaceCoordinates::getLift()
 {
-    return _lift.getValue();
+    return _furnaceCoordinates.lift.getValue();
 }
 int FurnaceCoordinates::getLiftFloor()
 {
-    return _liftFloor.getValue();
+    return _furnaceCoordinates.liftFloor.getValue();
 }
 bool FurnaceCoordinates::getDoors()
 {
-    return _doors;
+    return _furnaceCoordinates.doors;
 }
 bool FurnaceCoordinates::getStand()
 {
-    return _stand;
+    return _furnaceCoordinates.stand;
 }
 IntConstrainedVariable* FurnaceCoordinates::getPLift()
 {
-    return (&_lift);
+    return &_furnaceCoordinates.lift;
 }
 IntConstrainedVariable *FurnaceCoordinates::getPLiftFloor()
 {
-    return &_liftFloor;
+    return &_furnaceCoordinates.liftFloor;
 }
 bool *FurnaceCoordinates::getPDoors()
 {
-    return &_doors;
+    return &_furnaceCoordinates.doors;
 }
 bool *FurnaceCoordinates::getPStand()
 {
-    return &_stand;
+    return &_furnaceCoordinates.stand;
 }
