@@ -13,17 +13,9 @@ void ManualMenuMode::doMenu()
         lcdMenuPrinting.printConstPartOfMode(getTargetMode());
         if (getCurrentMode() == "MANUAL")
         {
-            lcdMenuPrinting.printAllCoordiinates(robotCoordinatesInMenu.getX(),
-                                                 robotCoordinatesInMenu.getY(),
-                                                 robotCoordinatesInMenu.getFi(),
-                                                 robotCoordinatesInMenu.getV(),
-                                                 furnanceCoordinates.getLift(),
-                                                 furnanceCoordinates.getLiftFloor(),
-                                                 furnanceCoordinates.getDoors(),
-                                                 furnanceCoordinates.getStand(),
-                                                 temperatureCoordinates.getHighTemperature(),
-                                                 temperatureCoordinates.getLowTemperature(),
-                                                 temperatureCoordinates.getNowTemperature());
+            lcdMenuPrinting.printAllCoordiinates(&robotCoordinates,
+                                                 &furnanceCoordinates,
+                                                 &temperatureCoordinates);
         }
     }
     if (getCurrentMode() == "MANUAL")
@@ -106,22 +98,14 @@ void ManualMenuMode::doMenu()
             default:
                 break;
             }
-            lcdMenuPrinting.renewAllCoordiinates(robotCoordinatesInMenu.getX(),
-                                                 robotCoordinatesInMenu.getY(),
-                                                 robotCoordinatesInMenu.getFi(),
-                                                 robotCoordinatesInMenu.getV(),
-                                                 furnanceCoordinates.getLift(),
-                                                 furnanceCoordinates.getLiftFloor(),
-                                                 furnanceCoordinates.getDoors(),
-                                                 furnanceCoordinates.getStand(),
-                                                 temperatureCoordinates.getHighTemperature(),
-                                                 temperatureCoordinates.getLowTemperature(),
-                                                 temperatureCoordinates.getNowTemperature());
+            lcdMenuPrinting.renewAllCoordiinates(&robotCoordinates,
+                                                 &furnanceCoordinates,
+                                                 &temperatureCoordinates);
 
-            Serial.print("x=" + String(robotCoordinatesInMenu.getX()));
-            Serial.print("\ty=" + String(robotCoordinatesInMenu.getY()));
-            Serial.print("\tfi=" + String(robotCoordinatesInMenu.getFi()));
-            Serial.print("\tv=" + String(robotCoordinatesInMenu.getV()));
+            Serial.print("x=" + String(robotCoordinates.getX()));
+            Serial.print("\ty=" + String(robotCoordinates.getY()));
+            Serial.print("\tfi=" + String(robotCoordinates.getFi()));
+            Serial.print("\tv=" + String(robotCoordinates.getV()));
             Serial.print("\tlift=" + String(furnanceCoordinates.getLift()));
             Serial.print("\tdoors=" + String(furnanceCoordinates.getDoors()));
             Serial.print("\tstand=" + String(furnanceCoordinates.getStand()));

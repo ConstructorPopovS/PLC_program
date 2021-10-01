@@ -30,7 +30,7 @@ protected:
     GetDataFromKeypad dataFromKeypad;
     MenuOnLCD lcdMenuPrinting;
 
-    RobotCoordinates robotCoordinatesInMenu;
+    RobotCoordinates robotCoordinates;
     FurnaceCoordinates furnanceCoordinates;
     TemperatureCoordinates temperatureCoordinates;
 

@@ -18,13 +18,13 @@ public:
     void initAndBacklight();
     void printConstPartOfMode(String mode);
     void claer();
+    void printAllCoordiinates(RobotCoordinates* robotCoordinates,
+                              FurnaceCoordinates* furnaceCoordinates,
+                              TemperatureCoordinates* temperatureCoordinates);
+    void renewAllCoordiinates(RobotCoordinates* robotCoordinates,
+                              FurnaceCoordinates* furnaceCoordinates,
+                              TemperatureCoordinates* temperatureCoordinates);
     void setCursorAndBlinc(String name);
-    void printAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
-                              bool doors, bool stand,
-                              int highTemperature, int lowTemperature, int nowTemperature);
-    void renewAllCoordiinates(int x, int y, int fi, int v, int lift, int liftFloor,
-                              bool doors, bool stand,
-                              int highTemperature, int lowTemperature, int nowTemperature);
 
 private:
     LCDClass _lcd;

@@ -1,10 +1,10 @@
 #include "../../include/Menu_folder/MenuMode.h"
 
 MenuMode::MenuMode() : pCoordinateChange(NULL),
-                       xCoordinateChange(robotCoordinatesInMenu.getPX(), -10, -1, 1, 10),
-                       yCoordinateChange(robotCoordinatesInMenu.getPY(), -10, -1, 1, 10),
-                       fiCoordinateChange(robotCoordinatesInMenu.getPFi(), -10, -1, 1, 10),
-                       vCoordinateChange(robotCoordinatesInMenu.getPV(), -2, -1, 1, 2),
+                       xCoordinateChange(robotCoordinates.getPX(), -10, -1, 1, 10),
+                       yCoordinateChange(robotCoordinates.getPY(), -10, -1, 1, 10),
+                       fiCoordinateChange(robotCoordinates.getPFi(), -10, -1, 1, 10),
+                       vCoordinateChange(robotCoordinates.getPV(), -2, -1, 1, 2),
                        liftCoordinateChange(furnanceCoordinates.getPLift(), -10, -1, 1, 10),
                        liftFloorCoordinateChange(furnanceCoordinates.getPLiftFloor(), -1, -1, 1, 1),
                        doorsCoordinateChange(furnanceCoordinates.getPDoors()),
