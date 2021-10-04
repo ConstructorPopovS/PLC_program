@@ -1,13 +1,13 @@
 #ifndef MENUMODE_H
 #define MENUMODE_H
 #include "../src/main.h"
-#include "../Console_folder/Keypad_folder/GetDataFromKeypad.h"
-#include "CoordinateChange_folder/CoordinateChange.h"
-#include "CoordinateChange_folder/IntCoordinateChange.h"
-#include "CoordinateChange_folder/BoolCoordinateChange.h"
+#include "../Console_folder/Keypad_folder/FirstKeypad.h"
 #include "../Console_folder/Toggle_folder/ToggleWithKey.h"
 #include "../Console_folder/Toggle_folder/ToggleFurnaceModes.h"
 #include "LCD_folder/MenuOnLCD.h"
+#include "CoordinateChange_folder/CoordinateChange.h"
+#include "CoordinateChange_folder/IntCoordinateChange.h"
+#include "CoordinateChange_folder/BoolCoordinateChange.h"
 #include "../CoordinateClasses_folder/RobotCoordinates.h"
 #include "../CoordinateClasses_folder/FurnaceCoordinates.h"
 #include "../CoordinateClasses_folder/TemperatureCoordinates.h"
@@ -27,7 +27,7 @@ protected:
 
     ToggleWithKey toggleKey;
     ToggleFurnaceModes toggleFurnaceMode;
-    GetDataFromKeypad dataFromKeypad;
+    FirstKeypad firstKeypad;
     MenuOnLCD lcdMenuPrinting;
 
     RobotCoordinates robotCoordinates;

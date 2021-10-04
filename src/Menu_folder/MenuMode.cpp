@@ -1,16 +1,16 @@
 #include "../../include/Menu_folder/MenuMode.h"
 
 MenuMode::MenuMode() : pCoordinateChange(NULL),
-                       xCoordinateChange(robotCoordinates.getPX(), -10, -1, 1, 10),
-                       yCoordinateChange(robotCoordinates.getPY(), -10, -1, 1, 10),
-                       fiCoordinateChange(robotCoordinates.getPFi(), -10, -1, 1, 10),
-                       vCoordinateChange(robotCoordinates.getPV(), -2, -1, 1, 2),
-                       liftCoordinateChange(furnanceCoordinates.getPLift(), -10, -1, 1, 10),
-                       liftFloorCoordinateChange(furnanceCoordinates.getPLiftFloor(), -1, -1, 1, 1),
-                       doorsCoordinateChange(furnanceCoordinates.getPDoors()),
-                       standCoordinateChange(furnanceCoordinates.getPStand()),
-                       highTemperatureCoordinateChange(temperatureCoordinates.getPHighTemperature(), -50, -5, 5, 50),
-                       lowTemperatureCoordinateChange(temperatureCoordinates.getPLowTemperature(), -50, -5, 5, 50)
+                       xCoordinateChange("x", robotCoordinates.getPX(), -10, -1, 1, 10),
+                       yCoordinateChange("y", robotCoordinates.getPY(), -10, -1, 1, 10),
+                       fiCoordinateChange("fi", robotCoordinates.getPFi(), -10, -1, 1, 10),
+                       vCoordinateChange("v", robotCoordinates.getPV(), -2, -1, 1, 2),
+                       liftCoordinateChange("lift", furnanceCoordinates.getPLift(), -10, -1, 1, 10),
+                       liftFloorCoordinateChange("liftFloor", furnanceCoordinates.getPLiftFloor(), -1, -1, 1, 1),
+                       doorsCoordinateChange("doors", furnanceCoordinates.getPDoors()),
+                       standCoordinateChange("stand", furnanceCoordinates.getPStand()),
+                       highTemperatureCoordinateChange("highTemperature", temperatureCoordinates.getPHighTemperature(), -50, -5, 5, 50),
+                       lowTemperatureCoordinateChange("lowTemperature", temperatureCoordinates.getPLowTemperature(), -50, -5, 5, 50)
 {
 }
 bool MenuMode::modeExists(String mode)
@@ -27,7 +27,7 @@ bool MenuMode::modeExists(String mode)
 void MenuMode::initLCD()
 {
     lcdMenuPrinting.initAndBacklight();
-    Serial.println("Start");
+    Serial.println("Start LCD");
 }
 void MenuMode::setCurrentMode(String mode)
 {

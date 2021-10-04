@@ -1,7 +1,7 @@
 #ifndef INTCOORDINATECHANGE_H
 #define INTCOORDINATECHANGE_H
 #include "CoordinateChange.h"
-#include "CoordinateClasses_folder/IntConstrainedVariable.h"
+#include "../../CoordinateClasses_folder/IntConstrainedVariable.h"
 
 class IntCoordinateChange : public CoordinateChange
 {
@@ -13,8 +13,8 @@ private:
     int _plusPlus;
 
 public:
-    IntCoordinateChange(IntConstrainedVariable* coord, int minusMinus, int minus, int plus, int plusPlus);
-    virtual void minusMinus();
+    IntCoordinateChange(String name, IntConstrainedVariable* coord, int minusMinus, int minus, int plus, int plusPlus);
+    virtual void minusMinus();//it is neseccary to be overridden in derived class, because it is pure virtual functions
     virtual void minus();
     virtual void plus();
     virtual void plusPlus();

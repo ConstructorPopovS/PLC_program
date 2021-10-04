@@ -1,5 +1,6 @@
 #include "../../../include/Menu_folder/CoordinateChange_folder/IntCoordinateChange.h"
-IntCoordinateChange::IntCoordinateChange(IntConstrainedVariable* coord, int minusMinus, int minus, int plus, int plusPlus)
+IntCoordinateChange::IntCoordinateChange(String name, IntConstrainedVariable *coord, int minusMinus, int minus, int plus, int plusPlus)
+    : CoordinateChange(name)
 {
     _coord = coord;
     _minusMinus = minusMinus;

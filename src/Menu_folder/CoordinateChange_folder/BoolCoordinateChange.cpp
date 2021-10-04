@@ -1,6 +1,6 @@
 #include "../../../include/Menu_folder/CoordinateChange_folder/BoolCoordinateChange.h"
 
-BoolCoordinateChange::BoolCoordinateChange(bool *coord)
+BoolCoordinateChange::BoolCoordinateChange(String name, bool *coord) : CoordinateChange(name)
 {
 _coordinate = coord;
 }

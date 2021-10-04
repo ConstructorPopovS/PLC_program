@@ -6,7 +6,6 @@
 ManualMenuMode manualMenu;
 void setup(void)
 {
-
   Serial.begin(9600);
   Serial.setTimeout(1000); //установка времени для считывания из порта
   manualMenu.initLCD();
@@ -15,5 +14,5 @@ void setup(void)
 /*--------------------------------------------------------------------*/
 void loop(void)
 {
-  manualMenu.doMenu();
+    manualMenu.doMenu();
 }
