@@ -5,11 +5,10 @@
 class AutopilotMenuMode : public MenuMode
 {
 private:
-
 public:
     AutopilotMenuMode();
     virtual void doMenu();
-    virtual void printConstPatrOfMode();
+    virtual void printConstPartOfMode();
 };
 
 #endif

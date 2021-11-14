@@ -28,7 +28,7 @@ private:
 public:
     ManualMenuMode();
     virtual void doMenu();
-    virtual void printConstPatrOfMode();
+    virtual void printConstPartOfMode();
 };
 
 #endif

@@ -3,9 +3,9 @@
 AutopilotMenuMode::AutopilotMenuMode()
 {
 }
-void AutopilotMenuMode::printConstPatrOfMode()
+void AutopilotMenuMode::printConstPartOfMode()
 {
-    menuOnLCD.printConstPartOfLockedMode();
+    menuOnLCD.printConstPartOfAutopilotMode();
 }
 void AutopilotMenuMode::doMenu()
 {

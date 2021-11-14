@@ -5,11 +5,10 @@
 class LockedMenuMode : public MenuMode
 {
 private:
-
 public:
     LockedMenuMode();
     virtual void doMenu();
-    virtual void printConstPatrOfMode();
+    virtual void printConstPartOfMode();
 };
 
 #endif

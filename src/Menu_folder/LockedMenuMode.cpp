@@ -3,7 +3,7 @@
 LockedMenuMode::LockedMenuMode()
 {
 }
-void LockedMenuMode::printConstPatrOfMode()
+void LockedMenuMode::printConstPartOfMode()
 {
     menuOnLCD.printConstPartOfLockedMode();
 }

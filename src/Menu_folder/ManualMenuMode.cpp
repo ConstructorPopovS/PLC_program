@@ -14,28 +14,29 @@ ManualMenuMode::ManualMenuMode() : pCoordinateChange(NULL),
 
 {
 }
-void ManualMenuMode::printConstPatrOfMode()
+void ManualMenuMode::printConstPartOfMode()
 {
+    Serial.println("menuOnLCD.printConstPartOfManualMode()");
     menuOnLCD.printConstPartOfManualMode();
 }
 void ManualMenuMode::doMenu()
 {
 
-        processTheFirstKeypad();
-        menuOnLCD.renewAllCoordiinates(&robotCoordinates,
-                                             &furnanceCoordinates,
-                                             &temperatureCoordinates);
+    processTheFirstKeypad();
+    menuOnLCD.renewAllCoordiinates(&robotCoordinates,
+                                   &furnanceCoordinates,
+                                   &temperatureCoordinates);
 
-        // Serial.print("x=" + String(robotCoordinates.getX()));
-        // Serial.print("\ty=" + String(robotCoordinates.getY()));
-        // Serial.print("\tfi=" + String(robotCoordinates.getFi()));
-        // Serial.print("\tv=" + String(robotCoordinates.getV()));
-        // Serial.print("\tlift=" + String(furnanceCoordinates.getLift()));
-        // Serial.print("\tdoors=" + String(furnanceCoordinates.getDoors()));
-        // Serial.print("\tstand=" + String(furnanceCoordinates.getStand()));
-        // Serial.print("\thT=" + String(temperatureCoordinates.getHighTemperature()));
-        // Serial.println("\tlT=" + String(temperatureCoordinates.getLowTemperature()));
-        // Serial.println();
+    // Serial.print("x=" + String(robotCoordinates.getX()));
+    // Serial.print("\ty=" + String(robotCoordinates.getY()));
+    // Serial.print("\tfi=" + String(robotCoordinates.getFi()));
+    // Serial.print("\tv=" + String(robotCoordinates.getV()));
+    // Serial.print("\tlift=" + String(furnanceCoordinates.getLift()));
+    // Serial.print("\tdoors=" + String(furnanceCoordinates.getDoors()));
+    // Serial.print("\tstand=" + String(furnanceCoordinates.getStand()));
+    // Serial.print("\thT=" + String(temperatureCoordinates.getHighTemperature()));
+    // Serial.println("\tlT=" + String(temperatureCoordinates.getLowTemperature()));
+    // Serial.println();
 }
 void ManualMenuMode::processTheFirstKeypad()
 {

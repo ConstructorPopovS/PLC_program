@@ -16,7 +16,7 @@ class MenuMode
 
 public:
     void initLCD();
-    virtual void printConstPatrOfMode() = 0;
+    virtual void printConstPartOfMode() = 0;
     virtual void doMenu() = 0;
 
 protected:

@@ -2,7 +2,7 @@
 
 MenuMediator::MenuMediator()
 {
-    _menuMode = &_lockedMenuMode;
+    _menuMode = &_autopilotMenuMode;
 }
 bool MenuMediator::_modeExists(String mode)
 {
@@ -39,10 +39,13 @@ String MenuMediator::_getTargetMode()
 }
 void MenuMediator::initLCD()
 {
-    _menuMode->initLCD();
-    _autopilotMenuMode.printConstPatrOfMode();
+    _autopilotMenuMode.initLCD();
+    _lockedMenuMode.initLCD();
+    _manualMenuMode.initLCD();
+    _menuMode = &_lockedMenuMode;
+    _menuMode->printConstPartOfMode();
     // _menuMode = &_autopilotMenuMode;
-    // _menuMode->printConstPatrOfMode();
+    // _menuMode->printConstPartOfMode();
 }
 void MenuMediator::doMenu()
 {
@@ -63,7 +66,7 @@ void MenuMediator::doMenu()
         {
             _menuMode = &_lockedMenuMode;
         }
-        // _menuMode->printConstPatrOfMode();
+        _menuMode->printConstPartOfMode();
     }
     if (_menuMode != NULL)
     {
