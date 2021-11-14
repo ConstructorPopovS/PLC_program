@@ -17,5 +17,5 @@ String ToggleWithKey::getMode()
     {
         return String("AUTOPILOT");
     }
-    return String("NULL");
+    return String("LOCKED");
 }

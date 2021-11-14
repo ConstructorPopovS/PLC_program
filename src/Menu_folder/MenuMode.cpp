@@ -5,7 +5,7 @@ MenuMode::MenuMode()
 }
 void MenuMode::initLCD()
 {
-    lcdMenuPrinting.initAndBacklight();
+    menuOnLCD.initAndBacklight();
     Serial.println("Start LCD");
 }
 

@@ -5,6 +5,7 @@
 class AutopilotMenuMode : public MenuMode
 {
 private:
+
 public:
     AutopilotMenuMode();
     virtual void doMenu();

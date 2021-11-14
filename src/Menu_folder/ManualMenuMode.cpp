@@ -16,13 +16,13 @@ ManualMenuMode::ManualMenuMode() : pCoordinateChange(NULL),
 }
 void ManualMenuMode::printConstPatrOfMode()
 {
-    lcdMenuPrinting.printConstPartOfManualMode();
+    menuOnLCD.printConstPartOfManualMode();
 }
 void ManualMenuMode::doMenu()
 {
 
         processTheFirstKeypad();
-        lcdMenuPrinting.renewAllCoordiinates(&robotCoordinates,
+        menuOnLCD.renewAllCoordiinates(&robotCoordinates,
                                              &furnanceCoordinates,
                                              &temperatureCoordinates);
 
@@ -108,6 +108,6 @@ void ManualMenuMode::processTheFirstKeypad()
         default:
             break;
         }
-        lcdMenuPrinting.setCursorAndBlinc(pCoordinateChange->getNameOfCoordinate());
+        menuOnLCD.setCursorAndBlinc(pCoordinateChange->getNameOfCoordinate());
     }
 }

@@ -28,7 +28,7 @@ protected:
 
     ToggleFurnaceModes toggleFurnaceMode;
     FirstKeypad firstKeypad;
-    MenuOnLCD lcdMenuPrinting;
+    MenuOnLCD menuOnLCD;
     // Robot robot(1, 2, 3, &Serial1, 4, 1000000L); //TODO 1000000L change to long(1000000) and tested
 private:
 

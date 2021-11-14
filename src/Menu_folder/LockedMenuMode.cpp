@@ -5,9 +5,8 @@ LockedMenuMode::LockedMenuMode()
 }
 void LockedMenuMode::printConstPatrOfMode()
 {
-    lcdMenuPrinting.printConstPartOfLockedMode();
+    menuOnLCD.printConstPartOfLockedMode();
 }
 void LockedMenuMode::doMenu()
 {
-    
 }

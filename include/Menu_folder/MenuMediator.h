@@ -18,7 +18,7 @@ private:
     String _currentMode;
     String _targetMode;
     static const int _numberOfModes = 3;
-    String _namesOfModes[_numberOfModes] = {"AUTOPILOT", "NULL", "MANUAL"};
+    String _namesOfModes[_numberOfModes] = {"AUTOPILOT", "LOCKED", "MANUAL"};
 
     bool _modeExists(String mode);
     void _setCurrentMode(String mode);
@@ -29,6 +29,7 @@ private:
 public:
     MenuMediator();
     void doMenu();
+    void initLCD();
 };
 
 #endif

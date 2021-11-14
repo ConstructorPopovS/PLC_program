@@ -18,6 +18,16 @@ void MenuOnLCD::initAndBacklight()
 {
     _lcd.init();
     _lcd.backlight();
+    //--------------------delete--------------
+    _lcd.setCursorAndPrint(4, 1, "LCD init()");
+    delay(400);
+    _lcd.print(".");
+    delay(400);
+    _lcd.print(".");
+    delay(400);
+    _lcd.print(".");
+    delay(1000);
+    //------------------delete---------------
     _lcd.clear();
 }
 void MenuOnLCD::claer()

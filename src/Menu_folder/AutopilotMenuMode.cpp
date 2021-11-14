@@ -1,13 +1,12 @@
-#include "../include/Menu_folder/AutopilotMenuMode.h"
+#include "../../include/Menu_folder/AutopilotMenuMode.h"
 
 AutopilotMenuMode::AutopilotMenuMode()
 {
 }
 void AutopilotMenuMode::printConstPatrOfMode()
 {
-    lcdMenuPrinting.printConstPartOfManualMode();
+    menuOnLCD.printConstPartOfLockedMode();
 }
 void AutopilotMenuMode::doMenu()
 {
-    
 }
