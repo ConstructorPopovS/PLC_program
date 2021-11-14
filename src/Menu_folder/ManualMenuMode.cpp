@@ -1,25 +1,26 @@
 #include "../include/Menu_folder/ManualMenuMode.h"
 
-ManualMenuMode::ManualMenuMode()
+ManualMenuMode::ManualMenuMode() : pCoordinateChange(NULL),
+                                   xCoordinateChange("x", robotCoordinates.getPX(), -10, -1, 1, 10),
+                                   yCoordinateChange("y", robotCoordinates.getPY(), -10, -1, 1, 10),
+                                   fiCoordinateChange("fi", robotCoordinates.getPFi(), -10, -1, 1, 10),
+                                   vCoordinateChange("v", robotCoordinates.getPV(), -2, -1, 1, 2),
+                                   liftCoordinateChange("lift", furnanceCoordinates.getPLift(), -10, -1, 1, 10),
+                                   liftFloorCoordinateChange("liftFloor", furnanceCoordinates.getPLiftFloor(), -1, -1, 1, 1),
+                                   doorsCoordinateChange("doors", furnanceCoordinates.getPDoors()),
+                                   standCoordinateChange("stand", furnanceCoordinates.getPStand()),
+                                   highTemperatureCoordinateChange("highTemperature", temperatureCoordinates.getPHighTemperature(), -50, -5, 5, 50),
+                                   lowTemperatureCoordinateChange("lowTemperature", temperatureCoordinates.getPLowTemperature(), -50, -5, 5, 50)
+
 {
 }
-
+void ManualMenuMode::printConstPatrOfMode()
+{
+    lcdMenuPrinting.printConstPartOfManualMode();
+}
 void ManualMenuMode::doMenu()
 {
-    setTargetMode(toggleKey.getMode());
-    if (getCurrentMode() != getTargetMode())
-    {
-        setCurrentMode(getTargetMode());
-        lcdMenuPrinting.printConstPartOfMode(getTargetMode());
-        if (getCurrentMode() == "MANUAL")
-        {
-            lcdMenuPrinting.printAllCoordiinates(&robotCoordinates,
-                                                 &furnanceCoordinates,
-                                                 &temperatureCoordinates);
-        }
-    }
-    if (getCurrentMode() == "MANUAL")
-    {
+
         processTheFirstKeypad();
         lcdMenuPrinting.renewAllCoordiinates(&robotCoordinates,
                                              &furnanceCoordinates,
@@ -35,7 +36,6 @@ void ManualMenuMode::doMenu()
         // Serial.print("\thT=" + String(temperatureCoordinates.getHighTemperature()));
         // Serial.println("\tlT=" + String(temperatureCoordinates.getLowTemperature()));
         // Serial.println();
-    }
 }
 void ManualMenuMode::processTheFirstKeypad()
 {

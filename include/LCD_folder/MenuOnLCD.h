@@ -16,7 +16,9 @@ class MenuOnLCD
 public:
     MenuOnLCD();
     void initAndBacklight();
-    void printConstPartOfMode(String mode);
+    void printConstPartOfManualMode();
+    void printConstPartOfAutopilotMode();
+    void printConstPartOfLockedMode();
     void claer();
     void printAllCoordiinates(RobotCoordinates* robotCoordinates,
                               FurnaceCoordinates* furnaceCoordinates,
@@ -32,9 +34,6 @@ private:
                                    "L(    ) floor(  )   ",
                                    "D(     ) stan(     )",
                                    "t(     /     )      "};
-    void _printConstPartOfManualMode();
-    void _printConstPartOfAutopilotMode();
-    void _printConstPartOfNoneMode();
 
     RobotCoordinates _robotCoordinates;
     FurnaceCoordinates _furnaceCoordinates;

@@ -24,7 +24,7 @@ void MenuOnLCD::claer()
 {
     _lcd.clear();
 }
-void MenuOnLCD::_printConstPartOfManualMode()
+void MenuOnLCD::printConstPartOfManualMode()
 {
     _lcd.clear();
     for (int i = 0; i < 4; i++)
@@ -32,33 +32,15 @@ void MenuOnLCD::_printConstPartOfManualMode()
         _lcd.setCursorAndPrint(0, i, _firstOnLCD[i]);
     }
 }
-void MenuOnLCD::_printConstPartOfAutopilotMode()
+void MenuOnLCD::printConstPartOfAutopilotMode()
 {
     _lcd.clear();
     _lcd.setCursorAndPrint(0, 0, "AUTOPILOT");
 }
-void MenuOnLCD::_printConstPartOfNoneMode()
+void MenuOnLCD::printConstPartOfLockedMode()
 {
     _lcd.clear();
-    _lcd.noBacklight(); // or  _lcd.noDisplay();
-}
-void MenuOnLCD::printConstPartOfMode(String mode)
-{
-    _lcd.backlight(); // or _lcd.display();
-    _lcd.noBlink();
-    _lcd.noCursor();
-    if (mode == "MANUAL")
-    {
-        _printConstPartOfManualMode();
-    }
-    else if (mode == "AUTOPILOT")
-    {
-        _printConstPartOfAutopilotMode();
-    }
-    else if (mode == "NULL")
-    {
-        _printConstPartOfNoneMode();
-    }
+    _lcd.setCursorAndPrint(0, 0, "LOCKED");
 }
 void MenuOnLCD::_clearValueField(CoordinateShownOnLCD &valueOnLCD)
 {

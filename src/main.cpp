@@ -1,9 +1,9 @@
 //подключение функций из других файлов
 // #include "Robot_folder/RobotClass.h"
 #include "main.h"
-#include "../include/Menu_folder/ManualMenuMode.h"
+#include "../include/Menu_folder/MenuMediator.h"
 
-ManualMenuMode manualMenu;
+
 void setup(void)
 {
   Serial.begin(9600);

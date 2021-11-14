@@ -2,7 +2,6 @@
 #define MENUMODE_H
 #include "../src/main.h"
 #include "../Console_folder/Keypad_folder/FirstKeypad.h"
-#include "../Console_folder/Toggle_folder/ToggleWithKey.h"
 #include "../Console_folder/Toggle_folder/ToggleFurnaceModes.h"
 #include "LCD_folder/MenuOnLCD.h"
 #include "CoordinateChange_folder/CoordinateChange.h"
@@ -17,42 +16,22 @@ class MenuMode
 
 public:
     void initLCD();
+    virtual void printConstPatrOfMode() = 0;
+    virtual void doMenu() = 0;
 
 protected:
     MenuMode();
-    void setCurrentMode(String mode);
-    String getCurrentMode();
-    void setTargetMode(String mode);
-    String getTargetMode();
-
-    ToggleWithKey toggleKey;
-    ToggleFurnaceModes toggleFurnaceMode;
-    FirstKeypad firstKeypad;
-    MenuOnLCD lcdMenuPrinting;
-
     RobotCoordinates robotCoordinates;
     FurnaceCoordinates furnanceCoordinates;
     TemperatureCoordinates temperatureCoordinates;
 
-    CoordinateChange *pCoordinateChange = NULL; //указатель
-    IntCoordinateChange xCoordinateChange;
-    IntCoordinateChange yCoordinateChange;
-    IntCoordinateChange fiCoordinateChange;
-    IntCoordinateChange vCoordinateChange;
-    IntCoordinateChange liftCoordinateChange;
-    IntCoordinateChange liftFloorCoordinateChange;
-    BoolCoordinateChange doorsCoordinateChange;
-    BoolCoordinateChange standCoordinateChange;
-    IntCoordinateChange highTemperatureCoordinateChange;
-    IntCoordinateChange lowTemperatureCoordinateChange;
-    // Robot robot(1, 2, 3, &Serial1, 4, 1000000L); //TODO 1000000L change to long(1000000) and tested
 
+    ToggleFurnaceModes toggleFurnaceMode;
+    FirstKeypad firstKeypad;
+    MenuOnLCD lcdMenuPrinting;
+    // Robot robot(1, 2, 3, &Serial1, 4, 1000000L); //TODO 1000000L change to long(1000000) and tested
 private:
-    String _currentMode;
-    String _targetMode;
-    static const int _numberOfModes = 3;
-    String _namesOfModes[_numberOfModes] = {"AUTOPILOT", "NULL", "MANUAL"};
-    bool modeExists(String mode);
+
 };
 
 #endif
