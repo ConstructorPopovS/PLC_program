@@ -1,11 +1,11 @@
 #include "../../include/Menu_folder/AutopilotMenuMode.h"
 
-AutopilotMenuMode::AutopilotMenuMode()
+AutopilotMenuMode::AutopilotMenuMode(MenuOnLCD* menuOnLCD) : MenuMode(menuOnLCD)
 {
 }
 void AutopilotMenuMode::printConstPartOfMode()
 {
-    menuOnLCD.printConstPartOfAutopilotMode();
+    pMenuOnLCD->printConstPartOfAutopilotMode();
 }
 void AutopilotMenuMode::doMenu()
 {

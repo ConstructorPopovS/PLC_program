@@ -1,8 +1,11 @@
 #include "../include/Menu_folder/MenuMediator.h"
 
-MenuMediator::MenuMediator()
+MenuMediator::MenuMediator() : _manualMenuMode(&_menuOnLCD),
+                               _autopilotMenuMode(&_menuOnLCD),
+                               _lockedMenuMode(&_menuOnLCD)
+
 {
-    _menuMode = &_autopilotMenuMode;
+    _menuMode = &_lockedMenuMode;
 }
 bool MenuMediator::_modeExists(String mode)
 {
@@ -39,13 +42,8 @@ String MenuMediator::_getTargetMode()
 }
 void MenuMediator::initLCD()
 {
-    _autopilotMenuMode.initLCD();
-    _lockedMenuMode.initLCD();
-    _manualMenuMode.initLCD();
+    _menuMode->initLCD();
     _menuMode = &_lockedMenuMode;
-    _menuMode->printConstPartOfMode();
-    // _menuMode = &_autopilotMenuMode;
-    // _menuMode->printConstPartOfMode();
 }
 void MenuMediator::doMenu()
 {

@@ -6,7 +6,7 @@ class LockedMenuMode : public MenuMode
 {
 private:
 public:
-    LockedMenuMode();
+    LockedMenuMode(MenuOnLCD* menuOnLCD);
     virtual void doMenu();
     virtual void printConstPartOfMode();
 };

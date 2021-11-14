@@ -6,7 +6,7 @@ class AutopilotMenuMode : public MenuMode
 {
 private:
 public:
-    AutopilotMenuMode();
+    AutopilotMenuMode(MenuOnLCD* menuOnLCD);
     virtual void doMenu();
     virtual void printConstPartOfMode();
 };

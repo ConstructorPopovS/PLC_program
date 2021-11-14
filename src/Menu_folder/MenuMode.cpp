@@ -1,9 +1,9 @@
 #include "../../include/Menu_folder/MenuMode.h"
 
-MenuMode::MenuMode()
+MenuMode::MenuMode(MenuOnLCD* menuOnLCD) : pMenuOnLCD(menuOnLCD)
 {
 }
 void MenuMode::initLCD()
 {
-    menuOnLCD.initAndBacklight();
+    pMenuOnLCD->initAndBacklight();
 }

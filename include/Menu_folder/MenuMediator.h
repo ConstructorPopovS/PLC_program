@@ -6,14 +6,16 @@
 #include "AutopilotMenuMode.h"
 #include "LockedMenuMode.h"
 
+
 class MenuMediator
 {
 private:
     ToggleWithKey _toggleKey;
-    MenuMode* _menuMode = NULL;
+    MenuMode *_menuMode = NULL;
     ManualMenuMode _manualMenuMode;
     AutopilotMenuMode _autopilotMenuMode;
     LockedMenuMode _lockedMenuMode;
+    MenuOnLCD _menuOnLCD;
 
     String _currentMode;
     String _targetMode;

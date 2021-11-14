@@ -1,11 +1,11 @@
 #include "../../include/Menu_folder/LockedMenuMode.h"
 
-LockedMenuMode::LockedMenuMode()
+LockedMenuMode::LockedMenuMode(MenuOnLCD* menuOnLCD) : MenuMode(menuOnLCD)
 {
 }
 void LockedMenuMode::printConstPartOfMode()
 {
-    menuOnLCD.printConstPartOfLockedMode();
+    pMenuOnLCD->printConstPartOfLockedMode();
 }
 void LockedMenuMode::doMenu()
 {

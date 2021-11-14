@@ -26,7 +26,7 @@ private:
     IntCoordinateChange lowTemperatureCoordinateChange;
 
 public:
-    ManualMenuMode();
+    ManualMenuMode(MenuOnLCD* menuOnLCD);
     virtual void doMenu();
     virtual void printConstPartOfMode();
 };

@@ -1,6 +1,7 @@
 #include "../include/Menu_folder/ManualMenuMode.h"
 
-ManualMenuMode::ManualMenuMode() : pCoordinateChange(NULL),
+ManualMenuMode::ManualMenuMode(MenuOnLCD* menuOnLCD) : MenuMode(menuOnLCD),
+                                   pCoordinateChange(NULL),
                                    xCoordinateChange("x", robotCoordinates.getPX(), -10, -1, 1, 10),
                                    yCoordinateChange("y", robotCoordinates.getPY(), -10, -1, 1, 10),
                                    fiCoordinateChange("fi", robotCoordinates.getPFi(), -10, -1, 1, 10),
@@ -16,16 +17,16 @@ ManualMenuMode::ManualMenuMode() : pCoordinateChange(NULL),
 }
 void ManualMenuMode::printConstPartOfMode()
 {
-    Serial.println("menuOnLCD.printConstPartOfManualMode()");
-    menuOnLCD.printConstPartOfManualMode();
+    Serial.println("pMenuOnLCD.printConstPartOfManualMode()");
+    pMenuOnLCD->printConstPartOfManualMode();
 }
 void ManualMenuMode::doMenu()
 {
 
     processTheFirstKeypad();
-    menuOnLCD.renewAllCoordiinates(&robotCoordinates,
-                                   &furnanceCoordinates,
-                                   &temperatureCoordinates);
+    pMenuOnLCD->renewAllCoordiinates(&robotCoordinates,
+                                     &furnanceCoordinates,
+                                     &temperatureCoordinates);
 
     // Serial.print("x=" + String(robotCoordinates.getX()));
     // Serial.print("\ty=" + String(robotCoordinates.getY()));
@@ -109,6 +110,6 @@ void ManualMenuMode::processTheFirstKeypad()
         default:
             break;
         }
-        menuOnLCD.setCursorAndBlinc(pCoordinateChange->getNameOfCoordinate());
+        pMenuOnLCD->setCursorAndBlinc(pCoordinateChange->getNameOfCoordinate());
     }
 }
