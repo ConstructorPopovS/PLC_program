@@ -1,6 +1,6 @@
 #include "../../include/LCD_folder/MenuOnLCD.h"
 
-MenuOnLCD::MenuOnLCD() : _lcd(0x27, 20, 4),
+MenuOnLCD::MenuOnLCD() : _pLcd(SingletonLCD::getInstanceOfLCD()),
                          _xOnLCD("x", _robotCoordinates.getPX(), 4, 2, 0),
                          _yOnLCD("y", _robotCoordinates.getPY(), 4, 7, 0),
                          _fiOnLCD("fi", _robotCoordinates.getPFi(), 4, 12, 0),
@@ -17,66 +17,66 @@ MenuOnLCD::MenuOnLCD() : _lcd(0x27, 20, 4),
 }
 void MenuOnLCD::initAndBacklight()
 {
-    _lcd.init();
-    _lcd.backlight();
+    _pLcd->init();
+    _pLcd->backlight();
     //--------------------delete--------------
-    _lcd.setCursor(4, 1);
-    _lcd.print("LCD init()");
+    _pLcd->setCursor(4, 1);
+    _pLcd->print("LCD init()");
     delay(200);
-    _lcd.print(".");
+    _pLcd->print(".");
     delay(200);
-    _lcd.print(".");
+    _pLcd->print(".");
     delay(200);
-    _lcd.print(".");
+    _pLcd->print(".");
     delay(500);
     //------------------delete---------------
-    _lcd.clear();
+    _pLcd->clear();
 }
 void MenuOnLCD::claer()
 {
-    _lcd.clear();
+    _pLcd->clear();
 }
 void MenuOnLCD::printConstPartOfManualMode()
 {
-    _lcd.clear();
+    _pLcd->clear();
     for (int i = 0; i < 4; i++)
     {
-        _lcd.setCursor(0, i);
-        _lcd.print(_firstOnLCD[i]);
+        _pLcd->setCursor(0, i);
+        _pLcd->print(_firstOnLCD[i]);
     }
 }
 void MenuOnLCD::printConstPartOfAutopilotMode()
 {
-    _lcd.clear();
-    _lcd.setCursor(0, 0);
-    _lcd.print("AUTOPILOT");
+    _pLcd->clear();
+    _pLcd->setCursor(0, 0);
+    _pLcd->print("AUTOPILOT");
 }
 void MenuOnLCD::printConstPartOfLockedMode()
 {
-    _lcd.clear();
-    _lcd.setCursor(0, 0);
-    _lcd.print("LOCKED");
+    _pLcd->clear();
+    _pLcd->setCursor(0, 0);
+    _pLcd->print("LOCKED");
 }
 void MenuOnLCD::_clearValueField(CoordinateShownOnLCD &valueOnLCD)
 {
-    _lcd.setCursor(valueOnLCD.getCoordinateColumn(),
+    _pLcd->setCursor(valueOnLCD.getCoordinateColumn(),
                    valueOnLCD.getCoordinateRow());
     for (int i = 0; i < valueOnLCD.getSizeOfCoordinateToClearOnLCD(); i++)
     {
-        _lcd.print(" ");
+        _pLcd->print(" ");
     }
 }
 void MenuOnLCD::_printAndSetIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value)
 {
     valueOnLCD.setValue(value);
 
-    _lcd.setCursor(valueOnLCD.getCoordinateColumn(),
+    _pLcd->setCursor(valueOnLCD.getCoordinateColumn(),
                    valueOnLCD.getCoordinateRow());
     if (value > 0)
     {
-        _lcd.print("+");
+        _pLcd->print("+");
     }
-    _lcd.print(valueOnLCD.getValue());
+    _pLcd->print(valueOnLCD.getValue());
 }
 void MenuOnLCD::_renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value)
 {
@@ -84,7 +84,7 @@ void MenuOnLCD::_renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value)
     {
         _clearValueField(valueOnLCD);
         _printAndSetIntValue(valueOnLCD, value);
-        _lcd.setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
+        _pLcd->setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
     }
 }
 void MenuOnLCD::_printAndSetBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value)
@@ -99,9 +99,9 @@ void MenuOnLCD::_printAndSetBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool
     {
         openedOrClosed = "open";
     }
-    _lcd.setCursor(valueOnLCD.getCoordinateColumn(),
+    _pLcd->setCursor(valueOnLCD.getCoordinateColumn(),
                    valueOnLCD.getCoordinateRow());
-    _lcd.print(openedOrClosed);
+    _pLcd->print(openedOrClosed);
 }
 void MenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value)
 {
@@ -109,7 +109,7 @@ void MenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value
     {
         _clearValueField(valueOnLCD);
         _printAndSetBoolValue(valueOnLCD, value);
-        _lcd.setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
+        _pLcd->setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
     }
 }
 void MenuOnLCD::printAllCoordiinates(RobotCoordinates *robotCoordinates,
@@ -156,7 +156,7 @@ void MenuOnLCD::setCursorAndBlinc(String name)
         }
     }
 
-    _lcd.setCursor(_pCoordinateOnLCD->getCoordinateColumn(), _pCoordinateOnLCD->getCoordinateRow());
-    _lcd.cursor();
-    _lcd.blink();
+    _pLcd->setCursor(_pCoordinateOnLCD->getCoordinateColumn(), _pCoordinateOnLCD->getCoordinateRow());
+    _pLcd->cursor();
+    _pLcd->blink();
 }

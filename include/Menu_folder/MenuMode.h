@@ -20,18 +20,16 @@ public:
     virtual void doMenu() = 0;
 
 protected:
-    MenuMode(MenuOnLCD* menuOnLCD);
+    MenuMode(MenuOnLCD *menuOnLCD);
     RobotCoordinates robotCoordinates;
     FurnaceCoordinates furnanceCoordinates;
     TemperatureCoordinates temperatureCoordinates;
 
-
     ToggleFurnaceModes toggleFurnaceMode;
-    FirstKeypad firstKeypad;
-    MenuOnLCD* pMenuOnLCD;
-    // Robot robot(1, 2, 3, &Serial1, 4, 1000000L); //TODO 1000000L change to long(1000000) and tested
-private:
+    FirstKeypad *firstKeypad;
+    MenuOnLCD *pMenuOnLCD;
 
+private:
 };
 
 #endif

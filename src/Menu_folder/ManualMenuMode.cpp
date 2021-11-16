@@ -44,10 +44,10 @@ void ManualMenuMode::doMenu()
 }
 void ManualMenuMode::processTheFirstKeypad()
 {
-    if (firstKeypad.keyIsPressed())
+    if (firstKeypad->keyIsPressed())
     {
         _levelOfManualMode = CHANGE_COORDINATE;
-        NamesOfFirstKeypadsKeys nameOfKey = firstKeypad.getNameOfKey();
+        NamesOfFirstKeypadsKeys nameOfKey = firstKeypad->getNameOfKey();
         Serial.println(String(nameOfKey) + " is pressed");
         switch (nameOfKey)
         {

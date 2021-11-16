@@ -10,6 +10,7 @@
 #include "CoordinateClasses_folder/IntConstrainedVariable.h"
 #include <Wire.h>              // библиотека для работы с I2C
 #include <LiquidCrystal_I2C.h> // библиотека для экранчика
+#include "SingletonLCD.h"
 
 class MenuOnLCD
 {
@@ -39,7 +40,7 @@ private:
     FurnaceCoordinates _furnaceCoordinates;
     TemperatureCoordinates _temperatureCOordinates;
 
-    LiquidCrystal_I2C _lcd;
+    LiquidCrystal_I2C *_pLcd;
     IntCoordinateShownOnLCD *_pIntCoordinateOnLCD;
     IntCoordinateShownOnLCD _xOnLCD;
     IntCoordinateShownOnLCD _yOnLCD;
