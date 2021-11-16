@@ -22,13 +22,13 @@ void MenuOnLCD::initAndBacklight()
     //--------------------delete--------------
     _lcd.setCursor(4, 1);
     _lcd.print("LCD init()");
-    delay(400);
+    delay(200);
     _lcd.print(".");
-    delay(400);
+    delay(200);
     _lcd.print(".");
-    delay(400);
+    delay(200);
     _lcd.print(".");
-    delay(1000);
+    delay(500);
     //------------------delete---------------
     _lcd.clear();
 }
@@ -75,10 +75,6 @@ void MenuOnLCD::_printAndSetIntValue(IntCoordinateShownOnLCD &valueOnLCD, int va
     if (value > 0)
     {
         _lcd.print("+");
-    }
-    else if (value < 0)
-    {
-        _lcd.print("-");
     }
     _lcd.print(valueOnLCD.getValue());
 }

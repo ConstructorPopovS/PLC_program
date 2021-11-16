@@ -1,17 +1,17 @@
 #include "../include/Menu_folder/ManualMenuMode.h"
 
-ManualMenuMode::ManualMenuMode(MenuOnLCD* menuOnLCD) : MenuMode(menuOnLCD),
-                                   pCoordinateChange(NULL),
-                                   xCoordinateChange("x", robotCoordinates.getPX(), -10, -1, 1, 10),
-                                   yCoordinateChange("y", robotCoordinates.getPY(), -10, -1, 1, 10),
-                                   fiCoordinateChange("fi", robotCoordinates.getPFi(), -10, -1, 1, 10),
-                                   vCoordinateChange("v", robotCoordinates.getPV(), -2, -1, 1, 2),
-                                   liftCoordinateChange("lift", furnanceCoordinates.getPLift(), -10, -1, 1, 10),
-                                   liftFloorCoordinateChange("liftFloor", furnanceCoordinates.getPLiftFloor(), -1, -1, 1, 1),
-                                   doorsCoordinateChange("doors", furnanceCoordinates.getPDoors()),
-                                   standCoordinateChange("stand", furnanceCoordinates.getPStand()),
-                                   highTemperatureCoordinateChange("highTemperature", temperatureCoordinates.getPHighTemperature(), -50, -5, 5, 50),
-                                   lowTemperatureCoordinateChange("lowTemperature", temperatureCoordinates.getPLowTemperature(), -50, -5, 5, 50)
+ManualMenuMode::ManualMenuMode(MenuOnLCD *menuOnLCD) : MenuMode(menuOnLCD),
+                                                       pCoordinateChange(NULL),
+                                                       xCoordinateChange("x", robotCoordinates.getPX(), -10, -1, 1, 10),
+                                                       yCoordinateChange("y", robotCoordinates.getPY(), -10, -1, 1, 10),
+                                                       fiCoordinateChange("fi", robotCoordinates.getPFi(), -10, -1, 1, 10),
+                                                       vCoordinateChange("v", robotCoordinates.getPV(), -2, -1, 1, 2),
+                                                       liftCoordinateChange("lift", furnanceCoordinates.getPLift(), -10, -1, 1, 10),
+                                                       liftFloorCoordinateChange("liftFloor", furnanceCoordinates.getPLiftFloor(), -1, -1, 1, 1),
+                                                       doorsCoordinateChange("doors", furnanceCoordinates.getPDoors()),
+                                                       standCoordinateChange("stand", furnanceCoordinates.getPStand()),
+                                                       highTemperatureCoordinateChange("highTemperature", temperatureCoordinates.getPHighTemperature(), -50, -5, 5, 50),
+                                                       lowTemperatureCoordinateChange("lowTemperature", temperatureCoordinates.getPLowTemperature(), -50, -5, 5, 50)
 
 {
 }
@@ -19,6 +19,9 @@ void ManualMenuMode::printConstPartOfMode()
 {
     Serial.println("pMenuOnLCD.printConstPartOfManualMode()");
     pMenuOnLCD->printConstPartOfManualMode();
+    pMenuOnLCD->printAllCoordiinates(&robotCoordinates,
+                                     &furnanceCoordinates,
+                                     &temperatureCoordinates);
 }
 void ManualMenuMode::doMenu()
 {
