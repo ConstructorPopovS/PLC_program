@@ -1,6 +1,7 @@
 #ifndef DIGITALSERVOCLASS_H
 #define DIGITALSERVOCLASS_H
-#include "main.h"
+#include <Dynamixel_Servo.h>
+#include "../main.h"
 
 class DigitalServo
 {
