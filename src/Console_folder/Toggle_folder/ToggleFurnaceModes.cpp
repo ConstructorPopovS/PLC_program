@@ -5,15 +5,24 @@ ToggleFurnaceModes::ToggleFurnaceModes()
     pinMode(_PIN_HIGH, INPUT);
     pinMode(_PIN_LOW, INPUT);
 }
+ToggleFurnaceModes *ToggleFurnaceModes::_instance = NULL;
+ToggleFurnaceModes *ToggleFurnaceModes::getInstance()
+{
+    if (_instance == NULL)
+    {
+        _instance = new ToggleFurnaceModes();
+    }
+    return _instance;
+}
 String ToggleFurnaceModes::getMode()
 {
-    bool high = digitalRead(_PIN_HIGH);
-    bool low = digitalRead(_PIN_LOW);
-    if (high)
+    bool highT = digitalRead(_PIN_HIGH);
+    bool lowT = digitalRead(_PIN_LOW);
+    if (highT)
     {
         return String("HIGH");
     }
-    if (low)
+    if (lowT)
     {
         return String("LOW");
     }

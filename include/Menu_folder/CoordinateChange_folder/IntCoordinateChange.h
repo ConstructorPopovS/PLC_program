@@ -6,15 +6,16 @@
 class IntCoordinateChange : public CoordinateChange
 {
 private:
-    IntConstrainedVariable* _coord;
+    IntConstrainedVariable *_coordinate;
     int _minusMinus;
     int _minus;
     int _plus;
     int _plusPlus;
 
 public:
-    IntCoordinateChange(String name, IntConstrainedVariable* coord, int minusMinus, int minus, int plus, int plusPlus);
-    virtual void minusMinus();//it is neseccary to be overridden in derived class, because it is pure virtual functions
+    IntCoordinateChange(String name, IntConstrainedVariable *coordinate, int minusMinus, int minus, int plus, int plusPlus);
+    //it is neseccary to be overridden in derived class, because it is pure virtual functions
+    virtual void minusMinus();
     virtual void minus();
     virtual void plus();
     virtual void plusPlus();

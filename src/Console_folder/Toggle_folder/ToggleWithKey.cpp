@@ -5,6 +5,15 @@ ToggleWithKey::ToggleWithKey()
     pinMode(_PIN_MANUAL, INPUT);
     pinMode(_PIN_AUTOPILOT, INPUT);
 }
+ToggleWithKey *ToggleWithKey::_instance = NULL;
+ToggleWithKey *ToggleWithKey::getInstance()
+{
+    if (_instance == NULL)
+    {
+        _instance = new ToggleWithKey();
+    }
+    return _instance;
+}
 String ToggleWithKey::getMode()
 {
     bool manual = digitalRead(_PIN_MANUAL);
@@ -17,5 +26,5 @@ String ToggleWithKey::getMode()
     {
         return String("AUTOPILOT");
     }
-    return String("NULL");
+    return String("LOCKED");
 }

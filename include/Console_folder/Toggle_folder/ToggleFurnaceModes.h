@@ -5,11 +5,14 @@
 class ToggleFurnaceModes
 {
 private:
-const int _PIN_HIGH = 23;
-const int _PIN_LOW = 25;
+    const int _PIN_HIGH = 23;
+    const int _PIN_LOW = 25;
+    ToggleFurnaceModes();
+    static ToggleFurnaceModes *_instance;
+
 protected:
 public:
-    ToggleFurnaceModes();
+    static ToggleFurnaceModes *getInstance();
     String getMode();
 };
 

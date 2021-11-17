@@ -23,11 +23,13 @@ enum NamesOfFirstKeypadsKeys
 class FirstKeypad
 {
 public:
-    FirstKeypad();
+    static FirstKeypad *getInstance();
     NamesOfFirstKeypadsKeys getNameOfKey();
     bool keyIsPressed();
 
 private:
+    FirstKeypad();
+    static FirstKeypad *_instance;
     //----------------BEGINE of necessary part for using "Keypad.h" (library)--------------------------
     static const int _PIN_R1 = 8;
     static const int _PIN_R2 = 9;

@@ -7,8 +7,10 @@
 #include "../CoordinateClasses_folder/RobotCoordinates.h"
 #include "../CoordinateClasses_folder/FurnaceCoordinates.h"
 #include "../CoordinateClasses_folder/TemperatureCoordinates.h"
-#include "../include/LCD_folder/LCDClass.h"
 #include "CoordinateClasses_folder/IntConstrainedVariable.h"
+#include <Wire.h>              // библиотека для работы с I2C
+#include <LiquidCrystal_I2C.h> // библиотека для экранчика
+#include "SingletonLCD.h"
 
 class MenuOnLCD
 {
@@ -16,30 +18,29 @@ class MenuOnLCD
 public:
     MenuOnLCD();
     void initAndBacklight();
-    void printConstPartOfMode(String mode);
+    void printConstPartOfManualMode();
+    void printConstPartOfAutopilotMode();
+    void printConstPartOfLockedMode();
     void claer();
-    void printAllCoordiinates(RobotCoordinates* robotCoordinates,
-                              FurnaceCoordinates* furnaceCoordinates,
-                              TemperatureCoordinates* temperatureCoordinates);
-    void renewAllCoordiinates(RobotCoordinates* robotCoordinates,
-                              FurnaceCoordinates* furnaceCoordinates,
-                              TemperatureCoordinates* temperatureCoordinates);
+    void printAllCoordiinates(RobotCoordinates *robotCoordinates,
+                              FurnaceCoordinates *furnaceCoordinates,
+                              TemperatureCoordinates *temperatureCoordinates);
+    void renewAllCoordiinates(RobotCoordinates *robotCoordinates,
+                              FurnaceCoordinates *furnaceCoordinates,
+                              TemperatureCoordinates *temperatureCoordinates);
     void setCursorAndBlinc(String name);
 
 private:
-    LCDClass _lcd;
     const String _firstOnLCD[4] = {"M(    ;    ;    )V  ",
                                    "L(    ) floor(  )   ",
                                    "D(     ) stan(     )",
                                    "t(     /     )      "};
-    void _printConstPartOfManualMode();
-    void _printConstPartOfAutopilotMode();
-    void _printConstPartOfNoneMode();
 
     RobotCoordinates _robotCoordinates;
     FurnaceCoordinates _furnaceCoordinates;
     TemperatureCoordinates _temperatureCOordinates;
 
+    LiquidCrystal_I2C *_pLcd;
     IntCoordinateShownOnLCD *_pIntCoordinateOnLCD;
     IntCoordinateShownOnLCD _xOnLCD;
     IntCoordinateShownOnLCD _yOnLCD;

@@ -3,6 +3,15 @@
 FirstKeypad::FirstKeypad() : _firstCustomKeypad(makeKeymap(_charKeys), _rowPins, _colPins, ROWS, COLS)
 {
 }
+FirstKeypad *FirstKeypad::_instance = NULL;
+FirstKeypad *FirstKeypad::getInstance()
+{
+    if (_instance == NULL)
+    {
+        _instance = new FirstKeypad();
+    }
+    return _instance;
+}
 bool FirstKeypad::keyIsPressed()
 {
     _keysData.isPressed = _firstCustomKeypad.getKey();

@@ -10,12 +10,25 @@ private:
         NONE,
         CHANGE_COORDINATE
     } _levelOfManualMode;
-    int coordinateEnteredInNumbers = 0;
+    int coordinateEnteredFromTheThordKeypad = 0;
     void processTheFirstKeypad();
+    void processTheThirdKeypad();
+    CoordinateChange *pCoordinateChange = NULL; //указатель
+    IntCoordinateChange xCoordinateChange;
+    IntCoordinateChange yCoordinateChange;
+    IntCoordinateChange fiCoordinateChange;
+    IntCoordinateChange vCoordinateChange;
+    IntCoordinateChange liftCoordinateChange;
+    IntCoordinateChange liftFloorCoordinateChange;
+    BoolCoordinateChange doorsCoordinateChange;
+    BoolCoordinateChange standCoordinateChange;
+    IntCoordinateChange highTemperatureCoordinateChange;
+    IntCoordinateChange lowTemperatureCoordinateChange;
 
 public:
-    ManualMenuMode();
-    void doMenu();
+    ManualMenuMode(MenuOnLCD* menuOnLCD);
+    virtual void doMenu();
+    virtual void printConstPartOfMode();
 };
 
 #endif

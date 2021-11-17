@@ -1,48 +1,53 @@
 #include "../include/Menu_folder/ManualMenuMode.h"
 
-ManualMenuMode::ManualMenuMode()
+ManualMenuMode::ManualMenuMode(MenuOnLCD *menuOnLCD) : MenuMode(menuOnLCD),
+                                                       pCoordinateChange(NULL),
+                                                       xCoordinateChange("x", robotCoordinates.getPX(), -10, -1, 1, 10),
+                                                       yCoordinateChange("y", robotCoordinates.getPY(), -10, -1, 1, 10),
+                                                       fiCoordinateChange("fi", robotCoordinates.getPFi(), -10, -1, 1, 10),
+                                                       vCoordinateChange("v", robotCoordinates.getPV(), -2, -1, 1, 2),
+                                                       liftCoordinateChange("lift", furnanceCoordinates.getPLift(), -10, -1, 1, 10),
+                                                       liftFloorCoordinateChange("liftFloor", furnanceCoordinates.getPLiftFloor(), -1, -1, 1, 1),
+                                                       doorsCoordinateChange("doors", furnanceCoordinates.getPDoors()),
+                                                       standCoordinateChange("stand", furnanceCoordinates.getPStand()),
+                                                       highTemperatureCoordinateChange("highTemperature", temperatureCoordinates.getPHighTemperature(), -50, -5, 5, 50),
+                                                       lowTemperatureCoordinateChange("lowTemperature", temperatureCoordinates.getPLowTemperature(), -50, -5, 5, 50)
+
 {
 }
-
+void ManualMenuMode::printConstPartOfMode()
+{
+    Serial.println("pMenuOnLCD.printConstPartOfManualMode()");
+    pMenuOnLCD->printConstPartOfManualMode();
+    pMenuOnLCD->printAllCoordiinates(&robotCoordinates,
+                                     &furnanceCoordinates,
+                                     &temperatureCoordinates);
+}
 void ManualMenuMode::doMenu()
 {
-    setTargetMode(toggleKey.getMode());
-    if (getCurrentMode() != getTargetMode())
-    {
-        setCurrentMode(getTargetMode());
-        lcdMenuPrinting.printConstPartOfMode(getTargetMode());
-        if (getCurrentMode() == "MANUAL")
-        {
-            lcdMenuPrinting.printAllCoordiinates(&robotCoordinates,
-                                                 &furnanceCoordinates,
-                                                 &temperatureCoordinates);
-        }
-    }
-    if (getCurrentMode() == "MANUAL")
-    {
-        processTheFirstKeypad();
-        lcdMenuPrinting.renewAllCoordiinates(&robotCoordinates,
-                                             &furnanceCoordinates,
-                                             &temperatureCoordinates);
 
-        // Serial.print("x=" + String(robotCoordinates.getX()));
-        // Serial.print("\ty=" + String(robotCoordinates.getY()));
-        // Serial.print("\tfi=" + String(robotCoordinates.getFi()));
-        // Serial.print("\tv=" + String(robotCoordinates.getV()));
-        // Serial.print("\tlift=" + String(furnanceCoordinates.getLift()));
-        // Serial.print("\tdoors=" + String(furnanceCoordinates.getDoors()));
-        // Serial.print("\tstand=" + String(furnanceCoordinates.getStand()));
-        // Serial.print("\thT=" + String(temperatureCoordinates.getHighTemperature()));
-        // Serial.println("\tlT=" + String(temperatureCoordinates.getLowTemperature()));
-        // Serial.println();
-    }
+    processTheFirstKeypad();
+    pMenuOnLCD->renewAllCoordiinates(&robotCoordinates,
+                                     &furnanceCoordinates,
+                                     &temperatureCoordinates);
+
+    // Serial.print("x=" + String(robotCoordinates.getX()));
+    // Serial.print("\ty=" + String(robotCoordinates.getY()));
+    // Serial.print("\tfi=" + String(robotCoordinates.getFi()));
+    // Serial.print("\tv=" + String(robotCoordinates.getV()));
+    // Serial.print("\tlift=" + String(furnanceCoordinates.getLift()));
+    // Serial.print("\tdoors=" + String(furnanceCoordinates.getDoors()));
+    // Serial.print("\tstand=" + String(furnanceCoordinates.getStand()));
+    // Serial.print("\thT=" + String(temperatureCoordinates.getHighTemperature()));
+    // Serial.println("\tlT=" + String(temperatureCoordinates.getLowTemperature()));
+    // Serial.println();
 }
 void ManualMenuMode::processTheFirstKeypad()
 {
-    if (firstKeypad.keyIsPressed())
+    if (firstKeypad->keyIsPressed())
     {
         _levelOfManualMode = CHANGE_COORDINATE;
-        NamesOfFirstKeypadsKeys nameOfKey = firstKeypad.getNameOfKey();
+        NamesOfFirstKeypadsKeys nameOfKey = firstKeypad->getNameOfKey();
         Serial.println(String(nameOfKey) + " is pressed");
         switch (nameOfKey)
         {
@@ -68,12 +73,14 @@ void ManualMenuMode::processTheFirstKeypad()
             pCoordinateChange = &standCoordinateChange;
             break;
         case TEMPERATURE:
-            if (toggleFurnaceMode.getMode() == "HIGH")
+            if (pToggleFurnaceModes->getMode() == "HIGH")
             {
+                Serial.println("HIGH TEMPERATURE");
                 pCoordinateChange = &highTemperatureCoordinateChange;
             }
-            else if (toggleFurnaceMode.getMode() == "LOW")
+            else if (pToggleFurnaceModes->getMode() == "LOW")
             {
+                Serial.println("LOW TEMPERATURE");
                 pCoordinateChange = &lowTemperatureCoordinateChange;
             }
             else
@@ -108,6 +115,6 @@ void ManualMenuMode::processTheFirstKeypad()
         default:
             break;
         }
-        lcdMenuPrinting.setCursorAndBlinc(pCoordinateChange->getNameOfCoordinate());
+        pMenuOnLCD->setCursorAndBlinc(pCoordinateChange->getNameOfCoordinate());
     }
 }

@@ -33,7 +33,6 @@ private:
     static const int _PIN_R1 = 8;
     static const int _PIN_R2 = 9;
     static const int _PIN_R3 = 11;
-    static const int _PIN_R4 = 13;
     static const int _PIN_C1 = 3;
     static const int _PIN_C2 = 5;
     static const int _PIN_C3 = 7;
