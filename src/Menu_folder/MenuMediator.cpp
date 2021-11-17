@@ -2,10 +2,11 @@
 
 MenuMediator::MenuMediator() : _manualMenuMode(&_menuOnLCD),
                                _autopilotMenuMode(&_menuOnLCD),
-                               _lockedMenuMode(&_menuOnLCD)
+                               _lockedMenuMode(&_menuOnLCD),
+                               _pToggleKey(ToggleWithKey::getInstance())
 
 {
-    _menuMode = &_lockedMenuMode;
+    _pMenuMode = &_lockedMenuMode;
 }
 bool MenuMediator::_modeExists(String mode)
 {
@@ -42,32 +43,32 @@ String MenuMediator::_getTargetMode()
 }
 void MenuMediator::initLCD()
 {
-    _menuMode->initLCD();
-    _menuMode = &_lockedMenuMode;
+    _pMenuMode->initLCD();
+    _pMenuMode = &_lockedMenuMode;
 }
 void MenuMediator::doMenu()
 {
-    _setTargetMode(_toggleKey.getMode());
+    _setTargetMode(_pToggleKey->getMode());
 
     if (_targetMode != _currentMode)
     {
         _setCurrentMode(_targetMode);
         if (_currentMode == "MANUAL")
         {
-            _menuMode = &_manualMenuMode;
+            _pMenuMode = &_manualMenuMode;
         }
         if (_currentMode == "AUTOPILOT")
         {
-            _menuMode = &_autopilotMenuMode;
+            _pMenuMode = &_autopilotMenuMode;
         }
         if (_currentMode == "LOCKED")
         {
-            _menuMode = &_lockedMenuMode;
+            _pMenuMode = &_lockedMenuMode;
         }
-        _menuMode->printConstPartOfMode();
+        _pMenuMode->printConstPartOfMode();
     }
-    if (_menuMode != NULL)
+    if (_pMenuMode != NULL)
     {
-        _menuMode->doMenu();
+        _pMenuMode->doMenu();
     }
 }

@@ -25,7 +25,7 @@ protected:
     FurnaceCoordinates furnanceCoordinates;
     TemperatureCoordinates temperatureCoordinates;
 
-    ToggleFurnaceModes toggleFurnaceMode;
+    ToggleFurnaceModes* pToggleFurnaceModes;
     FirstKeypad *firstKeypad;
     MenuOnLCD *pMenuOnLCD;
 

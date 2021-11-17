@@ -5,11 +5,14 @@
 class ToggleWithKey
 {
 private:
-const int _PIN_MANUAL = 27;
-const int _PIN_AUTOPILOT = 29;
+    const int _PIN_MANUAL = 27;
+    const int _PIN_AUTOPILOT = 29;
+    ToggleWithKey();
+    static ToggleWithKey *_instance;
+
 protected:
 public:
-    ToggleWithKey();
+    static ToggleWithKey *getInstance();
     String getMode();
 };
 

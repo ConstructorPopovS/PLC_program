@@ -10,8 +10,8 @@
 class MenuMediator
 {
 private:
-    ToggleWithKey _toggleKey;
-    MenuMode *_menuMode = NULL;
+    ToggleWithKey *_pToggleKey;
+    MenuMode *_pMenuMode = NULL;
     ManualMenuMode _manualMenuMode;
     AutopilotMenuMode _autopilotMenuMode;
     LockedMenuMode _lockedMenuMode;

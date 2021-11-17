@@ -73,12 +73,14 @@ void ManualMenuMode::processTheFirstKeypad()
             pCoordinateChange = &standCoordinateChange;
             break;
         case TEMPERATURE:
-            if (toggleFurnaceMode.getMode() == "HIGH")
+            if (pToggleFurnaceModes->getMode() == "HIGH")
             {
+                Serial.println("HIGH TEMPERATURE");
                 pCoordinateChange = &highTemperatureCoordinateChange;
             }
-            else if (toggleFurnaceMode.getMode() == "LOW")
+            else if (pToggleFurnaceModes->getMode() == "LOW")
             {
+                Serial.println("LOW TEMPERATURE");
                 pCoordinateChange = &lowTemperatureCoordinateChange;
             }
             else
