@@ -8,9 +8,9 @@ private:
     int _variable;
     int _minVariable;
     int _maxVariable;
-    IntConstrainedVariable(int variable, int minVariable, int maxVariable);
 
 public:
+    IntConstrainedVariable(int variable = 100, int minVariable = 80, int maxVariable = 120);
     static IntConstrainedVariable createX();
     static IntConstrainedVariable createY();
     static IntConstrainedVariable createFi();

@@ -1,6 +1,6 @@
 #include "../../../include/LCD_folder/CoordinateShownOnLCD_folder/IntCoordinateShownOnLCD.h"
 
-IntCoordinateShownOnLCD::IntCoordinateShownOnLCD(String newName, IntConstrainedVariable* variable, int newSizeOfCoordinateToClearOnLCD,
+IntCoordinateShownOnLCD::IntCoordinateShownOnLCD(String newName, IntConstrainedVariable variable, int newSizeOfCoordinateToClearOnLCD,
                                                  int newCoordinateColumn, int newCoordinateRow)
 {
     name = newName;
@@ -11,9 +11,9 @@ IntCoordinateShownOnLCD::IntCoordinateShownOnLCD(String newName, IntConstrainedV
 }
 int IntCoordinateShownOnLCD::getValue()
 {
-    return _variable->getValue();
+    return _variable.getValue();
 }
 void IntCoordinateShownOnLCD::setValue(int Value)
 {
-    _variable->setValue(Value);
+    _variable.setValue(Value);
 }

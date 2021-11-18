@@ -1,17 +1,21 @@
 #include "../../include/LCD_folder/MenuOnLCD.h"
 
-MenuOnLCD::MenuOnLCD() : _pLcd(SingletonLCD::getInstanceOfLCD()),
-                         _xOnLCD("x", _robotCoordinates.getPX(), 4, 2, 0),
-                         _yOnLCD("y", _robotCoordinates.getPY(), 4, 7, 0),
-                         _fiOnLCD("fi", _robotCoordinates.getPFi(), 4, 12, 0),
-                         _vOnLSD("v", _robotCoordinates.getPV(), 2, 18, 0),
-                         _liftOnLCD("lift", _furnaceCoordinates.getPLift(), 4, 2, 1),
-                         _liftFloorOnLCD("liftFloor", _furnaceCoordinates.getPLiftFloor(), 2, 14, 1),
-                         _doorsOnLCD("doors", _furnaceCoordinates.getPDoors(), 5, 2, 2),
-                         _standOnLCD("stand", _furnaceCoordinates.getPStand(), 5, 14, 2),
-                         _highTemperatureOnLCD("highTemperature", _temperatureCOordinates.getPHighTemperature(), 5, 2, 3),
-                         _lowTemperatureOnLCD("lowTemperature", _temperatureCOordinates.getPLowTemperature(), 5, 8, 3),
-                         _nowTemperatureOnLCD("nowTemperature", _temperatureCOordinates.getPNowTemperature(), 5, 15, 3)
+MenuOnLCD::MenuOnLCD()
+    : _pLcd(SingletonLCD::getInstanceOfLCD()),
+      pRobotCoordinates(RobotCoordinates::getInstance()),
+      pFurnaceCoordinates(FurnaceCoordinates::getInstance()),
+      pTemperatureCoordinates(TemperatureCoordinates::getInstance()),
+      _xOnLCD("x", IntConstrainedVariable::createX(), 4, 2, 0),
+      _yOnLCD("y", IntConstrainedVariable::createY(), 4, 7, 0),
+      _fiOnLCD("fi", IntConstrainedVariable::createFi(), 4, 12, 0),
+      _vOnLSD("v", IntConstrainedVariable::createV(), 2, 18, 0),
+      _liftOnLCD("lift", IntConstrainedVariable::createLift(), 4, 2, 1),
+      _liftFloorOnLCD("liftFloor", IntConstrainedVariable::createLiftFloor(), 2, 14, 1),
+      _doorsOnLCD("doors", false, 5, 2, 2),
+      _standOnLCD("stand", false, 5, 14, 2),
+      _highTemperatureOnLCD("highTemperature", IntConstrainedVariable::createHighTemperature(), 5, 2, 3),
+      _lowTemperatureOnLCD("lowTemperature", IntConstrainedVariable::createLowTemperature(), 5, 8, 3),
+      _nowTemperatureOnLCD("nowTemperature", IntConstrainedVariable::createNowTemperature(), 5, 15, 3)
 //                       nameOfObject("name", value, sizeOfValueToClearOnLCD, column, row)
 {
 }
@@ -60,27 +64,27 @@ void MenuOnLCD::printConstPartOfLockedMode()
 void MenuOnLCD::_clearValueField(CoordinateShownOnLCD &valueOnLCD)
 {
     _pLcd->setCursor(valueOnLCD.getCoordinateColumn(),
-                   valueOnLCD.getCoordinateRow());
+                     valueOnLCD.getCoordinateRow());
     for (int i = 0; i < valueOnLCD.getSizeOfCoordinateToClearOnLCD(); i++)
     {
         _pLcd->print(" ");
     }
 }
-void MenuOnLCD::_printAndSetIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value)
+void MenuOnLCD::_printAndSetIntValue(IntCoordinateShownOnLCD &valueOnLCD, IntConstrainedVariable value)
 {
-    valueOnLCD.setValue(value);
+    valueOnLCD.setValue(value.getValue());
 
     _pLcd->setCursor(valueOnLCD.getCoordinateColumn(),
-                   valueOnLCD.getCoordinateRow());
-    if (value > 0)
+                     valueOnLCD.getCoordinateRow());
+    if (value.getValue() > 0)
     {
         _pLcd->print("+");
     }
     _pLcd->print(valueOnLCD.getValue());
 }
-void MenuOnLCD::_renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value)
+void MenuOnLCD::_renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, IntConstrainedVariable value)
 {
-    if (valueOnLCD.getValue() != value)
+    if (valueOnLCD.getValue() != value.getValue())
     {
         _clearValueField(valueOnLCD);
         _printAndSetIntValue(valueOnLCD, value);
@@ -100,7 +104,7 @@ void MenuOnLCD::_printAndSetBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool
         openedOrClosed = "open";
     }
     _pLcd->setCursor(valueOnLCD.getCoordinateColumn(),
-                   valueOnLCD.getCoordinateRow());
+                     valueOnLCD.getCoordinateRow());
     _pLcd->print(openedOrClosed);
 }
 void MenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value)
@@ -112,37 +116,45 @@ void MenuOnLCD::_renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value
         _pLcd->setCursor(valueOnLCD.getCoordinateColumn(), valueOnLCD.getCoordinateRow());
     }
 }
-void MenuOnLCD::printAllCoordiinates(RobotCoordinates *robotCoordinates,
-                                     FurnaceCoordinates *furnaceCoordinates,
-                                     TemperatureCoordinates *temperatureCoordinates)
+void MenuOnLCD::printAllCoordiinates()
 {
-    _printAndSetIntValue(_xOnLCD, robotCoordinates->getX());
-    _printAndSetIntValue(_yOnLCD, robotCoordinates->getY());
-    _printAndSetIntValue(_fiOnLCD, robotCoordinates->getFi());
-    _printAndSetIntValue(_vOnLSD, robotCoordinates->getV());
-    _printAndSetIntValue(_liftOnLCD, furnaceCoordinates->getLift());
-    _printAndSetIntValue(_liftFloorOnLCD, furnaceCoordinates->getLiftFloor());
-    _printAndSetBoolValue(_doorsOnLCD, furnaceCoordinates->getDoors());
-    _printAndSetBoolValue(_standOnLCD, furnaceCoordinates->getStand());
-    _printAndSetIntValue(_highTemperatureOnLCD, temperatureCoordinates->getHighTemperature());
-    _printAndSetIntValue(_lowTemperatureOnLCD, temperatureCoordinates->getLowTemperature());
-    _printAndSetIntValue(_nowTemperatureOnLCD, temperatureCoordinates->getNowTemperature());
+    _printAndSetIntValue(_xOnLCD, pRobotCoordinates->x);
+    _printAndSetIntValue(_yOnLCD, pRobotCoordinates->y);
+    _printAndSetIntValue(_fiOnLCD, pRobotCoordinates->fi);
+    _printAndSetIntValue(_vOnLSD, pRobotCoordinates->v);
+    _printAndSetIntValue(_liftOnLCD, pFurnaceCoordinates->lift);
+    _printAndSetIntValue(_liftFloorOnLCD, pFurnaceCoordinates->liftFloor);
+    _printAndSetBoolValue(_doorsOnLCD, pFurnaceCoordinates->doors);
+    _printAndSetBoolValue(_standOnLCD, pFurnaceCoordinates->stand);
+    _printAndSetIntValue(_highTemperatureOnLCD, pTemperatureCoordinates->highTemperature);
+    _printAndSetIntValue(_lowTemperatureOnLCD, pTemperatureCoordinates->lowTemperature);
+    _printAndSetIntValue(_nowTemperatureOnLCD, pTemperatureCoordinates->nowTemperature);
 }
-void MenuOnLCD::renewAllCoordiinates(RobotCoordinates *robotCoordinates,
-                                     FurnaceCoordinates *furnaceCoordinates,
-                                     TemperatureCoordinates *temperatureCoordinates)
+void MenuOnLCD::renewAllCoordiinates()
 {
-    _renewIntValue(_xOnLCD, robotCoordinates->getX());
-    _renewIntValue(_yOnLCD, robotCoordinates->getY());
-    _renewIntValue(_fiOnLCD, robotCoordinates->getFi());
-    _renewIntValue(_vOnLSD, robotCoordinates->getV());
-    _renewIntValue(_liftOnLCD, furnaceCoordinates->getLift());
-    _renewIntValue(_liftFloorOnLCD, furnaceCoordinates->getLiftFloor());
-    _renewBoolValue(_doorsOnLCD, furnaceCoordinates->getDoors());
-    _renewBoolValue(_standOnLCD, furnaceCoordinates->getStand());
-    _renewIntValue(_highTemperatureOnLCD, temperatureCoordinates->getHighTemperature());
-    _renewIntValue(_lowTemperatureOnLCD, temperatureCoordinates->getLowTemperature());
-    _renewIntValue(_nowTemperatureOnLCD, temperatureCoordinates->getNowTemperature());
+    _renewIntValue(_xOnLCD, pRobotCoordinates->x);
+    _renewIntValue(_yOnLCD, pRobotCoordinates->y);
+    _renewIntValue(_fiOnLCD, pRobotCoordinates->fi);
+    _renewIntValue(_vOnLSD, pRobotCoordinates->v);
+    _renewIntValue(_liftOnLCD, pFurnaceCoordinates->lift);
+    _renewIntValue(_liftFloorOnLCD, pFurnaceCoordinates->liftFloor);
+    _renewBoolValue(_doorsOnLCD, pFurnaceCoordinates->doors);
+    _renewBoolValue(_standOnLCD, pFurnaceCoordinates->stand);
+    _renewIntValue(_highTemperatureOnLCD, pTemperatureCoordinates->highTemperature);
+    _renewIntValue(_lowTemperatureOnLCD, pTemperatureCoordinates->lowTemperature);
+    _renewIntValue(_nowTemperatureOnLCD, pTemperatureCoordinates->nowTemperature);
+
+    // Serial.print("x=" + String(pRobotCoordinates->x.getValue()));
+    // Serial.print("\ty=" + String(pRobotCoordinates->y.getValue()));
+    // Serial.print("\tfi=" + String(pRobotCoordinates->fi.getValue()));
+    // Serial.print("\tv=" + String(pRobotCoordinates->v.getValue()));
+    // Serial.print("\tlift=" + String(pFurnaceCoordinates->lift.getValue()));
+    // Serial.print("\tdoors=" + String(pFurnaceCoordinates->doors));
+    // Serial.print("\tstand=" + String(pFurnaceCoordinates->stand));
+    // Serial.print("\thT=" + String(pTemperatureCoordinates->highTemperature.getValue()));
+    // Serial.print("\tlT=" + String(pTemperatureCoordinates->lowTemperature.getValue()));
+    // Serial.print("ON LCD");
+    // Serial.println();
 }
 void MenuOnLCD::setCursorAndBlinc(String name)
 {

@@ -3,67 +3,19 @@
 RobotCoordinates::RobotCoordinates()
 {
 }
-
-void RobotCoordinates::setCoordinates(int x, int y, int fi, int v)
+RobotCoordinates *RobotCoordinates::_instance = NULL;
+RobotCoordinates *RobotCoordinates::getInstance()
 {
-    _robotCoordinates.x.setValue(x);
-    _robotCoordinates.y.setValue(y);
-    _robotCoordinates.fi.setValue(fi);
-    _robotCoordinates.v.setValue(v);
+    if (_instance == NULL)
+    {
+        _instance = new RobotCoordinates();
+    }
+    return _instance;
 }
-void RobotCoordinates::setCoordinates(StructRobotCoordinates structRobotCoordinates)
+void RobotCoordinates::setCoordinates(int newX, int newY, int newFi, int newV)
 {
-    _robotCoordinates = structRobotCoordinates;
-}
-void RobotCoordinates::setX(int x)
-{
-    _robotCoordinates.x.setValue(x);
-}
-void RobotCoordinates::setY(int y)
-{
-    _robotCoordinates.y.setValue(y);
-}
-void RobotCoordinates::setFi(int fi)
-{
-    _robotCoordinates.fi.setValue(fi);
-}
-void RobotCoordinates::setV(int v)
-{
-    _robotCoordinates.v.setValue(v);
-}
-StructRobotCoordinates RobotCoordinates::getStructOfCoordinates()
-{
-    return _robotCoordinates;
-}
-int RobotCoordinates::getX()
-{
-    return _robotCoordinates.x.getValue();
-}
-int RobotCoordinates::getY()
-{
-    return _robotCoordinates.y.getValue();
-}
-int RobotCoordinates::getFi()
-{
-    return _robotCoordinates.fi.getValue();
-}
-int RobotCoordinates::getV()
-{
-    return _robotCoordinates.v.getValue();
-}
-IntConstrainedVariable *RobotCoordinates::getPX()
-{
-    return &_robotCoordinates.x;
-}
-IntConstrainedVariable *RobotCoordinates::getPY()
-{
-    return &_robotCoordinates.y;
-}
-IntConstrainedVariable *RobotCoordinates::getPFi()
-{
-    return &_robotCoordinates.fi;
-}
-IntConstrainedVariable *RobotCoordinates::getPV()
-{
-    return &_robotCoordinates.v;
+    x.setValue(newX);
+    y.setValue(newY);
+    fi.setValue(newFi);
+    v.setValue(newV);
 }

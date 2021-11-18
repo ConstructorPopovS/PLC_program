@@ -6,7 +6,7 @@
 class IntCoordinateChange : public CoordinateChange
 {
 private:
-    IntConstrainedVariable *_coordinate;
+    IntConstrainedVariable *_pCoordinate;
     int _minusMinus;
     int _minus;
     int _plus;

@@ -10,7 +10,7 @@ MenuMediator::MenuMediator() : _manualMenuMode(&_menuOnLCD),
 }
 bool MenuMediator::_modeExists(String mode)
 {
-    for (int i = 0; i < _numberOfModes; i++)
+    for (int i = 0; i < _NUMBER_OF_MODES; i++)
     {
         if (mode == _namesOfModes[i])
         {

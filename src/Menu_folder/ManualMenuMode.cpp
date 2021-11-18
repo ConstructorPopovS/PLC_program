@@ -1,17 +1,18 @@
 #include "../include/Menu_folder/ManualMenuMode.h"
 
-ManualMenuMode::ManualMenuMode(MenuOnLCD *menuOnLCD) : MenuMode(menuOnLCD),
-                                                       pCoordinateChange(NULL),
-                                                       xCoordinateChange("x", robotCoordinates.getPX(), -10, -1, 1, 10),
-                                                       yCoordinateChange("y", robotCoordinates.getPY(), -10, -1, 1, 10),
-                                                       fiCoordinateChange("fi", robotCoordinates.getPFi(), -10, -1, 1, 10),
-                                                       vCoordinateChange("v", robotCoordinates.getPV(), -2, -1, 1, 2),
-                                                       liftCoordinateChange("lift", furnanceCoordinates.getPLift(), -10, -1, 1, 10),
-                                                       liftFloorCoordinateChange("liftFloor", furnanceCoordinates.getPLiftFloor(), -1, -1, 1, 1),
-                                                       doorsCoordinateChange("doors", furnanceCoordinates.getPDoors()),
-                                                       standCoordinateChange("stand", furnanceCoordinates.getPStand()),
-                                                       highTemperatureCoordinateChange("highTemperature", temperatureCoordinates.getPHighTemperature(), -50, -5, 5, 50),
-                                                       lowTemperatureCoordinateChange("lowTemperature", temperatureCoordinates.getPLowTemperature(), -50, -5, 5, 50)
+ManualMenuMode::ManualMenuMode(MenuOnLCD *menuOnLCD)
+    : MenuMode(menuOnLCD),
+      pCoordinateChange(NULL),
+      xCoordinateChange("x", &pRobotCoordinates->x, -10, -1, 1, 10),
+      yCoordinateChange("y", &pRobotCoordinates->y, -10, -1, 1, 10),
+      fiCoordinateChange("fi", &pRobotCoordinates->fi, -10, -1, 1, 10),
+      vCoordinateChange("v", &pRobotCoordinates->v, -2, -1, 1, 2),
+      liftCoordinateChange("lift", &pFurnaceCoordinates->lift, -10, -1, 1, 10),
+      liftFloorCoordinateChange("liftFloor", &pFurnaceCoordinates->liftFloor, -1, -1, 1, 1),
+      doorsCoordinateChange("doors", &pFurnaceCoordinates->doors),
+      standCoordinateChange("stand", &pFurnaceCoordinates->stand),
+      highTemperatureCoordinateChange("highTemperature", &pTemperatureCoordinates->highTemperature, -50, -5, 5, 50),
+      lowTemperatureCoordinateChange("lowTemperature", &pTemperatureCoordinates->lowTemperature, -50, -5, 5, 50)
 
 {
 }
@@ -19,27 +20,23 @@ void ManualMenuMode::printConstPartOfMode()
 {
     Serial.println("pMenuOnLCD.printConstPartOfManualMode()");
     pMenuOnLCD->printConstPartOfManualMode();
-    pMenuOnLCD->printAllCoordiinates(&robotCoordinates,
-                                     &furnanceCoordinates,
-                                     &temperatureCoordinates);
+    pMenuOnLCD->printAllCoordiinates();
 }
 void ManualMenuMode::doMenu()
 {
 
     processTheFirstKeypad();
-    pMenuOnLCD->renewAllCoordiinates(&robotCoordinates,
-                                     &furnanceCoordinates,
-                                     &temperatureCoordinates);
+    pMenuOnLCD->renewAllCoordiinates();
 
-    // Serial.print("x=" + String(robotCoordinates.getX()));
-    // Serial.print("\ty=" + String(robotCoordinates.getY()));
-    // Serial.print("\tfi=" + String(robotCoordinates.getFi()));
-    // Serial.print("\tv=" + String(robotCoordinates.getV()));
-    // Serial.print("\tlift=" + String(furnanceCoordinates.getLift()));
-    // Serial.print("\tdoors=" + String(furnanceCoordinates.getDoors()));
-    // Serial.print("\tstand=" + String(furnanceCoordinates.getStand()));
-    // Serial.print("\thT=" + String(temperatureCoordinates.getHighTemperature()));
-    // Serial.println("\tlT=" + String(temperatureCoordinates.getLowTemperature()));
+    // Serial.print("x=" + String(pRobotCoordinates->x.getValue()));
+    // Serial.print("\ty=" + String(pRobotCoordinates->y.getValue()));
+    // Serial.print("\tfi=" + String(pRobotCoordinates->fi.getValue()));
+    // Serial.print("\tv=" + String(pRobotCoordinates->v.getValue()));
+    // Serial.print("\tlift=" + String(pFurnaceCoordinates->lift.getValue()));
+    // Serial.print("\tdoors=" + String(pFurnaceCoordinates->doors));
+    // Serial.print("\tstand=" + String(pFurnaceCoordinates->stand));
+    // Serial.print("\thT=" + String(pTemperatureCoordinates->highTemperature.getValue()));
+    // Serial.println("\tlT=" + String(pTemperatureCoordinates->lowTemperature.getValue()));
     // Serial.println();
 }
 void ManualMenuMode::processTheFirstKeypad()
@@ -92,6 +89,7 @@ void ManualMenuMode::processTheFirstKeypad()
             if (pCoordinateChange != NULL)
             {
                 pCoordinateChange->minusMinus();
+                Serial.println("Do minus-minus");
             }
             break;
         case MINUS:

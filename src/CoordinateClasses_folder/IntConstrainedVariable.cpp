@@ -1,6 +1,6 @@
 #include "../../include/CoordinateClasses_folder/IntConstrainedVariable.h"
 
-IntConstrainedVariable::IntConstrainedVariable(int variable, int minVariable, int maxVariable)
+IntConstrainedVariable::IntConstrainedVariable(int variable = 100, int minVariable = 80, int maxVariable = 120)
 {
     _variable = variable;
     _minVariable = minVariable;

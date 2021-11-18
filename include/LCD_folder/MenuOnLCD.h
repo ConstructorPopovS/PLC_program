@@ -22,23 +22,18 @@ public:
     void printConstPartOfAutopilotMode();
     void printConstPartOfLockedMode();
     void claer();
-    void printAllCoordiinates(RobotCoordinates *robotCoordinates,
-                              FurnaceCoordinates *furnaceCoordinates,
-                              TemperatureCoordinates *temperatureCoordinates);
-    void renewAllCoordiinates(RobotCoordinates *robotCoordinates,
-                              FurnaceCoordinates *furnaceCoordinates,
-                              TemperatureCoordinates *temperatureCoordinates);
+    void printAllCoordiinates();
+    void renewAllCoordiinates();
     void setCursorAndBlinc(String name);
+    RobotCoordinates *pRobotCoordinates;
+    FurnaceCoordinates *pFurnaceCoordinates;
+    TemperatureCoordinates *pTemperatureCoordinates;
 
 private:
     const String _firstOnLCD[4] = {"M(    ;    ;    )V  ",
                                    "L(    ) floor(  )   ",
                                    "D(     ) stan(     )",
                                    "t(     /     )      "};
-
-    RobotCoordinates _robotCoordinates;
-    FurnaceCoordinates _furnaceCoordinates;
-    TemperatureCoordinates _temperatureCOordinates;
 
     LiquidCrystal_I2C *_pLcd;
     IntCoordinateShownOnLCD *_pIntCoordinateOnLCD;
@@ -69,9 +64,9 @@ private:
          "lift", "liftFloor",
          "doors", "stand",
          "highTemperature", "lowTemperature", "nowTemperature"};
-    void _printAndSetIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
+    void _printAndSetIntValue(IntCoordinateShownOnLCD &valueOnLCD, IntConstrainedVariable value);
     void _printAndSetBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value);
-    void _renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, int value);
+    void _renewIntValue(IntCoordinateShownOnLCD &valueOnLCD, IntConstrainedVariable value);
     void _renewBoolValue(BoolCoordinateShownOnLCD &valueOnLCD, bool value);
     void _clearValueField(CoordinateShownOnLCD &valueOnLCD);
 };

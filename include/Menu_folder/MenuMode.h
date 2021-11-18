@@ -21,11 +21,11 @@ public:
 
 protected:
     MenuMode(MenuOnLCD *menuOnLCD);
-    RobotCoordinates robotCoordinates;
-    FurnaceCoordinates furnanceCoordinates;
-    TemperatureCoordinates temperatureCoordinates;
+    RobotCoordinates *pRobotCoordinates;
+    FurnaceCoordinates *pFurnaceCoordinates;
+    TemperatureCoordinates *pTemperatureCoordinates;
 
-    ToggleFurnaceModes* pToggleFurnaceModes;
+    ToggleFurnaceModes *pToggleFurnaceModes;
     FirstKeypad *firstKeypad;
     MenuOnLCD *pMenuOnLCD;
 

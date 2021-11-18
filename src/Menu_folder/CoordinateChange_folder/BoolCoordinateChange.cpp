@@ -1,22 +1,22 @@
 #include "../../../include/Menu_folder/CoordinateChange_folder/BoolCoordinateChange.h"
 
-BoolCoordinateChange::BoolCoordinateChange(String name, bool *coord) : CoordinateChange(name)
+BoolCoordinateChange::BoolCoordinateChange(String name, bool* coord) : CoordinateChange(name)
 {
-_coordinate = coord;
+_pCoordinate = coord;
 }
 void BoolCoordinateChange::minusMinus()
 {
-    *_coordinate = false;
+    *_pCoordinate = false;
 }
 void BoolCoordinateChange::minus()
 {
-    *_coordinate = false;
+    *_pCoordinate = false;
 }
 void BoolCoordinateChange::plus()
 {
-    *_coordinate = true;
+    *_pCoordinate = true;
 }
 void BoolCoordinateChange::plusPlus()
 {
-    *_coordinate = true;
+    *_pCoordinate = true;
 }

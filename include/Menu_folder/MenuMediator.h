@@ -19,8 +19,8 @@ private:
 
     String _currentMode;
     String _targetMode;
-    static const int _numberOfModes = 3;
-    String _namesOfModes[_numberOfModes] = {"AUTOPILOT", "LOCKED", "MANUAL"};
+    static const int _NUMBER_OF_MODES = 3;
+    String _namesOfModes[_NUMBER_OF_MODES] = {"AUTOPILOT", "LOCKED", "MANUAL"};
 
     bool _modeExists(String mode);
     void _setCurrentMode(String mode);

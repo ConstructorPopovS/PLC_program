@@ -7,18 +7,18 @@
 class IntCoordinateShownOnLCD : public CoordinateShownOnLCD
 {
 private:
-    IntConstrainedVariable* _variable;
+    IntConstrainedVariable _variable;
 
 protected:
 public:
     IntCoordinateShownOnLCD(String newName,
-                            IntConstrainedVariable *variable,
+                            IntConstrainedVariable variable,
                             int newSizeOfCoordinateToClearOnLCD,
                             int newCoordinateColumn,
                             int newCoordinateRow);
     int getValue();
 
-    void setValue(int Value);
+    void setValue(int value);
 };
 
 #endif
